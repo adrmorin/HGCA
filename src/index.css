@@ -337,13 +337,13 @@ button {
   margin-inline: auto;
   text-align: center;
   padding-block: var(--space-2xl);
-  margin-top: 15vh; /* Standard margin for mobile */
+  margin-top: 10vh; /* Standard margin for mobile, bajado un 5% */
   transition: opacity 2s ease-in-out, transform 2s ease-out;
 }
 
 @media (min-width: 1024px) {
   .hero__content {
-    margin-top: 45vh; /* Pushed down an additional 20% on desktop */
+    margin-top: 20vh; /* Bajado un 5% desde 15vh */
   }
 }
 
