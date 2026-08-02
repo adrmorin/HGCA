@@ -292,16 +292,6 @@ button {
   z-index: 1;
 }
 
-.hero__main-logo {
-  max-width: 90%;
-  width: 980px; /* Disminuido otro 10% desde 1090px */
-  height: auto;
-  margin: 0 auto var(--space-lg);
-  display: block;
-  /* Added a subtle light glow so the black text is visible over the dark video */
-  filter: drop-shadow(0 4px 20px rgba(255,255,255,0.3));
-  transform: translateX(-3%); /* Movido a la izquierda un 3% */
-}
 
 .hero__video-controls {
   position: absolute;
