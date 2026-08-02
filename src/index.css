@@ -244,11 +244,15 @@ button {
   font-size: var(--text-sm);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
-  transition: color var(--transition-fast);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
 }
 
 .nav__link:hover {
   color: #ffffff;
+  background-color: #000000;
 }
 
 /* Hero Section */
