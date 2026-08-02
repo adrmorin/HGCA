@@ -294,7 +294,7 @@ button {
 
 .hero__main-logo {
   max-width: 90%;
-  width: 1090px; /* Disminuido otro 10% desde 1215px */
+  width: 980px; /* Disminuido otro 10% desde 1090px */
   height: auto;
   margin: 0 auto var(--space-lg);
   display: block;
