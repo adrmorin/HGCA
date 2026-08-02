@@ -31,7 +31,7 @@ function App() {
       <header className="header">
         <div className="container header__inner">
           <a href="#" className="header__logo">
-            <img src={`${import.meta.env.BASE_URL}Identidad.png`} alt="HCGA Trading LLC" className="header__logo-img" />
+            <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="HCGA Trading LLC" className="header__logo-img" />
           </a>
           <button 
             className="mobile-menu-btn" 
@@ -402,7 +402,7 @@ function App() {
       <footer className="footer">
         <div className="container footer-container">
           <div className="footer-brand">
-            <img src={`${import.meta.env.BASE_URL}Identidad.png`} alt="HCGA TRADING LLC Logo" className="footer-logo-img" />
+            <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="HCGA TRADING LLC Logo" className="footer-logo-img" />
             <p>Scalable commercial transportation, powered by data.</p>
           </div>
           <div className="footer-links">
