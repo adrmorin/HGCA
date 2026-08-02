@@ -127,7 +127,7 @@ button {
   left: 0;
   width: 100%;
   z-index: 100;
-  background-color: transparent; /* Eliminado el color de fondo rojo */
+  background-color: rgba(153, 0, 0, 0.5); /* Restaurado a color marrón con 50% de transparencia */
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
   transition: background-color var(--transition-fast);
