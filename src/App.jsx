@@ -92,6 +92,8 @@ function App() {
 
           <div className={`container hero__content ${showContent ? 'hero__content--visible' : 'hero__content--hidden'}`}>
             
+            <img src={`${import.meta.env.BASE_URL}Identidad.png`} alt="HCGA Trading LLC" className="hero__main-logo" />
+
             <h1 className="hero__title">
               Scalable commercial transportation, <span className="hero__title-highlight">powered by data.</span>
             </h1>
