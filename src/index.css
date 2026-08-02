@@ -278,6 +278,13 @@ button {
   filter: brightness(1.02); /* Aumentado el brillo un 2% */
 }
 
+@media (max-width: 1023px) {
+  .hero__video-bg {
+    object-fit: contain;
+    background-color: #000000;
+  }
+}
+
 .hero__video-overlay {
   position: absolute;
   top: 0;
