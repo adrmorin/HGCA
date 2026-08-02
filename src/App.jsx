@@ -387,7 +387,7 @@ function App() {
       <footer className="footer">
         <div className="container footer-container">
           <div className="footer-brand">
-            <h3 className="footer-logo">HCGA TRADING LLC</h3>
+            <img src="/Identidad.png" alt="HCGA TRADING LLC Logo" className="footer-logo-img" />
             <p>Scalable commercial transportation, powered by data.</p>
           </div>
           <div className="footer-links">
