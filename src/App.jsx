@@ -4,6 +4,7 @@ import './index.css';
 function App() {
   const [showContent, setShowContent] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const videoRef = useRef(null);
 
   const togglePlayStop = () => {
@@ -32,19 +33,33 @@ function App() {
           <a href="#" className="header__logo">
             <img src="/Identidad.png" alt="HCGA Trading LLC" className="header__logo-img" />
           </a>
-          <nav className="nav">
-            <ul className="nav__list">
-              <li><a href="#services" className="nav__link">Services</a></li>
-              <li><a href="#technology" className="nav__link">Technology</a></li>
-              <li><a href="#safety" className="nav__link">Safety</a></li>
-              <li><a href="#client-portal" className="nav__link">Client Portal</a></li>
-            </ul>
-          </nav>
-          <div className="header__actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <a href="#" className="nav__link">Driver Login</a>
-            <a href="#client-portal" className="btn btn--primary" style={{ padding: '0.5rem 1rem', fontSize: 'var(--text-sm)' }}>
-              Client Login
-            </a>
+          <button 
+            className="mobile-menu-btn" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            ) : (
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            )}
+          </button>
+
+          <div className={`header__menu ${isMobileMenuOpen ? 'header__menu--open' : ''}`}>
+            <nav className="nav">
+              <ul className="nav__list">
+                <li><a href="#services" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>Services</a></li>
+                <li><a href="#technology" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>Technology</a></li>
+                <li><a href="#safety" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>Safety</a></li>
+                <li><a href="#client-portal" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>Client Portal</a></li>
+              </ul>
+            </nav>
+            <div className="header__actions">
+              <a href="#" className="nav__link">Driver Login</a>
+              <a href="#client-portal" className="btn btn--primary">
+                Client Login
+              </a>
+            </div>
           </div>
         </div>
       </header>
