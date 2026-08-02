@@ -147,10 +147,18 @@ button {
 }
 
 .header__logo-img {
-  height: 48px;
+  height: 40px; /* Slightly smaller for mobile */
   width: auto;
+  max-width: 70vw; /* Prevent pushing hamburger menu off screen */
   object-fit: contain;
   filter: brightness(0) invert(1);
+}
+
+@media (min-width: 768px) {
+  .header__logo-img {
+    height: 48px;
+    max-width: none;
+  }
 }
 
 .mobile-menu-btn {
@@ -912,7 +920,8 @@ button {
 }
 
 .footer-logo-img {
-  max-width: 266px; /* Increased by another 10% */
+  width: 266px;
+  max-width: 100%; /* Ensure it shrinks on very small screens */
   height: auto;
   margin-bottom: var(--space-md);
   filter: brightness(0) invert(1);
