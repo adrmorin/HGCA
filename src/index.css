@@ -254,11 +254,17 @@ button {
 /* Hero Section */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 50vh; /* Reduce section height to 50% on mobile */
   display: grid;
   align-items: center;
   padding-top: 80px; /* Offset header */
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 100vh;
+  }
 }
 
 .hero__video-bg {
@@ -269,13 +275,6 @@ button {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  transform: scale(0.5); /* Disminuido un 50% en móvil */
-}
-
-@media (min-width: 768px) {
-  .hero__video-bg {
-    transform: scale(1);
-  }
 }
 
 .hero__video-overlay {
