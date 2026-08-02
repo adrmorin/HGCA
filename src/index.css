@@ -279,8 +279,8 @@ button {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   filter: brightness(1.02); /* Aumentado el brillo un 2% */
 }
 
@@ -297,8 +297,8 @@ button {
     rgba(17, 17, 17, 0.8) 100%
   );
   z-index: 1;
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 
 
