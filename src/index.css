@@ -280,7 +280,7 @@ button {
 
 @media (max-width: 1023px) {
   .hero__video-bg {
-    object-fit: cover;
+    object-fit: contain;
     object-position: top;
   }
 }
