@@ -388,7 +388,6 @@ button {
   line-height: 1.1;
   color: #ffffff;
   font-weight: 700;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
 }
 
 @media (min-width: 1024px) {
@@ -398,7 +397,6 @@ button {
     line-height: 1;
     font-weight: 600; /* Matched to background weight */
     transform: translateX(-2.05%); /* Fine-tuned alignment */
-    text-shadow: 0 8px 32px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.7);
   }
 }
 
