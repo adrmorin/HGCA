@@ -74,6 +74,9 @@ function App() {
             playsInline
             onEnded={() => setShowContent(true)}
           >
+            {/* Mobile Video (Samsung Z Fold 5 and standard mobile up to 1023px) */}
+            <source src={`${import.meta.env.BASE_URL}mobile-hero-video.mp4`} media="(max-width: 1023px)" type="video/mp4" />
+            {/* Desktop Video */}
             <source src={`${import.meta.env.BASE_URL}hero-video.mp4`} type="video/mp4" />
           </video>
           <div className="hero__video-overlay"></div>
