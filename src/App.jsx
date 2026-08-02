@@ -56,7 +56,7 @@ function App() {
             </nav>
             <div className="header__actions">
               <a href="#" className="nav__link">Driver Login</a>
-              <a href="#client-portal" className="btn btn--primary">
+              <a href="#client-portal" className="nav__link">
                 Client Login
               </a>
             </div>
