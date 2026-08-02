@@ -300,6 +300,7 @@ button {
   display: block;
   /* Added a subtle light glow so the black text is visible over the dark video */
   filter: drop-shadow(0 4px 20px rgba(255,255,255,0.3));
+  transform: translateX(-3%); /* Movido a la izquierda un 3% */
 }
 
 .hero__video-controls {
@@ -337,13 +338,13 @@ button {
   margin-inline: auto;
   text-align: center;
   padding-block: var(--space-2xl);
-  margin-top: 10vh; /* Standard margin for mobile, bajado un 5% */
+  margin-top: 5vh; /* Standard margin for mobile, subido un 5% */
   transition: opacity 2s ease-in-out, transform 2s ease-out;
 }
 
 @media (min-width: 1024px) {
   .hero__content {
-    margin-top: 20vh; /* Bajado un 5% desde 15vh */
+    margin-top: 15vh; /* Subido un 5% desde 20vh */
   }
 }
 
