@@ -328,13 +328,13 @@ button {
   margin-inline: auto;
   text-align: center;
   padding-block: var(--space-2xl);
-  margin-top: 5vh; /* Standard margin for mobile, subido un 5% */
+  margin-top: 25vh; /* Bajado un 20% desde 5vh */
   transition: opacity 2s ease-in-out, transform 2s ease-out;
 }
 
 @media (min-width: 1024px) {
   .hero__content {
-    margin-top: 15vh; /* Subido un 5% desde 20vh */
+    margin-top: 35vh; /* Bajado un 20% desde 15vh */
   }
 }
 
