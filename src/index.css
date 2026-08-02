@@ -254,7 +254,7 @@ button {
 /* Hero Section */
 .hero {
   position: relative;
-  min-height: 70vh; /* Reduced by 30% from original 100vh */
+  min-height: 50vh; /* Reduced to 50% height for mobile */
   display: grid;
   align-items: center;
   padding-top: 80px; /* Offset header */
