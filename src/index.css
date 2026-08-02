@@ -258,17 +258,11 @@ button {
 /* Hero Section */
 .hero {
   position: relative;
-  min-height: 50vh; /* Reduced to 50% height for mobile */
+  min-height: 100vh; /* Full height for both mobile and desktop */
   display: grid;
   align-items: center;
   padding-top: 80px; /* Offset header */
   overflow: hidden;
-}
-
-@media (min-width: 768px) {
-  .hero {
-    min-height: 100vh;
-  }
 }
 
 .hero__video-bg {
