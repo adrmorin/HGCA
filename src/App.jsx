@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './index.css';
 import mobileVideo from './assets/video/mobile-hero-video.mp4';
 
@@ -6,7 +6,34 @@ function App() {
   const [showContent, setShowContent] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(() =>
+    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  );
+  const [showDevNotice, setShowDevNotice] = useState(false);
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (!showDevNotice) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setShowDevNotice(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showDevNotice]);
+
+  const openDevNotice = (e) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    setShowDevNotice(true);
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+  };
 
   const togglePlayStop = () => {
     if (videoRef.current) {
@@ -56,10 +83,21 @@ function App() {
               </ul>
             </nav>
             <div className="header__actions">
-              <a href="#" className="nav__link">Driver Login</a>
+              <a href="#" className="nav__link" onClick={openDevNotice}>Driver Login</a>
               <a href="#client-portal" className="nav__link">
                 Client Login
               </a>
+              <button
+                className="theme-toggle-btn"
+                onClick={toggleTheme}
+                aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                {theme === 'dark' ? (
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                )}
+              </button>
             </div>
           </div>
         </div>
@@ -372,7 +410,7 @@ function App() {
               <h2 className="section-title">Client Portal</h2>
               <p className="section-subtitle">Access your dedicated fleet dashboard. Monitor live routes, download delivery proofs, and analyze performance data.</p>
               
-              <form className="portal-form" onSubmit={(e) => e.preventDefault()}>
+              <form className="portal-form" onSubmit={openDevNotice}>
                 <div className="form-group">
                   <label htmlFor="email">Work Email</label>
                   <input type="email" id="email" className="form-input" placeholder="name@company.com" required />
@@ -435,6 +473,22 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {showDevNotice && (
+        <div className="dev-modal-overlay" onClick={() => setShowDevNotice(false)}>
+          <div className="dev-modal" role="dialog" aria-modal="true" aria-labelledby="dev-modal-title" onClick={(e) => e.stopPropagation()}>
+            <button className="dev-modal-close" onClick={() => setShowDevNotice(false)} aria-label="Close">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div className="dev-modal-icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <h3 id="dev-modal-title">Feature Coming Soon</h3>
+            <p>This section is still under development. We're working on it and it will be available soon — thanks for your patience.</p>
+            <button className="btn btn--primary" onClick={() => setShowDevNotice(false)}>Got it</button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

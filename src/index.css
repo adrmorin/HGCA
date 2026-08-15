@@ -4,6 +4,10 @@
   --color-primary: #111111;
   --color-primary-light: #2a2a2a;
   --color-primary-foreground: #ffffff;
+
+  /* Fixed dark surfaces (always dark, regardless of OS color scheme) */
+  --color-dark-surface: #111111;
+  --color-dark-surface-light: #2a2a2a;
   --color-accent: #990000; /* Deep Red from logo */
   --color-accent-hover: #7a0000;
   
@@ -53,20 +57,35 @@
 
 /* Dark Theme Variables */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --color-primary: #ffffff;
     --color-primary-light: #f8fafc;
     --color-primary-foreground: #111111;
-    
+
     --color-secondary: #1e293b;
     --color-surface: #111111;
     --color-surface-elevated: #1a1a1a;
-    
+
     --color-text-primary: #f8fafc;
     --color-text-secondary: #a0a0a0;
-    
+
     --color-border: #2a2a2a;
   }
+}
+
+:root[data-theme="dark"] {
+  --color-primary: #ffffff;
+  --color-primary-light: #f8fafc;
+  --color-primary-foreground: #111111;
+
+  --color-secondary: #1e293b;
+  --color-surface: #111111;
+  --color-surface-elevated: #1a1a1a;
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #a0a0a0;
+
+  --color-border: #2a2a2a;
 }
 
 html {
@@ -78,6 +97,7 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s ease-out, color 0.3s ease-out, border-color 0.3s ease-out;
 }
 
 body {
@@ -129,7 +149,6 @@ button {
   z-index: 100;
   background-color: rgba(153, 0, 0, 0.5); /* Restaurado a color marrón con 50% de transparencia */
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
   transition: background-color var(--transition-fast);
 }
 
@@ -215,6 +234,7 @@ button {
     flex-direction: row;
     position: static;
     background-color: transparent;
+    backdrop-filter: none;
     padding: 0;
     border: none;
     box-shadow: none;
@@ -253,6 +273,23 @@ button {
 .nav__link:hover {
   color: #ffffff;
   background-color: #000000;
+}
+
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Hero Section */
@@ -434,12 +471,19 @@ button {
 }
 
 @media (prefers-color-scheme: dark) {
-  .hero__title-highlight {
+  :root:not([data-theme="light"]) .hero__title-highlight {
     background: linear-gradient(135deg, #ffffff, var(--color-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+}
+
+:root[data-theme="dark"] .hero__title-highlight {
+  background: linear-gradient(135deg, #ffffff, var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero__description {
@@ -548,7 +592,7 @@ button {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: 2rem;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color 0.3s ease-out, background-color 0.3s ease-out;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -561,9 +605,13 @@ button {
 }
 
 @media (prefers-color-scheme: dark) {
-  .service-card:hover {
+  :root:not([data-theme="light"]) .service-card:hover {
     box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
   }
+}
+
+:root[data-theme="dark"] .service-card:hover {
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
 }
 
 .service-icon {
@@ -594,7 +642,7 @@ button {
 /* Technology Section */
 .tech-section {
   padding-block: 8rem;
-  background-color: var(--color-primary); /* Dark theme base */
+  background-color: var(--color-dark-surface); /* Always-dark showcase section */
   color: #ffffff;
   overflow: hidden;
   position: relative;
@@ -782,7 +830,7 @@ button {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background-color 0.3s ease-out, border-color 0.3s ease-out;
 }
 
 .safety-item:hover {
@@ -863,7 +911,7 @@ button {
   color: var(--color-text-primary);
   font-family: inherit;
   font-size: 1rem;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color 0.3s ease-out, color 0.3s ease-out;
 }
 
 .form-input:focus {
@@ -944,8 +992,8 @@ button {
 
 /* Footer Styles */
 .footer {
-  background-color: var(--color-primary);
-  color: var(--color-primary-foreground);
+  background-color: var(--color-dark-surface);
+  color: #ffffff;
   padding-top: var(--space-2xl);
 }
 
@@ -1001,7 +1049,7 @@ button {
 }
 
 .footer-bottom {
-  background-color: var(--color-primary-light);
+  background-color: var(--color-dark-surface-light);
   padding-block: var(--space-md);
   text-align: center;
 }
@@ -1010,4 +1058,90 @@ button {
   color: #a0aec0;
   font-size: 0.875rem;
   margin: 0;
+}
+
+/* Development Notice Modal */
+.dev-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  z-index: 200;
+  animation: dev-modal-fade-in 0.2s ease-out;
+}
+
+.dev-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: dev-modal-pop-in 0.25s ease-out;
+}
+
+.dev-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.dev-modal-close:hover {
+  background-color: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+}
+
+.dev-modal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-inline: auto;
+  margin-bottom: 1.25rem;
+  border-radius: 50%;
+  background-color: rgba(153, 0, 0, 0.1);
+  color: var(--color-accent);
+}
+
+.dev-modal h3 {
+  font-size: var(--text-xl);
+  color: var(--color-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.dev-modal p {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+
+.dev-modal .btn {
+  width: 100%;
+}
+
+@keyframes dev-modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes dev-modal-pop-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
