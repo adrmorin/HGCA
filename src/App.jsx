@@ -230,7 +230,20 @@ function App() {
     window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   );
   const [showDevNotice, setShowDevNotice] = useState(false);
+  const [selectedServiceId, setSelectedServiceId] = useState(null);
+  const [quoteSubmitted, setQuoteSubmitted] = useState(false);
   const videoRef = useRef(null);
+  const servicesRef = useRef(null);
+
+  const handleSelectService = (id) => {
+    setSelectedServiceId(id);
+    setQuoteSubmitted(false);
+  };
+
+  const handleBackToServices = () => {
+    setSelectedServiceId(null);
+    setQuoteSubmitted(false);
+  };
 
   useEffect(() => {
     if (!showDevNotice) return;
