@@ -2257,6 +2257,8 @@ function App() {
             )}
           </button>
 
+          <div className={`header__menu-backdrop ${isMobileMenuOpen ? 'header__menu-backdrop--open' : ''}`} onClick={() => setIsMobileMenuOpen(false)} />
+
           <div className={`header__menu ${isMobileMenuOpen ? 'header__menu--open' : ''}`}>
             <nav className="nav">
               <ul className="nav__list">
@@ -2267,12 +2269,14 @@ function App() {
               </ul>
             </nav>
 
-            <div className="header__actions" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              {renderLangSwitcher()}
+            <div className="header__actions">
+              <div onClick={() => setIsMobileMenuOpen(false)}>
+                {renderLangSwitcher()}
+              </div>
 
               <button
                 className="theme-toggle-btn"
-                onClick={toggleTheme}
+                onClick={() => { toggleTheme(); setIsMobileMenuOpen(false); }}
                 aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
                 title={t('Cambiar Tema', 'Toggle Theme')}
               >
@@ -2284,14 +2288,14 @@ function App() {
               </button>
 
               {isDriverLoggedIn ? (
-                <a href="#" className="nav__link nav__link--dashboard" onClick={(e) => { e.preventDefault(); setShowDriverDashboard(true); }}>{t('Panel Conductor', 'Driver Panel')}</a>
+                <a href="#" className="nav__link nav__link--dashboard" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowDriverDashboard(true); }}>{t('Panel Conductor', 'Driver Panel')}</a>
               ) : (
-                <a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); setShowDriverLoginModal(true); }}>{t('Acceso Conductor', 'Driver Login')}</a>
+                <a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowDriverLoginModal(true); }}>{t('Acceso Conductor', 'Driver Login')}</a>
               )}
               {isClientLoggedIn ? (
-                <a href="#" className="nav__link nav__link--dashboard" onClick={(e) => { e.preventDefault(); setShowClientDashboard(true); }} style={{ color: '#10b981', borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.05)' }}>{t('Panel Cliente', 'Client Panel')}</a>
+                <a href="#" className="nav__link nav__link--dashboard" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowClientDashboard(true); }} style={{ color: '#10b981', borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.05)' }}>{t('Panel Cliente', 'Client Panel')}</a>
               ) : (
-                <a href="#client-portal" className="nav__link">
+                <a href="#client-portal" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>
                   {t('Acceso Clientes', 'Client Login')}
                 </a>
               )}
