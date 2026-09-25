@@ -2325,18 +2325,30 @@ function App() {
           <div className="hero__video-overlay"></div>
 
           <div className="hero__video-controls">
-            <button onClick={togglePlayStop} className="btn-play-pause" aria-label="Reproducir o Pausar Video">
+            <button onClick={togglePlayStop} className="btn-play-pause" aria-label={isPlaying ? t("Pausar Video", "Pause Video") : t("Reproducir Video", "Play Video")}>
               {isPlaying ? (
-                <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="currentColor"><rect x="6" y="6" width="12" height="12"></rect></svg>
+                <>
+                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="currentColor"><rect x="6" y="6" width="12" height="12"></rect></svg>
+                  <span>{t('Pausar', 'Pause')}</span>
+                </>
               ) : (
-                <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <>
+                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  <span>{t('Reproducir', 'Play')}</span>
+                </>
               )}
             </button>
-            <button onClick={toggleMute} className="btn-play-pause" aria-label={isMuted ? "Activar Sonido" : "Silenciar Sonido"} title={isMuted ? "Activar Sonido" : "Silenciar Sonido"}>
+            <button onClick={toggleMute} className="btn-play-pause" aria-label={isMuted ? t("Activar Sonido", "Unmute Audio") : t("Silenciar Sonido", "Mute Audio")}>
               {isMuted ? (
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                <>
+                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                  <span>{t('Sin Sonido', 'Muted')}</span>
+                </>
               ) : (
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                <>
+                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                  <span>{t('Con Sonido', 'Sound')}</span>
+                </>
               )}
             </button>
           </div>
