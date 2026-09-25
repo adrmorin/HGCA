@@ -2286,14 +2286,14 @@ function App() {
               </button>
 
               {isDriverLoggedIn ? (
-                <a href="#" className="nav__link nav__link--dashboard" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowDriverDashboard(true); }}>{t('Panel Conductor', 'Driver Panel')}</a>
+                <a href="#" className="nav__link nav__link--btn-driver nav__link--dashboard" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowDriverDashboard(true); }}>{t('Panel Conductor', 'Driver Panel')}</a>
               ) : (
-                <a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowDriverLoginModal(true); }}>{t('Acceso Conductor', 'Driver Login')}</a>
+                <a href="#" className="nav__link nav__link--btn-driver" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowDriverLoginModal(true); }}>{t('Acceso Conductor', 'Driver Login')}</a>
               )}
               {isClientLoggedIn ? (
-                <a href="#" className="nav__link nav__link--dashboard" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowClientDashboard(true); }} style={{ color: '#10b981', borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.05)' }}>{t('Panel Cliente', 'Client Panel')}</a>
+                <a href="#" className="nav__link nav__link--btn-client nav__link--dashboard" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowClientDashboard(true); }}>{t('Panel Cliente', 'Client Panel')}</a>
               ) : (
-                <a href="#client-portal" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>
+                <a href="#client-portal" className="nav__link nav__link--btn-client" onClick={() => setIsMobileMenuOpen(false)}>
                   {t('Acceso Clientes', 'Client Login')}
                 </a>
               )}
