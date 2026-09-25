@@ -249,7 +249,8 @@ button {
   transform: scale(1.05);
 }
 
-@media (max-width: 767px) {
+/* Hamburger menu up to 1099px: logo + 4 links + 4 actions need ~1100px */
+@media (max-width: 1099px) {
   .header__menu {
     display: flex;
     flex-direction: column;
@@ -363,7 +364,7 @@ button {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
   .mobile-menu-btn {
     display: none !important;
   }
@@ -505,6 +506,34 @@ button {
     border-color: var(--color-accent-hover) !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 4px 12px rgba(153, 0, 0, 0.5) !important;
+  }
+}
+
+/* Compact desktop header between 1100px and 1279px */
+@media (min-width: 1100px) and (max-width: 1279px) {
+  .header__logo-img {
+    height: 40px;
+  }
+
+  .header__menu {
+    margin-left: 1.25rem !important;
+  }
+
+  .nav__list {
+    gap: 0.1rem !important;
+  }
+
+  .nav__link {
+    padding: 0.45rem 0.6rem !important;
+  }
+
+  .header__actions {
+    gap: 0.45rem !important;
+  }
+
+  .header__actions .nav__link--btn-driver,
+  .header__actions .nav__link--btn-client {
+    padding: 0 0.75rem !important;
   }
 }
 
