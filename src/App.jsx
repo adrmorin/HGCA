@@ -566,7 +566,7 @@ function App() {
   const [isMuted, setIsMuted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [theme, setTheme] = useState(() =>
-    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    localStorage.getItem('hcga_theme') || 'dark'
   );
   const [showDevNotice, setShowDevNotice] = useState(false);
   const [selectedServiceId, setSelectedServiceId] = useState(null);
@@ -989,6 +989,7 @@ function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('hcga_theme', theme);
   }, [theme]);
 
   useEffect(() => {
