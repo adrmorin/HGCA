@@ -2270,9 +2270,7 @@ function App() {
             </nav>
 
             <div className="header__actions">
-              <div onClick={() => setIsMobileMenuOpen(false)}>
-                {renderLangSwitcher()}
-              </div>
+              {renderLangSwitcher()}
 
               <button
                 className="theme-toggle-btn"
