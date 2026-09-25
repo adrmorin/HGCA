@@ -501,9 +501,16 @@ button {
   .hero__content {
     position: relative;
     z-index: 10;
-    margin-top: 0;
-    padding-top: 85px;
+    margin-top: 20vh;
+    padding-top: 75px;
     align-self: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__content {
+    margin-top: 16vh;
+    padding-top: 75px;
   }
 }
 
