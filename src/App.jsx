@@ -1059,6 +1059,81 @@ function App() {
     }
   }, []);
 
+  // Floating demo controller (shared by landing + both dashboards).
+  // Animated dropdown that collapses automatically after a selection,
+  // on outside click or on Escape.
+  const demoControllerRef = useRef(null);
+
+  useEffect(() => {
+    if (!isDemoPanelOpen) return;
+    const handlePointer = (e) => {
+      if (demoControllerRef.current && !demoControllerRef.current.contains(e.target)) setIsDemoPanelOpen(false);
+    };
+    const handleKey = (e) => { if (e.key === 'Escape') setIsDemoPanelOpen(false); };
+    document.addEventListener('pointerdown', handlePointer);
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('pointerdown', handlePointer);
+      document.removeEventListener('keydown', handleKey);
+    };
+  }, [isDemoPanelOpen]);
+
+  const DEMO_DRIVER_STATES = [
+    ['driver_marketplace', '1. Available Loads'],
+    ['driver_pretrip', '2. DVIR (Uncompliant)'],
+    ['driver_compliant', '3. DVIR (Compliant)'],
+    ['driver_transit', '4. In Transit (50%)'],
+    ['driver_arrived', '5. Arrived (100%)'],
+  ];
+  const DEMO_CLIENT_STATES = [
+    ['client_dashboard', '1. Client Overview HUD'],
+    ['client_loadboards', '2. Load Boards Hub (DAT/Truckstop)'],
+    ['client_vetting', '3. Carrier Vetting (MC Check)'],
+    ['client_spotrates', '4. DAT Spot Rate Benchmark'],
+    ['client_apilogs', '5. API Gateway Logs'],
+  ];
+
+  const renderDemoController = () => {
+    let itemIndex = 0;
+    const selectAndCollapse = (action) => () => { setIsDemoPanelOpen(false); action(); };
+    const item = (label, action, className = '') => (
+      <button
+        key={label}
+        className={`demo-controller__btn ${className}`}
+        style={{ '--i': itemIndex++ }}
+        onClick={selectAndCollapse(action)}
+      >
+        {label}
+      </button>
+    );
+
+    return (
+      <div ref={demoControllerRef} className={`demo-controller ${isDemoPanelOpen ? 'demo-controller--open' : ''}`}>
+        <div className="demo-controller__header">
+          <span>Demo Controller</span>
+          <button
+            className="demo-controller__toggle"
+            onClick={() => setIsDemoPanelOpen(!isDemoPanelOpen)}
+            aria-expanded={isDemoPanelOpen}
+            aria-controls="demo-controller-panel"
+          >
+            {isDemoPanelOpen ? t('Plegar', 'Collapse') : t('Demostración Interactiva', 'Interactive Demo Links')}
+            <svg className="demo-controller__chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 15 12 9 18 15"></polyline></svg>
+          </button>
+        </div>
+        <div id="demo-controller-panel" className="demo-controller__panel" inert={!isDemoPanelOpen}>
+          <div className="demo-controller__body">
+            {item(`🏠 ${t('Volver al Inicio', 'Back to Landing Page')}`, () => { setShowDriverDashboard(false); setShowClientDashboard(false); })}
+            <div className="demo-controller__section-title">Driver Console States</div>
+            {DEMO_DRIVER_STATES.map(([state, label]) => item(label, () => launchDemoState(state)))}
+            <div className="demo-controller__section-title">Client &amp; Brokerage States</div>
+            {DEMO_CLIENT_STATES.map(([state, label]) => item(label, () => launchDemoState(state), 'demo-controller__btn--client'))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   // Language switch component helper for headers
   const renderLangSwitcher = () => (
     <button
@@ -1588,33 +1663,7 @@ function App() {
         </div>
 
         {/* Floating Demo Controller */}
-        <div className="demo-controller">
-          <div className="demo-controller__header">
-            <span>Demo Controller</span>
-            <button className="demo-controller__toggle" onClick={() => setIsDemoPanelOpen(!isDemoPanelOpen)}>
-              {isDemoPanelOpen ? t('Plegar', 'Collapse') : t('Demostración Interactiva', 'Interactive Demo Links')}
-            </button>
-          </div>
-          {isDemoPanelOpen && (
-            <div className="demo-controller__body">
-              <button className="demo-controller__btn" onClick={() => { setShowDriverDashboard(false); setShowClientDashboard(false); }}>
-                🏠 {t('Volver al Inicio', 'Back to Landing Page')}
-              </button>
-              <div className="demo-controller__section-title">Driver Console States</div>
-              <button className="demo-controller__btn" onClick={() => launchDemoState('driver_marketplace')}>1. Available Loads</button>
-              <button className="demo-controller__btn" onClick={() => launchDemoState('driver_pretrip')}>2. DVIR (Uncompliant)</button>
-              <button className="demo-controller__btn" onClick={() => launchDemoState('driver_compliant')}>3. DVIR (Compliant)</button>
-              <button className="demo-controller__btn" onClick={() => launchDemoState('driver_transit')}>4. In Transit (50%)</button>
-              <button className="demo-controller__btn" onClick={() => launchDemoState('driver_arrived')}>5. Arrived (100%)</button>
-              <div className="demo-controller__section-title">Client &amp; Brokerage States</div>
-              <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_dashboard')}>1. Client Overview HUD</button>
-              <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_loadboards')}>2. Load Boards (DAT/Truckstop)</button>
-              <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_vetting')}>3. Carrier Vetting (MC Check)</button>
-              <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_spotrates')}>4. DAT Spot Rate Benchmark</button>
-              <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_apilogs')}>5. API Gateway Logs</button>
-            </div>
-          )}
-        </div>
+        {renderDemoController()}
       </>
     );
   }
@@ -2184,56 +2233,8 @@ function App() {
           </footer>
         </div>
 
-        {/* Floating Interactive Demo Controller */}
-        <div className="demo-controller">
-          <div className="demo-controller__header">
-            <span>Demo Controller</span>
-            <button className="demo-controller__toggle" onClick={() => setIsDemoPanelOpen(!isDemoPanelOpen)}>
-              {isDemoPanelOpen ? t('Plegar', 'Collapse') : t('Demostración Interactiva', 'Interactive Demo Links')}
-            </button>
-          </div>
-          {isDemoPanelOpen && (
-            <div className="demo-controller__body">
-              <button className="demo-controller__btn" onClick={() => { setShowDriverDashboard(false); setShowClientDashboard(false); }}>
-                🏠 {t('Volver al Inicio', 'Back to Landing Page')}
-              </button>
-
-              <div className="demo-controller__section-title">Driver Console States</div>
-              <button className="demo-controller__btn" onClick={() => launchDemoState('driver_marketplace')}>
-                1. Available Loads
-              </button>
-              <button className="demo-controller__btn" onClick={() => launchDemoState('driver_pretrip')}>
-                2. DVIR (Uncompliant)
-              </button>
-              <button className="demo-controller__btn" onClick={() => launchDemoState('driver_compliant')}>
-                3. DVIR (Compliant)
-              </button>
-              <button className="demo-controller__btn" onClick={() => launchDemoState('driver_transit')}>
-                4. In Transit (50%)
-              </button>
-              <button className="demo-controller__btn" onClick={() => launchDemoState('driver_arrived')}>
-                5. Arrived (100%)
-              </button>
-
-              <div className="demo-controller__section-title">Client &amp; Brokerage States</div>
-              <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_dashboard')}>
-                1. Client Overview HUD
-              </button>
-              <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_loadboards')}>
-                2. Load Boards Hub (DAT/Truckstop)
-              </button>
-              <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_vetting')}>
-                3. Carrier Vetting (MC Check)
-              </button>
-              <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_spotrates')}>
-                4. DAT Spot Rate Benchmark
-              </button>
-              <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_apilogs')}>
-                5. API Gateway Logs
-              </button>
-            </div>
-          )}
-        </div>
+        {/* Floating Demo Controller */}
+        {renderDemoController()}
       </>
     );
   }
@@ -2904,55 +2905,7 @@ function App() {
       )}
 
       {/* Floating Demo Controller */}
-      <div className="demo-controller">
-        <div className="demo-controller__header">
-          <span>Demo Controller</span>
-          <button className="demo-controller__toggle" onClick={() => setIsDemoPanelOpen(!isDemoPanelOpen)}>
-            {isDemoPanelOpen ? t('Plegar', 'Collapse') : t('Demostración Interactiva', 'Interactive Demo Links')}
-          </button>
-        </div>
-        {isDemoPanelOpen && (
-          <div className="demo-controller__body">
-            <button className="demo-controller__btn" onClick={() => { setShowDriverDashboard(false); setShowClientDashboard(false); }}>
-              🏠 {t('Volver al Inicio', 'Back to Landing Page')}
-            </button>
-
-            <div className="demo-controller__section-title">Driver Console States</div>
-            <button className="demo-controller__btn" onClick={() => launchDemoState('driver_marketplace')}>
-              1. Available Loads
-            </button>
-            <button className="demo-controller__btn" onClick={() => launchDemoState('driver_pretrip')}>
-              2. DVIR (Uncompliant)
-            </button>
-            <button className="demo-controller__btn" onClick={() => launchDemoState('driver_compliant')}>
-              3. DVIR (Compliant)
-            </button>
-            <button className="demo-controller__btn" onClick={() => launchDemoState('driver_transit')}>
-              4. In Transit (50%)
-            </button>
-            <button className="demo-controller__btn" onClick={() => launchDemoState('driver_arrived')}>
-              5. Arrived (100%)
-            </button>
-
-            <div className="demo-controller__section-title">Client &amp; Brokerage States</div>
-            <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_dashboard')}>
-              1. Client Overview HUD
-            </button>
-            <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_loadboards')}>
-              2. Load Boards Hub (DAT/Truckstop)
-            </button>
-            <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_vetting')}>
-              3. Carrier Vetting (MC Check)
-            </button>
-            <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_spotrates')}>
-              4. DAT Spot Rate Benchmark
-            </button>
-            <button className="demo-controller__btn demo-controller__btn--client" onClick={() => launchDemoState('client_apilogs')}>
-              5. API Gateway Logs
-            </button>
-          </div>
-        )}
-      </div>
+      {renderDemoController()}
     </>
   );
 }
