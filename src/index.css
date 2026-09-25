@@ -501,10 +501,9 @@ button {
   .hero__content {
     position: relative;
     z-index: 10;
-    margin-top: 45vh;
-    padding-top: 80px;
-    /* Add padding here so the text doesn't hide behind the header */
-    align-self: center;
+    margin-top: 0;
+    padding-top: 85px;
+    align-self: start;
   }
 }
 
