@@ -2,6 +2,69 @@ import React, { useState, useRef, useEffect } from 'react';
 import './index.css';
 import mobileVideo from './assets/video/mobile-hero-video.mp4';
 import TruckBackground from './TruckBackground.jsx';
+import { getGovernanceData } from './data/governanceData.js';
+
+// Unified Linear SVG Icons
+const IconShield = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+);
+const IconScale = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><path d="M16 16l3-8 3 8c-.87.37-1.92.5-3 .5s-2.13-.13-3-.5zM2 16l3-8 3 8c-.87.37-1.92.5-3 .5s-2.13-.13-3-.5zM7 21h10M12 3v18M3 7h18"></path></svg>
+);
+const IconBuilding = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="6" x2="9.01" y2="6"></line><line x1="15" y1="6" x2="15.01" y2="6"></line><line x1="9" y1="10" x2="9.01" y2="10"></line><line x1="15" y1="10" x2="15.01" y2="10"></line><line x1="9" y1="14" x2="9.01" y2="14"></line><line x1="15" y1="14" x2="15.01" y2="14"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg>
+);
+const IconTruck = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><rect x="1" y="3" width="15" height="13" rx="2"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+);
+const IconZap = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+);
+const IconFileText = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+);
+const IconUser = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+);
+const IconBarChart = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+);
+const IconLock = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+);
+const IconCheckCircle = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+);
+const IconAlertOctagon = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+);
+const IconSearch = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+);
+const IconList = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+);
+const IconClock = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+);
+const IconPrinter = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+);
+const IconCopy = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+);
+const IconLayers = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+);
+const IconPlus = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+);
+const IconHome = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+);
+const IconMessageSquare = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+);
 
 // Data functions for bilingual support
 const getServicesData = (lang) => {
@@ -572,6 +635,9 @@ function App() {
   const [selectedServiceId, setSelectedServiceId] = useState(null);
   const [selectedSafetyId, setSelectedSafetyId] = useState(null);
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
+  const [showGovernanceModal, setShowGovernanceModal] = useState(false);
+  const [governanceTab, setGovernanceTab] = useState('separation');
+  const [copyFeedback, setCopyFeedback] = useState(false);
   const videoRef = useRef(null);
   const servicesRef = useRef(null);
 
@@ -591,6 +657,7 @@ function App() {
   // Dynamic datasets based on language
   const SERVICES_DATA = getServicesData(lang);
   const SAFETY_DATA = getSafetyData(lang);
+  const GOVERNANCE_DATA = getGovernanceData(lang);
 
   // Driver Dashboard states
   const [isDriverLoggedIn, setIsDriverLoggedIn] = useState(false);
@@ -674,6 +741,10 @@ function App() {
       setIsClientLoggedIn(true);
       setClientActiveTab('apilogs');
       setShowClientDashboard(true);
+    } else if (state === 'client_governance') {
+      setIsClientLoggedIn(true);
+      setClientActiveTab('governance');
+      setShowClientDashboard(true);
     }
   };
 
@@ -754,6 +825,75 @@ function App() {
       topCarrier: 'Pacific Express (MC #820194)'
     }
   ]);
+
+  // Direct Shipper Integration States (EDI 204 Gateway)
+  const [shipperTenders, setShipperTenders] = useState([
+    {
+      id: 'TND-8801',
+      shipperName: 'Tyson Foods Logistics Hub',
+      facilityOrigin: 'Springdale, AR (DC #04)',
+      facilityDest: 'Chicago, IL (Hub #12)',
+      vehicle: '53ft Semi Truck',
+      equipment: 'Reefer (-10°F Continuous)',
+      weight: '43,500 lbs',
+      lockedRate: 3100,
+      detentionRate: '$65.00/hr (after 2h)',
+      ediStatus: 'EDI 204 Tendered',
+      contractStatus: 'Locked & Digitally Signed',
+      postedDate: '2026-10-02 08:30 AM'
+    },
+    {
+      id: 'TND-7792',
+      shipperName: 'Target Enterprise Distribution',
+      facilityOrigin: 'DeKalb, IL DC',
+      facilityDest: 'Minneapolis, MN Hub',
+      vehicle: '53ft Semi Truck',
+      equipment: 'Dry Van (Drop & Hook)',
+      weight: '38,000 lbs',
+      lockedRate: 1850,
+      detentionRate: '$65.00/hr (after 2h)',
+      ediStatus: 'EDI 204 Tendered',
+      contractStatus: 'Locked & Digitally Signed',
+      postedDate: '2026-10-02 09:15 AM'
+    },
+    {
+      id: 'TND-6640',
+      shipperName: 'Home Depot Logistics Ops',
+      facilityOrigin: 'Dallas, TX Super Center',
+      facilityDest: 'Houston, TX Regional DC',
+      vehicle: '26ft Box Truck',
+      equipment: 'Liftgate & Pallet Jack',
+      weight: '14,200 lbs',
+      lockedRate: 1400,
+      detentionRate: '$65.00/hr (after 2h)',
+      ediStatus: 'API Webhook Active',
+      contractStatus: 'Locked & Digitally Signed',
+      postedDate: '2026-10-02 10:00 AM'
+    }
+  ]);
+
+  const [tmsIntegrations, setTmsIntegrations] = useState({
+    mcleod: true,
+    mercuryGate: true,
+    blueYonder: true,
+    oracleTms: false,
+    sapSupply: true,
+    chRobinson: true
+  });
+
+  const [newShipperForm, setNewShipperForm] = useState({
+    shipperName: 'Kraft Heinz Foods Co',
+    facilityOrigin: 'Champaign, IL (DC #02)',
+    facilityDest: 'Atlanta, GA (Hub #09)',
+    vehicle: '53ft Semi Truck',
+    equipment: 'Reefer (34°F Fresh)',
+    weight: '41,000 lbs',
+    lockedRate: 2650,
+    detentionRate: '$65.00/hr (after 2h)'
+  });
+
+  const [showShipperModal, setShowShipperModal] = useState(false);
+  const [selectedRcTender, setSelectedRcTender] = useState(null);
 
   const [mcInput, setMcInput] = useState('984012');
   const [isVettingLoading, setIsVettingLoading] = useState(false);
@@ -852,6 +992,77 @@ function App() {
       { time: now, event: 'POST_LOAD_DAT', endpoint: 'POST https://api.dat.com/v1/loads', status: 201, payload: `${datId} Published to DAT One Broker` },
       { time: now, event: 'POST_LOAD_TRUCKSTOP', endpoint: 'POST https://api.truckstop.com/v2/loads', status: 201, payload: `${tsId} Published to Truckstop BookItNow` },
       { time: now, event: 'POST_LOAD_123', endpoint: 'POST https://api.123loadboard.com/v1/posts', status: 201, payload: `${lb123Id} Published to 123Loadboard` },
+      ...prev
+    ]);
+  };
+
+  const handlePostDirectShipperTender = (e) => {
+    e.preventDefault();
+    const newId = `TND-${Math.floor(1000 + Math.random() * 9000)}`;
+    const newTender = {
+      id: newId,
+      shipperName: newShipperForm.shipperName,
+      facilityOrigin: newShipperForm.facilityOrigin,
+      facilityDest: newShipperForm.facilityDest,
+      vehicle: newShipperForm.vehicle,
+      equipment: newShipperForm.equipment,
+      weight: newShipperForm.weight,
+      lockedRate: Number(newShipperForm.lockedRate),
+      detentionRate: newShipperForm.detentionRate,
+      ediStatus: 'EDI 204 Tendered',
+      contractStatus: 'Locked & Digitally Signed',
+      postedDate: new Date().toLocaleString()
+    };
+
+    setShipperTenders(prev => [newTender, ...prev]);
+
+    // Automatically push to driver marketplace as well
+    const newDriverLoad = {
+      id: `SHP-${newId.slice(4)}`,
+      origin: newShipperForm.facilityOrigin.split(' (')[0],
+      dest: newShipperForm.facilityDest.split(' (')[0],
+      dist: Math.floor(400 + Math.random() * 500),
+      type: newShipperForm.equipment.includes('Reefer') ? 'Reefer' : 'Dry Van',
+      vehicle: newShipperForm.vehicle,
+      rate: Number(newShipperForm.lockedRate)
+    };
+    setLoadsList(prev => [newDriverLoad, ...prev]);
+
+    setShowShipperModal(false);
+
+    const now = new Date().toLocaleTimeString();
+    setApiLogs(prev => [
+      { time: now, event: 'EDI_204_TENDER', endpoint: `POST /v1/tms/edi204/tender`, status: 201, payload: `EDI 204 Tender ${newId} received from ${newShipperForm.shipperName}. Locked Rate: $${newShipperForm.lockedRate}` },
+      { time: now, event: 'CONTRACT_LOCK', endpoint: `POST /v1/contracts/digital-signature`, status: 200, payload: `Rate Confirmation digitally signed. Section 3.2 Code of Conduct compliant.` },
+      ...prev
+    ]);
+  };
+
+  const handleSimulateDirectTender = () => {
+    const shippers = ['General Mills Logistics', 'Nestlé USA Freight Hub', 'PepsiCo Supply Chain', 'Procter & Gamble Logistics'];
+    const randomShipper = shippers[Math.floor(Math.random() * shippers.length)];
+    const newId = `TND-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    const simTender = {
+      id: newId,
+      shipperName: randomShipper,
+      facilityOrigin: 'Indianapolis, IN (DC #08)',
+      facilityDest: 'Columbus, OH (Hub #03)',
+      vehicle: '53ft Semi Truck',
+      equipment: 'Dry Van (Drop & Hook)',
+      weight: '36,500 lbs',
+      lockedRate: 1950,
+      detentionRate: '$65.00/hr (after 2h)',
+      ediStatus: 'EDI 204 Live Webhook',
+      contractStatus: 'Locked & Digitally Signed',
+      postedDate: new Date().toLocaleString()
+    };
+
+    setShipperTenders(prev => [simTender, ...prev]);
+
+    const now = new Date().toLocaleTimeString();
+    setApiLogs(prev => [
+      { time: now, event: 'EDI_204_INCOMING', endpoint: `WEBHOOK /v1/tms/webhooks/edi204`, status: 200, payload: `Incoming EDI 204 Tender ${newId} from ${randomShipper}` },
       ...prev
     ]);
   };
@@ -1059,6 +1270,508 @@ function App() {
     }
   }, []);
 
+  const handleCopyLegalDocket = () => {
+    const docketText = GOVERNANCE_DATA.legalDocket.items
+      .map(item => `${item.code} ${item.topic}:\n${item.task}`)
+      .join('\n\n');
+    const headerText = `HCGA TRADING LLC - EXPEDIENTE DE CONSULTA LEGAL (${GOVERNANCE_DATA.meta.version})\n=======================================================\n\n`;
+    navigator.clipboard.writeText(headerText + docketText);
+    setCopyFeedback(true);
+    setTimeout(() => setCopyFeedback(false), 3000);
+  };
+
+  const renderGovernanceContent = (isModalMode = false) => {
+    return (
+      <div className="gov-viewer">
+        <div className="gov-header">
+          <div className="gov-title-group">
+            <h2 className="gov-title" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <IconShield width={24} height={24} color="var(--color-accent)" strokeWidth={2.5} />
+              {GOVERNANCE_DATA.meta.title}
+            </h2>
+            <p className="gov-subtitle">{GOVERNANCE_DATA.meta.subtitle}</p>
+          </div>
+          <div className="gov-badges">
+            <span className="gov-badge gov-badge--draft">
+              <IconAlertOctagon width={12} height={12} color="#f59e0b" style={{ marginRight: '4px' }} />
+              {GOVERNANCE_DATA.meta.status}
+            </span>
+            <span className="gov-badge gov-badge--version">{GOVERNANCE_DATA.meta.version}</span>
+            <span className="gov-badge gov-badge--supreme">
+              <IconScale width={12} height={12} color="#3b82f6" style={{ marginRight: '4px' }} />
+              SCOTUS 2026 Aligned
+            </span>
+          </div>
+        </div>
+
+        <div className="gov-principle-banner">
+          <span className="gov-principle-icon" style={{ display: 'flex', alignItems: 'center' }}>
+            <IconShield width={20} height={20} color="var(--color-accent)" />
+          </span>
+          <div>
+            <strong>{t('Principio Rector de Gobernanza:', 'Core Governance Principle:')}</strong>{' '}
+            {GOVERNANCE_DATA.meta.principleText}
+          </div>
+        </div>
+
+        {/* Tab Switcher */}
+        <div className="gov-tabs">
+          <button
+            className={`gov-tab-btn ${governanceTab === 'separation' ? 'gov-tab-btn--active' : ''}`}
+            onClick={() => setGovernanceTab('separation')}
+          >
+            <IconScale width={15} height={15} style={{ marginRight: '6px' }} />
+            {t('Opinión vs. Violación', 'Rating vs. Violation')}
+          </button>
+          <button
+            className={`gov-tab-btn ${governanceTab === 'matrix' ? 'gov-tab-btn--active' : ''}`}
+            onClick={() => setGovernanceTab('matrix')}
+          >
+            <IconList width={15} height={15} style={{ marginRight: '6px' }} />
+            {t('Matriz de Faltas', 'Violations Matrix')}
+          </button>
+          <button
+            className={`gov-tab-btn ${governanceTab === 'ladder' ? 'gov-tab-btn--active' : ''}`}
+            onClick={() => setGovernanceTab('ladder')}
+          >
+            <IconLayers width={15} height={15} style={{ marginRight: '6px' }} />
+            {t('Escalera de Consecuencias', 'Consequences Ladder')}
+          </button>
+          <button
+            className={`gov-tab-btn ${governanceTab === 'dueProcess' ? 'gov-tab-btn--active' : ''}`}
+            onClick={() => setGovernanceTab('dueProcess')}
+          >
+            <IconClock width={15} height={15} style={{ marginRight: '6px' }} />
+            {t('Debido Proceso', 'Due Process')}
+          </button>
+          <button
+            className={`gov-tab-btn ${governanceTab === 'mcVerification' ? 'gov-tab-btn--active' : ''}`}
+            onClick={() => setGovernanceTab('mcVerification')}
+          >
+            <IconScale width={15} height={15} style={{ marginRight: '6px' }} />
+            {t('Jurisprudencia SCOTUS 2026', 'SCOTUS 2026 Ruling')}
+          </button>
+          <button
+            className={`gov-tab-btn ${governanceTab === 'datStrategy' ? 'gov-tab-btn--active' : ''}`}
+            onClick={() => setGovernanceTab('datStrategy')}
+          >
+            <IconZap width={15} height={15} style={{ marginRight: '6px' }} />
+            {t('Estrategia DAT / Truckstop', 'DAT / Truckstop Strategy')}
+          </button>
+          <button
+            className={`gov-tab-btn ${governanceTab === 'docket' ? 'gov-tab-btn--active' : ''}`}
+            onClick={() => setGovernanceTab('docket')}
+          >
+            <IconFileText width={15} height={15} color="#f59e0b" style={{ marginRight: '6px' }} />
+            {t('Sumario Abogado (6)', 'Lawyer Docket (6)')}
+          </button>
+        </div>
+
+        {/* Tab 1: Separation */}
+        {governanceTab === 'separation' && (
+          <div className="gov-pane">
+            <div className="gov-card">
+              <h3 className="gov-card__title">
+                <span>{GOVERNANCE_DATA.separation.title}</span>
+              </h3>
+              <p className="gov-card__desc">{GOVERNANCE_DATA.separation.desc}</p>
+            </div>
+
+            <div className="gov-comparison">
+              <div className="gov-comparison__column">
+                <div className="gov-comparison__header">
+                  <strong style={{ fontSize: '1rem' }}>{GOVERNANCE_DATA.separation.opinion.title}</strong>
+                  <span className="gov-comparison__tag gov-comparison__tag--opinion">{t('Subjetivo', 'Subjective')}</span>
+                </div>
+                <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
+                  <strong>{t('Qué es:', 'What it is:')}</strong> {GOVERNANCE_DATA.separation.opinion.whatIs}
+                </p>
+                <div style={{ fontSize: '0.85rem' }}>
+                  <strong>{t('Ejemplos:', 'Examples:')}</strong>
+                  <ul className="gov-comparison__list" style={{ marginTop: '0.35rem' }}>
+                    {GOVERNANCE_DATA.separation.opinion.examples.map((ex, i) => (
+                      <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <IconUser width={13} height={13} color="#f59e0b" />
+                        <span>{ex}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div style={{ fontSize: '0.82rem', padding: '0.6rem', backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '6px', border: '1px solid var(--color-border)', marginTop: 'auto' }}>
+                  <strong style={{ color: '#f59e0b' }}>{t('Efecto:', 'Effect:')}</strong> {GOVERNANCE_DATA.separation.opinion.effect}
+                </div>
+              </div>
+
+              <div className="gov-comparison__column gov-comparison__column--verified">
+                <div className="gov-comparison__header">
+                  <strong style={{ fontSize: '1rem', color: '#10b981' }}>{GOVERNANCE_DATA.separation.verified.title}</strong>
+                  <span className="gov-comparison__tag gov-comparison__tag--verified">{t('Evidencia Objetiva', 'Objective Evidence')}</span>
+                </div>
+                <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
+                  <strong>{t('Qué es:', 'What it is:')}</strong> {GOVERNANCE_DATA.separation.verified.whatIs}
+                </p>
+                <div style={{ fontSize: '0.85rem' }}>
+                  <strong>{t('Ejemplos de Evidencia:', 'Evidence Examples:')}</strong>
+                  <ul className="gov-comparison__list" style={{ marginTop: '0.35rem' }}>
+                    {GOVERNANCE_DATA.separation.verified.examples.map((ex, i) => (
+                      <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <IconCheckCircle width={13} height={13} color="#10b981" />
+                        <strong style={{ color: '#10b981' }}>{ex}</strong>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div style={{ fontSize: '0.82rem', padding: '0.6rem', backgroundColor: 'rgba(16,185,129,0.1)', borderRadius: '6px', border: '1px solid rgba(16,185,129,0.3)', marginTop: 'auto' }}>
+                  <strong style={{ color: '#10b981' }}>{t('Efecto:', 'Effect:')}</strong> {GOVERNANCE_DATA.separation.verified.effect}
+                </div>
+              </div>
+            </div>
+
+            <div className="gov-legal-alert">
+              <div className="gov-legal-alert__title">
+                {GOVERNANCE_DATA.separation.legalFlag.title}
+              </div>
+              <div className="gov-legal-alert__text">
+                {GOVERNANCE_DATA.separation.legalFlag.question}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 2: Matrix */}
+        {governanceTab === 'matrix' && (
+          <div className="gov-pane">
+            <div className="gov-card">
+              <h3 className="gov-card__title">
+                <span>{GOVERNANCE_DATA.violations.title}</span>
+              </h3>
+              <p className="gov-card__desc">
+                {t(
+                  'Cada falta requiere un respaldo de evidencia tecnológica capturada en tiempo real por FleetOS.',
+                  'Every fault requires objective technological evidence logged in real-time by FleetOS.'
+                )}
+              </p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
+              <div>
+                <h4 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-accent)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <IconTruck width={18} height={18} /> {GOVERNANCE_DATA.violations.drivers.actorName}
+                </h4>
+                <div className="gov-table-wrapper">
+                  <table className="gov-table">
+                    <thead>
+                      <tr>
+                        <th>Nivel</th>
+                        <th>Falta Declarada</th>
+                        <th>Evidencia que la Respalda</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {GOVERNANCE_DATA.violations.drivers.items.map((item, i) => (
+                        <tr key={i}>
+                          <td>
+                            <span className={`gov-level-pill gov-level-pill--${item.level.toLowerCase().replace(' ', '')}`}>
+                              {item.level}
+                            </span>
+                          </td>
+                          <td><strong>{item.fault}</strong></td>
+                          <td style={{ color: 'var(--color-text-secondary)' }}>{item.evidence}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h4 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-accent)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <IconBuilding width={18} height={18} /> {GOVERNANCE_DATA.violations.shippersBrokers.actorName}
+                </h4>
+                <div className="gov-table-wrapper">
+                  <table className="gov-table">
+                    <thead>
+                      <tr>
+                        <th>Nivel</th>
+                        <th>Falta Declarada</th>
+                        <th>Evidencia que la Respalda</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {GOVERNANCE_DATA.violations.shippersBrokers.items.map((item, i) => (
+                        <tr key={i}>
+                          <td>
+                            <span className={`gov-level-pill gov-level-pill--${item.level.toLowerCase().replace(' ', '')}`}>
+                              {item.level}
+                            </span>
+                          </td>
+                          <td><strong>{item.fault}</strong></td>
+                          <td style={{ color: 'var(--color-text-secondary)' }}>{item.evidence}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div className="gov-legal-alert">
+              <div className="gov-legal-alert__title">
+                {GOVERNANCE_DATA.violations.legalFlag.title}
+              </div>
+              <div className="gov-legal-alert__text">
+                {GOVERNANCE_DATA.violations.legalFlag.question}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 3: Ladder */}
+        {governanceTab === 'ladder' && (
+          <div className="gov-pane">
+            <div className="gov-card">
+              <h3 className="gov-card__title">
+                <span>{GOVERNANCE_DATA.ladder.title}</span>
+              </h3>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
+              <div className="gov-card">
+                <h4 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#10b981' }}>
+                  {GOVERNANCE_DATA.ladder.driverRules.title}
+                </h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', backgroundColor: 'rgba(16,185,129,0.08)', padding: '0.5rem 0.75rem', borderRadius: '6px', border: '1px solid rgba(16,185,129,0.2)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <IconShield width={16} height={16} color="#10b981" /> <strong>{t('Protección de Empleo:', 'Independent Contractor Shield:')}</strong> {GOVERNANCE_DATA.ladder.driverRules.note}
+                </p>
+
+                <div className="gov-table-wrapper" style={{ marginTop: '0.5rem' }}>
+                  <table className="gov-table">
+                    <thead>
+                      <tr>
+                        <th>Paso</th>
+                        <th>Consecuencia</th>
+                        <th>Detonante</th>
+                        <th>Efecto Directo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {GOVERNANCE_DATA.ladder.driverRules.steps.map((st, i) => (
+                        <tr key={i}>
+                          <td><strong style={{ color: 'var(--color-accent)' }}>#{st.step}</strong></td>
+                          <td><strong>{st.name}</strong></td>
+                          <td style={{ color: 'var(--color-text-secondary)' }}>{st.trigger}</td>
+                          <td>{st.effect}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="gov-card">
+                <h4 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#3b82f6' }}>
+                  {GOVERNANCE_DATA.ladder.brokerRules.title}
+                </h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', backgroundColor: 'rgba(59,130,246,0.08)', padding: '0.5rem 0.75rem', borderRadius: '6px', border: '1px solid rgba(59,130,246,0.2)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <IconBuilding width={16} height={16} color="#3b82f6" /> <strong>{t('Relación Comercial B2B:', 'B2B Commercial Terms:')}</strong> {GOVERNANCE_DATA.ladder.brokerRules.note}
+                </p>
+
+                <div className="gov-table-wrapper" style={{ marginTop: '0.5rem' }}>
+                  <table className="gov-table">
+                    <thead>
+                      <tr>
+                        <th>Paso</th>
+                        <th>Consecuencia</th>
+                        <th>Detonante</th>
+                        <th>Efecto Directo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {GOVERNANCE_DATA.ladder.brokerRules.steps.map((st, i) => (
+                        <tr key={i}>
+                          <td><strong style={{ color: 'var(--color-accent)' }}>#{st.step}</strong></td>
+                          <td><strong>{st.name}</strong></td>
+                          <td style={{ color: 'var(--color-text-secondary)' }}>{st.trigger}</td>
+                          <td>{st.effect}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div className="gov-legal-alert">
+              <div className="gov-legal-alert__title">
+                {GOVERNANCE_DATA.ladder.legalFlag.title}
+              </div>
+              <div className="gov-legal-alert__text">
+                {GOVERNANCE_DATA.ladder.legalFlag.question}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 4: Due Process */}
+        {governanceTab === 'dueProcess' && (
+          <div className="gov-pane">
+            <div className="gov-card">
+              <h3 className="gov-card__title">
+                <span>{GOVERNANCE_DATA.dueProcess.title}</span>
+              </h3>
+              <p className="gov-card__desc">
+                {t(
+                  'Compromiso de tiempos estrictos: primera respuesta en < 48h, resolución en max 10 días hábiles.',
+                  'Strict timeline SLA: initial response in < 48h, final ruling within max 10 business days.'
+                )}
+              </p>
+            </div>
+
+            <div className="gov-timeline">
+              {GOVERNANCE_DATA.dueProcess.steps.map((st, i) => (
+                <div key={i} className="gov-step-card">
+                  <span className="gov-step-card__num">{st.num}</span>
+                  <strong className="gov-step-card__title">{st.name}</strong>
+                  <span className="gov-step-card__desc">{st.desc}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="gov-legal-alert">
+              <div className="gov-legal-alert__title">
+                {GOVERNANCE_DATA.dueProcess.legalFlag.title}
+              </div>
+              <div className="gov-legal-alert__text">
+                {GOVERNANCE_DATA.dueProcess.legalFlag.question}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 5: Supreme Court Ruling */}
+        {governanceTab === 'mcVerification' && (
+          <div className="gov-pane">
+            <div className="gov-court-banner">
+              <div className="gov-court-banner__case" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <IconScale width={18} height={18} color="#3b82f6" /> {GOVERNANCE_DATA.mcVerification.caseName}
+              </div>
+              <div className="gov-court-banner__ruling">
+                {GOVERNANCE_DATA.mcVerification.rulingSummary}
+              </div>
+              <div className="gov-court-banner__kavanaugh" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <IconMessageSquare width={18} height={18} color="#f59e0b" /> {GOVERNANCE_DATA.mcVerification.kavanaughConcurrence}
+              </div>
+            </div>
+
+            <div className="gov-card">
+              <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <IconShield width={18} height={18} color="#10b981" /> {t('El Valor Legal Único de HCGA FleetOS:', 'HCGA FleetOS Unique Legal Value:')}
+              </h4>
+              <p className="gov-card__desc">
+                {GOVERNANCE_DATA.mcVerification.hcgaValue}
+              </p>
+            </div>
+
+            <div className="gov-legal-alert">
+              <div className="gov-legal-alert__title">
+                {GOVERNANCE_DATA.mcVerification.legalFlag.title}
+              </div>
+              <div className="gov-legal-alert__text">
+                {GOVERNANCE_DATA.mcVerification.legalFlag.question}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 6: DAT & Truckstop Strategy */}
+        {governanceTab === 'datStrategy' && (
+          <div className="gov-pane">
+            <div className="gov-card" style={{ borderLeft: '4px solid var(--color-accent)' }}>
+              <h3 className="gov-card__title">
+                <span>{GOVERNANCE_DATA.datTruckstopStrategy.title}</span>
+              </h3>
+              <p style={{ fontSize: '0.95rem', fontWeight: '700', color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <IconZap width={16} height={16} color="#10b981" /> {GOVERNANCE_DATA.datTruckstopStrategy.verdict}
+              </p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+              {GOVERNANCE_DATA.datTruckstopStrategy.findings.map((f, i) => (
+                <div key={i} className="gov-card">
+                  <strong style={{ color: 'var(--color-accent)', fontSize: '0.95rem' }}>{f.source}</strong>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', lineHeight: '1.45' }}>{f.detail}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="gov-card">
+              <h4 style={{ fontSize: '1rem', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <IconCheckCircle width={16} height={16} color="var(--color-accent)" /> {t('Puntos Clave de Ejecución:', 'Key Execution Takeaways:')}
+              </h4>
+              <ul className="gov-comparison__list">
+                {GOVERNANCE_DATA.datTruckstopStrategy.strategyPoints.map((pt, i) => (
+                  <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <IconCheckCircle width={13} height={13} color="#10b981" />
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 7: Legal Review Docket (🔶) */}
+        {governanceTab === 'docket' && (
+          <div className="gov-pane">
+            <div className="gov-card">
+              <div className="gov-docket-header">
+                <div>
+                  <h3 className="gov-card__title">
+                    <span>{GOVERNANCE_DATA.legalDocket.title}</span>
+                  </h3>
+                  <p className="gov-card__desc">{GOVERNANCE_DATA.legalDocket.desc}</p>
+                </div>
+                <div className="gov-docket-actions">
+                  <button className="btn btn--primary btn--sm" onClick={handleCopyLegalDocket} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <IconCopy width={14} height={14} />
+                    {copyFeedback ? t('¡Copiado al Portapapeles!', 'Copied to Clipboard!') : t('Copiar Resumen Legal', 'Copy Legal Docket')}
+                  </button>
+                  <button className="btn btn--outline btn--sm" onClick={() => window.print()} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <IconPrinter width={14} height={14} />
+                    {t('Imprimir', 'Print')}
+                  </button>
+                </div>
+              </div>
+
+              <div className="gov-table-wrapper" style={{ marginTop: '1rem' }}>
+                <table className="gov-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Ref</th>
+                      <th>Tema Clave</th>
+                      <th>Tarea de Redacción / Validación Legal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {GOVERNANCE_DATA.legalDocket.items.map((item) => (
+                      <tr key={item.id}>
+                        <td><strong style={{ color: 'var(--color-accent)' }}>#{item.id}</strong></td>
+                        <td><span className="gov-badge gov-badge--draft">{item.code}</span></td>
+                        <td><strong>{item.topic}</strong></td>
+                        <td style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>{item.task}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   // Floating demo controller (shared by landing + both dashboards).
   // Animated dropdown that collapses automatically after a selection,
   // on outside click or on Escape.
@@ -1091,6 +1804,7 @@ function App() {
     ['client_vetting', '3. Carrier Vetting (MC Check)'],
     ['client_spotrates', '4. DAT Spot Rate Benchmark'],
     ['client_apilogs', '5. API Gateway Logs'],
+    ['client_governance', '6. Code of Conduct & Legal'],
   ];
 
   const renderDemoController = () => {
@@ -1598,6 +2312,23 @@ function App() {
                     )}
                   </div>
                 )}
+
+                <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: '12px', padding: '1.25rem', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: '800', margin: 0, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      🛡️ {t('Gobernanza del Conductor & Debido Proceso', 'Driver Governance & Due Process Shield')}
+                    </h3>
+                    <span style={{ fontSize: '0.75rem', fontWeight: '700', padding: '0.2rem 0.6rem', backgroundColor: 'rgba(16,185,129,0.15)', color: '#10b981', borderRadius: '4px' }}>
+                      {t('Nivel 1 - Acceso Prioritario Máximo', 'Tier 1 - Maximum Priority Access')}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: 0, lineHeight: 1.45 }}>
+                    {t(
+                      'En HCGA Trading LLC, el chofer está protegido. Las reseñas de opinión de 1 a 5 estrellas NUNCA generan suspensiones automáticas. Solo los registros verificables de telemetría, DVIR y bitácoras ELD determinan tu estatus. Tienes derecho garantizado a debido proceso en < 48 horas ante cualquier controversia.',
+                      'At HCGA Trading LLC, drivers are protected. Star ratings NEVER trigger automatic account suspensions. Only verifiable telemetry, DVIR, and ELD log records determine standing. You have guaranteed due process rights within < 48 hours for any dispute.'
+                    )}
+                  </p>
+                </div>
               </section>
             )}
 
@@ -1770,31 +2501,50 @@ function App() {
                 className={`loadboard-tab-btn ${clientActiveTab === 'overview' ? 'loadboard-tab-btn--active' : ''}`}
                 onClick={() => setClientActiveTab('overview')}
               >
-                📦 {t('Despachos Activos y PODs', 'Active Dispatches & PODs')}
+                <IconBarChart width={16} height={16} style={{ marginRight: '6px' }} />
+                {t('Despachos Activos y PODs', 'Active Dispatches & PODs')}
               </button>
               <button
                 className={`loadboard-tab-btn ${clientActiveTab === 'loadboards' ? 'loadboard-tab-btn--active' : ''}`}
                 onClick={() => setClientActiveTab('loadboards')}
               >
-                🚚 {t('Bolsas de Carga (DAT & Truckstop)', 'Load Boards Hub (DAT/Truckstop)')}
+                <IconTruck width={16} height={16} style={{ marginRight: '6px' }} />
+                {t('Bolsas de Carga (DAT & Truckstop)', 'Load Boards Hub (DAT/Truckstop)')}
               </button>
               <button
                 className={`loadboard-tab-btn ${clientActiveTab === 'vetting' ? 'loadboard-tab-btn--active' : ''}`}
                 onClick={() => setClientActiveTab('vetting')}
               >
-                🛡️ {t('Verificación de Transportistas (MC)', 'Carrier Vetting (MC Check)')}
+                <IconShield width={16} height={16} style={{ marginRight: '6px' }} />
+                {t('Verificación de Transportistas (MC)', 'Carrier Vetting (MC Check)')}
               </button>
               <button
                 className={`loadboard-tab-btn ${clientActiveTab === 'spotrates' ? 'loadboard-tab-btn--active' : ''}`}
                 onClick={() => setClientActiveTab('spotrates')}
               >
-                📈 {t('Tarifas Spot DAT Benchmark', 'DAT Spot Rates Benchmark')}
+                <IconBarChart width={16} height={16} style={{ marginRight: '6px' }} />
+                {t('Tarifas Spot DAT Benchmark', 'DAT Spot Rates Benchmark')}
               </button>
               <button
                 className={`loadboard-tab-btn ${clientActiveTab === 'apilogs' ? 'loadboard-tab-btn--active' : ''}`}
                 onClick={() => setClientActiveTab('apilogs')}
               >
-                🌐 API Gateway Logs ({apiLogs.length})
+                <IconZap width={16} height={16} style={{ marginRight: '6px' }} />
+                API Gateway Logs ({apiLogs.length})
+              </button>
+              <button
+                className={`loadboard-tab-btn ${clientActiveTab === 'shippers' ? 'loadboard-tab-btn--active' : ''}`}
+                onClick={() => setClientActiveTab('shippers')}
+              >
+                <IconBuilding width={16} height={16} style={{ marginRight: '6px' }} />
+                {t('Conexión Directa Shippers (EDI 204)', 'Direct Shipper Gateway (EDI 204)')}
+              </button>
+              <button
+                className={`loadboard-tab-btn ${clientActiveTab === 'governance' ? 'loadboard-tab-btn--active' : ''}`}
+                onClick={() => setClientActiveTab('governance')}
+              >
+                <IconScale width={16} height={16} style={{ marginRight: '6px' }} />
+                {t('Código de Conducta & Legal', 'Code of Conduct & Legal')}
               </button>
             </div>
 
@@ -1885,8 +2635,9 @@ function App() {
                         {t('Configuración de canales externos para publicar automáticamente en bolsas de carga de EE. UU. (53\', 26\' y Cargo Vans).', 'Configuration of external channels to automatically publish across US load boards (53\', 26\' & Cargo Vans).')}
                       </p>
                     </div>
-                    <button className="btn btn--primary btn--sm" onClick={() => setShowPostLoadModal(true)}>
-                      ➕ {t('Publicar Nueva Carga', 'Post New Load')}
+                    <button className="btn btn--primary btn--sm" onClick={() => setShowPostLoadModal(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <IconPlus width={14} height={14} />
+                      {t('Publicar Nueva Carga', 'Post New Load')}
                     </button>
                   </div>
 
@@ -2008,9 +2759,19 @@ function App() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 0.5rem 0' }}>{t('Verificación de Transportistas (Carrier Vetting API)', 'Carrier Vetting & Compliance Check')}</h3>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: '0 0 1.5rem 0' }}>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: '0 0 1rem 0' }}>
                     {t('Auditoría instantánea de licencias MC, registros de la FMCSA y cobertura de seguros antes de asignar una carga externa.', 'Instant audit of MC licenses, FMCSA records, and insurance coverage prior to assigning external loads.')}
                   </p>
+
+                  <div style={{ padding: '0.75rem 1rem', backgroundColor: 'rgba(153,0,0,0.12)', border: '1px solid rgba(153,0,0,0.3)', borderRadius: '8px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
+                    <IconScale width={20} height={20} color="#ffffff" style={{ flexShrink: 0 }} />
+                    <div>
+                      <strong style={{ color: '#ffffff' }}>{t('Protección Jurisprudencial SCOTUS (Montgomery v. Caribe Transport 2026):', 'SCOTUS Precedent Protection (Montgomery v. Caribe Transport 2026):')}</strong>{' '}
+                      <span style={{ color: 'var(--color-text-secondary)' }}>
+                        {t('Esta verificación registra un expediente auditable de selección razonable, defendiendo al broker frente a demandas por selección negligente bajo ley estatal.', 'This check records an auditable log of reasonable selection, protecting the broker against state-law negligent selection lawsuits.')}
+                      </span>
+                    </div>
+                  </div>
 
                   <form onSubmit={handleRunCarrierVetting} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
                     <div style={{ flex: '1 1 250px' }}>
@@ -2165,6 +2926,136 @@ function App() {
                 </div>
               </div>
             )}
+
+            {/* TAB 6: GOVERNANCE & CODE OF CONDUCT */}
+            {clientActiveTab === 'governance' && (
+              renderGovernanceContent(false)
+            )}
+
+            {/* TAB 7: DIRECT SHIPPER GATEWAY (EDI 204) */}
+            {clientActiveTab === 'shippers' && (
+              <div className="shipper-hub">
+                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                    <div>
+                      <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        🏢 {t('Conexión Directa con Shippers y Portales de Fábrica', 'Direct Shipper & Factory Portal Integration')}
+                      </h3>
+                      <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: '0.25rem 0 0 0' }}>
+                        {t('Conexión directa B2B mediante protocolos EDI 204/214 y APIs Webhooks con los mayores centros de distribución y fábricas.', 'Direct B2B connection via EDI 204/214 protocols & REST Webhooks with enterprise distribution centers and factories.')}
+                      </p>
+                    </div>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <button className="btn btn--primary btn--sm" onClick={() => setShowShipperModal(true)}>
+                        ➕ {t('Emitir Licitación Directa (EDI 204)', 'Post Direct Tender (EDI 204)')}
+                      </button>
+                      <button className="btn btn--outline btn--sm" onClick={handleSimulateDirectTender}>
+                        ⚡ {t('Simular Licitación TMS', 'Simulate Direct TMS Tender')}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Guaranteed locked rate banner per Code of Conduct Section 3.2 */}
+                  <div style={{ padding: '0.75rem 1rem', backgroundColor: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: '8px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                    <span style={{ fontSize: '1.2rem' }}>🔒</span>
+                    <div>
+                      <strong style={{ color: '#10b981' }}>{t('Garantía de Tarifa Bloqueada (Código de Conducta Sección 3.2):', 'Locked Rate Guarantee (Code of Conduct Section 3.2):')}</strong>{' '}
+                      <span style={{ color: 'var(--color-text-secondary)' }}>
+                        {t('Toda licitación de Shipper queda registrada con firma digital. Alterar la tarifa sin firma del chofer constituye falta grave y liquidación de daños.', 'All Shipper tenders are digitally signed. Altering locked rates without driver signature is a major violation with liquidated damages.')}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Enterprise TMS Integration Gateways */}
+                  <div>
+                    <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--color-text-secondary)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+                      {t('Pasarelas TMS Conectadas en Tiempo Real', 'Real-Time Connected TMS Gateways')}
+                    </h4>
+                    <div className="shipper-tms-grid">
+                      <div className="shipper-tms-card">
+                        <strong style={{ fontSize: '0.85rem' }}>McLeod Software</strong>
+                        <span className="shipper-badge-edi">EDI 204 / 214</span>
+                      </div>
+                      <div className="shipper-tms-card">
+                        <strong style={{ fontSize: '0.85rem' }}>MercuryGate TMS</strong>
+                        <span className="shipper-badge-edi">REST Webhook</span>
+                      </div>
+                      <div className="shipper-tms-card">
+                        <strong style={{ fontSize: '0.85rem' }}>BlueYonder (JDA)</strong>
+                        <span className="shipper-badge-edi">Supply Chain API</span>
+                      </div>
+                      <div className="shipper-tms-card">
+                        <strong style={{ fontSize: '0.85rem' }}>SAP S/4HANA Logistics</strong>
+                        <span className="shipper-badge-edi">API Gateway</span>
+                      </div>
+                      <div className="shipper-tms-card">
+                        <strong style={{ fontSize: '0.85rem' }}>Oracle OTM</strong>
+                        <span className="shipper-badge-edi">XML Tender</span>
+                      </div>
+                      <div className="shipper-tms-card">
+                        <strong style={{ fontSize: '0.85rem' }}>C.H. Robinson Navisphere</strong>
+                        <span className="shipper-badge-edi">Live Feed</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Direct Shipper Tenders Table */}
+                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px' }}>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 1rem 0' }}>
+                    {t('Licitaciones Directas de Carga de Shippers (Direct Tenders)', 'Direct Shipper Freight Tenders')}
+                  </h3>
+                  <div style={{ overflowX: 'auto' }}>
+                    <table className="loads-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
+                      <thead>
+                        <tr style={{ borderBottom: '2px solid var(--color-border)', color: 'var(--color-text-secondary)', fontWeight: '700' }}>
+                          <th style={{ padding: '0.75rem 1rem' }}>{t('ID / Fecha', 'ID / Date')}</th>
+                          <th style={{ padding: '0.75rem 1rem' }}>{t('Shipper & Instalación', 'Shipper & Facility')}</th>
+                          <th style={{ padding: '0.75rem 1rem' }}>{t('Carril (Origen & Destino)', 'Lane (Origin & Destination)')}</th>
+                          <th style={{ padding: '0.75rem 1rem' }}>{t('Equipo', 'Equipment')}</th>
+                          <th style={{ padding: '0.75rem 1rem' }}>{t('Tarifa Bloqueada', 'Locked Rate')}</th>
+                          <th style={{ padding: '0.75rem 1rem' }}>{t('Estatus EDI', 'EDI Status')}</th>
+                          <th style={{ padding: '0.75rem 1rem', textAlign: 'right' }}>{t('Contrato Digital', 'Digital Contract')}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {shipperTenders.map((tnd) => (
+                          <tr key={tnd.id} style={{ borderBottom: '1px solid var(--color-border)' }}>
+                            <td style={{ padding: '1rem' }}>
+                              <strong style={{ color: 'var(--color-accent)', display: 'block' }}>#{tnd.id}</strong>
+                              <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{tnd.postedDate}</span>
+                            </td>
+                            <td style={{ padding: '1rem' }}>
+                              <strong>{tnd.shipperName}</strong>
+                              <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>{tnd.facilityOrigin}</span>
+                            </td>
+                            <td style={{ padding: '1rem' }}>
+                              <strong>{tnd.facilityOrigin.split(' (')[0]} &rarr; {tnd.facilityDest.split(' (')[0]}</strong>
+                              <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>Detention: {tnd.detentionRate}</span>
+                            </td>
+                            <td style={{ padding: '1rem' }}>
+                              <span>{tnd.vehicle}</span>
+                              <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>{tnd.equipment} ({tnd.weight})</span>
+                            </td>
+                            <td style={{ padding: '1rem' }}>
+                              <span className="shipper-rate-badge">${tnd.lockedRate.toLocaleString()} USD</span>
+                            </td>
+                            <td style={{ padding: '1rem' }}>
+                              <span className="shipper-badge-edi">{tnd.ediStatus}</span>
+                            </td>
+                            <td style={{ padding: '1rem', textAlign: 'right' }}>
+                              <button className="btn btn--outline btn--sm" onClick={() => setSelectedRcTender(tnd)}>
+                                📄 {t('Ver Rate Confirmation', 'View Signed Rate Con')}
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Modal for Posting New Load */}
@@ -2212,6 +3103,117 @@ function App() {
                     </button>
                   </div>
                 </form>
+              </div>
+            </div>
+          )}
+
+          {/* Modal for Posting Direct Shipper Tender */}
+          {showShipperModal && (
+            <div style={{ position: 'fixed', inset: 0, zIndex: 10000, backgroundColor: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+              <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: '12px', padding: '2rem', maxWidth: '580px', width: '100%', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.75rem' }}>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    🏢 {t('Emitir Licitación Directa de Shipper (EDI 204)', 'Publish Direct Shipper Tender (EDI 204)')}
+                  </h3>
+                  <button style={{ fontSize: '1.25rem', cursor: 'pointer', background: 'none', border: 'none', color: 'var(--color-text-primary)' }} onClick={() => setShowShipperModal(false)}>✕</button>
+                </div>
+
+                <form onSubmit={handlePostDirectShipperTender} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div>
+                    <label style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: '700', display: 'block', marginBottom: '0.25rem' }}>{t('Nombre de la Empresa Shipper', 'Shipper Company Name')}</label>
+                    <input type="text" value={newShipperForm.shipperName} onChange={(e) => setNewShipperForm({ ...newShipperForm, shipperName: e.target.value })} required style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid var(--color-border)', backgroundColor: 'var(--color-surface-elevated)', color: 'var(--color-text-primary)' }} />
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                    <div>
+                      <label style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: '700', display: 'block', marginBottom: '0.25rem' }}>{t('Instalación Origen (DC)', 'Origin Facility (DC)')}</label>
+                      <input type="text" value={newShipperForm.facilityOrigin} onChange={(e) => setNewShipperForm({ ...newShipperForm, facilityOrigin: e.target.value })} required style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid var(--color-border)', backgroundColor: 'var(--color-surface-elevated)', color: 'var(--color-text-primary)' }} />
+                    </div>
+                    <div>
+                      <label style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: '700', display: 'block', marginBottom: '0.25rem' }}>{t('Instalación Destino (Hub)', 'Destination Facility (Hub)')}</label>
+                      <input type="text" value={newShipperForm.facilityDest} onChange={(e) => setNewShipperForm({ ...newShipperForm, facilityDest: e.target.value })} required style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid var(--color-border)', backgroundColor: 'var(--color-surface-elevated)', color: 'var(--color-text-primary)' }} />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                    <div>
+                      <label style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: '700', display: 'block', marginBottom: '0.25rem' }}>{t('Tipo de Vehículo', 'Vehicle Type')}</label>
+                      <select value={newShipperForm.vehicle} onChange={(e) => setNewShipperForm({ ...newShipperForm, vehicle: e.target.value })} style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid var(--color-border)', backgroundColor: 'var(--color-surface-elevated)', color: 'var(--color-text-primary)' }}>
+                        <option value="53ft Semi Truck">53ft Semi Truck</option>
+                        <option value="26ft Box Truck">26ft Box Truck</option>
+                        <option value="Cargo Van">Cargo Van</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: '700', display: 'block', marginBottom: '0.25rem' }}>{t('Tarifa Bloqueada ($ USD)', 'Locked Rate ($ USD)')}</label>
+                      <input type="number" value={newShipperForm.lockedRate} onChange={(e) => setNewShipperForm({ ...newShipperForm, lockedRate: e.target.value })} required style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid var(--color-border)', backgroundColor: 'var(--color-surface-elevated)', color: 'var(--color-text-primary)' }} />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
+                    <button className="btn btn--primary" type="submit" style={{ flex: 1 }}>
+                      🔒 {t('Generar Licitación y Bloquear Tarifa', 'Create Tender & Lock Rate')}
+                    </button>
+                    <button className="btn btn--outline" type="button" onClick={() => setShowShipperModal(false)}>
+                      {t('Cancelar', 'Cancel')}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* Modal for Signed Rate Confirmation Preview */}
+          {selectedRcTender && (
+            <div style={{ position: 'fixed', inset: 0, zIndex: 10000, backgroundColor: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+              <div className="shipper-rc-modal" style={{ maxWidth: '650px', width: '100%', maxHeight: '90vh', overflowY: 'auto' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #111', paddingBottom: '1rem', marginBottom: '1rem' }}>
+                  <div>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: '900', margin: 0, color: '#990000' }}>HCGA TRADING LLC</h3>
+                    <span style={{ fontSize: '0.75rem', color: '#555', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '700' }}>OFFICIAL RATE CONFIRMATION & FREIGHT CONTRACT</span>
+                  </div>
+                  <button style={{ fontSize: '1.25rem', cursor: 'pointer', background: 'none', border: 'none', color: '#111', fontWeight: '800' }} onClick={() => setSelectedRcTender(null)}>✕</button>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.85rem', marginBottom: '1rem', borderBottom: '1px solid #ddd', paddingBottom: '1rem' }}>
+                  <div>
+                    <span style={{ color: '#666', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700' }}>TENDER ID</span>
+                    <strong style={{ display: 'block', fontSize: '1rem', color: '#111' }}>#{selectedRcTender.id}</strong>
+                  </div>
+                  <div>
+                    <span style={{ color: '#666', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700' }}>SHIPPER COMPANY</span>
+                    <strong style={{ display: 'block', fontSize: '1rem', color: '#111' }}>{selectedRcTender.shipperName}</strong>
+                  </div>
+                  <div>
+                    <span style={{ color: '#666', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700' }}>ORIGIN FACILITY</span>
+                    <span style={{ display: 'block', color: '#111' }}>{selectedRcTender.facilityOrigin}</span>
+                  </div>
+                  <div>
+                    <span style={{ color: '#666', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700' }}>DESTINATION HUB</span>
+                    <span style={{ display: 'block', color: '#111' }}>{selectedRcTender.facilityDest}</span>
+                  </div>
+                </div>
+
+                <div style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '1rem', marginBottom: '1rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                    <span style={{ fontWeight: '800', color: '#111', fontSize: '0.95rem' }}>AGREED LOCKED RATE (LOCKED_RATE)</span>
+                    <strong style={{ fontSize: '1.35rem', color: '#10b981' }}>${selectedRcTender.lockedRate.toLocaleString()} USD</strong>
+                  </div>
+                  <div style={{ fontSize: '0.78rem', color: '#64748b' }}>
+                    Detention Guarantee: {selectedRcTender.detentionRate} · Equipment: {selectedRcTender.vehicle} ({selectedRcTender.equipment})
+                  </div>
+                </div>
+
+                <div style={{ fontSize: '0.75rem', color: '#666', lineHeight: 1.5, backgroundColor: '#fff5f5', border: '1px solid #fecaca', borderRadius: '6px', padding: '0.75rem', marginBottom: '1rem' }}>
+                  <strong>🔒 Legal Lock Notice (Code of Conduct Section 3.2):</strong> This rate confirmation is contractually locked. Altering this rate after driver acceptance without prior written digital signature is an enforceable breach of contract under HCGA Trading LLC Terms of Service.
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '0.5rem' }}>
+                  <span style={{ fontSize: '0.75rem', color: '#888' }}>Digital Signature Token: 0x984a...1042 · Status: {selectedRcTender.contractStatus}</span>
+                  <button className="btn btn--primary btn--sm" onClick={() => { alert('Rate Confirmation descargada en PDF.'); setSelectedRcTender(null); }}>
+                    📥 Descargar PDF Firmado
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -2268,6 +3270,7 @@ function App() {
                 <li><a href="#technology" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>{t('Tecnología', 'Technology')}</a></li>
                 <li><a href="#safety" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>{t('Seguridad', 'Safety')}</a></li>
                 <li><a href="#client-portal" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>{t('Portal Clientes', 'Client Portal')}</a></li>
+                <li><a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowGovernanceModal(true); }}>🛡️ {t('Código de Conducta', 'Code of Conduct')}</a></li>
               </ul>
             </nav>
 
