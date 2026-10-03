@@ -1455,7 +1455,7 @@ function App() {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
               <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-accent-text)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <h4 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-accent)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                   <IconTruck width={18} height={18} /> {GOVERNANCE_DATA.violations.drivers.actorName}
                 </h4>
                 <div className="gov-table-wrapper">
@@ -1485,7 +1485,7 @@ function App() {
               </div>
 
               <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-accent-text)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <h4 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-accent)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                   <IconBuilding width={18} height={18} /> {GOVERNANCE_DATA.violations.shippersBrokers.actorName}
                 </h4>
                 <div className="gov-table-wrapper">
@@ -1557,7 +1557,7 @@ function App() {
                     <tbody>
                       {GOVERNANCE_DATA.ladder.driverRules.steps.map((st, i) => (
                         <tr key={i}>
-                          <td><strong style={{ color: 'var(--color-accent-text)' }}>#{st.step}</strong></td>
+                          <td><strong style={{ color: 'var(--color-accent)' }}>#{st.step}</strong></td>
                           <td><strong>{st.name}</strong></td>
                           <td style={{ color: 'var(--color-text-secondary)' }}>{st.trigger}</td>
                           <td>{st.effect}</td>
@@ -1589,7 +1589,7 @@ function App() {
                     <tbody>
                       {GOVERNANCE_DATA.ladder.brokerRules.steps.map((st, i) => (
                         <tr key={i}>
-                          <td><strong style={{ color: 'var(--color-accent-text)' }}>#{st.step}</strong></td>
+                          <td><strong style={{ color: 'var(--color-accent)' }}>#{st.step}</strong></td>
                           <td><strong>{st.name}</strong></td>
                           <td style={{ color: 'var(--color-text-secondary)' }}>{st.trigger}</td>
                           <td>{st.effect}</td>
@@ -1698,7 +1698,7 @@ function App() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
               {GOVERNANCE_DATA.datTruckstopStrategy.findings.map((f, i) => (
                 <div key={i} className="gov-card">
-                  <strong style={{ color: 'var(--color-accent-text)', fontSize: '0.95rem' }}>{f.source}</strong>
+                  <strong style={{ color: 'var(--color-accent)', fontSize: '0.95rem' }}>{f.source}</strong>
                   <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', lineHeight: '1.45' }}>{f.detail}</p>
                 </div>
               ))}
@@ -1756,7 +1756,7 @@ function App() {
                   <tbody>
                     {GOVERNANCE_DATA.legalDocket.items.map((item) => (
                       <tr key={item.id}>
-                        <td><strong style={{ color: 'var(--color-accent-text)' }}>#{item.id}</strong></td>
+                        <td><strong style={{ color: 'var(--color-accent)' }}>#{item.id}</strong></td>
                         <td><span className="gov-badge gov-badge--draft">{item.code}</span></td>
                         <td><strong>{item.topic}</strong></td>
                         <td style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>{item.task}</td>
@@ -1897,12 +1897,12 @@ function App() {
                 <span className="fos-sidebar__eld-value" style={{ color: '#10b981' }}>08h 45m</span>
               </div>
               <div className="fos-sidebar__eld-row">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A0A0A0" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line></svg>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#a5b4fc" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line></svg>
                 <span className="fos-sidebar__eld-label">{t('Ciclo HOS', 'HOS Cycle')}</span>
                 <span className="fos-sidebar__eld-value">{t('En Regla', 'Compliant')}</span>
               </div>
               <div className="fos-sidebar__eld-row">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A0A0A0" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#a5b4fc" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                 <span className="fos-sidebar__eld-label">{t('Tractor', 'Tractor')}</span>
                 <span className="fos-sidebar__eld-value">#1042 · 53' Reefer</span>
               </div>
@@ -2313,7 +2313,7 @@ function App() {
                   </div>
                 )}
 
-                <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '1.25rem', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: '12px', padding: '1.25rem', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <h3 style={{ fontSize: '1rem', fontWeight: '800', margin: 0, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       🛡️ {t('Gobernanza del Conductor & Debido Proceso', 'Driver Governance & Due Process Shield')}
@@ -2406,17 +2406,17 @@ function App() {
         <div className="client-dashboard" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', color: 'var(--color-text-primary)' }}>
           <header className="header" style={{ position: 'sticky', top: 0, zIndex: 100, borderBottom: '1px solid var(--color-border)' }}>
             <div className="container header__inner" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '80px' }}>
-              <div className="client-header__brand" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC" className="header__logo-img" />
-                <span className="client-header__badge" style={{ fontSize: '0.75rem', fontWeight: '800', backgroundColor: 'rgba(255, 255, 255, 0.14)', border: '1px solid rgba(255, 255, 255, 0.35)', color: '#fff', padding: '0.25rem 0.5rem', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.08em', fontFamily: 'var(--font-family-mono)' }}>FleetOS Client</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="HCGA Trading LLC" style={{ height: '40px' }} />
+                <span style={{ fontSize: '0.75rem', fontWeight: '800', backgroundColor: '#10b981', color: '#fff', padding: '0.25rem 0.5rem', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>FleetOS Client</span>
               </div>
-              <div className="client-header__actions" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 {renderLangSwitcher()}
                 <button className="theme-toggle-btn" onClick={toggleTheme} title={t('Cambiar Tema', 'Toggle Theme')}>
                   {theme === 'dark' ? '☀️' : '🌙'}
                 </button>
                 <button
-                  className="btn btn--outline btn--sm client-header__back"
+                  className="btn btn--outline btn--sm"
                   onClick={() => {
                     setShowClientDashboard(false);
                     setTimeout(() => {
@@ -2438,8 +2438,8 @@ function App() {
           </header>
 
           <div className="container" style={{ flex: 1, padding: '2rem 1rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div className="client-overview-grid" style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr', gap: '1.5rem', alignItems: 'stretch' }}>
-              <div className="dashboard-sidebar" style={{ backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '1rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr', gap: '1.5rem', alignItems: 'stretch' }}>
+              <div className="dashboard-sidebar" style={{ backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '1rem' }}>
                 <div style={{ borderBottom: '1px solid var(--color-border)', paddingBottom: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
                     <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Cuenta Activa', 'Active Account')}</span>
@@ -2464,7 +2464,7 @@ function App() {
               </div>
 
               <div className="dashboard-metrics" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                <div className="summary-card" style={{ padding: '1rem 1.25rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div className="summary-card" style={{ padding: '1rem 1.25rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                   <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'rgba(16,185,129,0.1)', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                   </div>
@@ -2474,8 +2474,8 @@ function App() {
                   </div>
                 </div>
 
-                <div className="summary-card" style={{ padding: '1rem 1.25rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'rgba(137, 0, 0,0.1)', color: 'var(--color-accent-text)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <div className="summary-card" style={{ padding: '1rem 1.25rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'rgba(153,0,0,0.1)', color: 'var(--color-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -2484,7 +2484,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="summary-card" style={{ padding: '1rem 1.25rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div className="summary-card" style={{ padding: '1rem 1.25rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                   <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'rgba(245,158,11,0.1)', color: '#f59e0b', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                   </div>
@@ -2551,14 +2551,14 @@ function App() {
             {/* TAB 1: OVERVIEW */}
             {clientActiveTab === 'overview' && (
               <>
-                <div className="active-dispatch-card" style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div className="active-dispatch-card" style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0 }}>{t('Despachos de Carga Activos', 'Active Cargo Dispatches')}</h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     {clientActiveShipments.map((shipment) => (
-                      <div key={shipment.id} style={{ border: '1px solid var(--color-border)', borderRadius: '6px', padding: '1.5rem', backgroundColor: 'var(--color-surface)', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '2rem', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <div key={shipment.id} style={{ border: '1px solid var(--color-border)', borderRadius: '8px', padding: '1.5rem', backgroundColor: 'var(--color-surface)', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '2rem', alignItems: 'center', justifyContent: 'space-between' }}>
                         <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.5rem' }}>
-                            <span style={{ fontWeight: '700', fontSize: '1.1rem', color: 'var(--color-accent-text)' }}>#{shipment.id}</span>
+                            <span style={{ fontWeight: '700', fontSize: '1.1rem', color: 'var(--color-accent)' }}>#{shipment.id}</span>
                             <span style={{ padding: '0.25rem 0.75rem', backgroundColor: 'rgba(16,185,129,0.1)', color: '#10b981', borderRadius: '6px', fontSize: '0.8rem', fontWeight: '700' }}>{shipment.status}</span>
                           </div>
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
@@ -2570,7 +2570,7 @@ function App() {
                             <div style={{ gridColumn: 'span 2' }}>{t('ETA Restante:', 'ETA Remaining:')} <strong style={{ color: '#10b981' }}>{shipment.eta}</strong></div>
                           </div>
                         </div>
-                        <div style={{ flex: '1.5 1 400px', height: '140px', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--color-border)', position: 'relative' }}>
+                        <div style={{ flex: '1.5 1 400px', height: '140px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--color-border)', position: 'relative' }}>
                           <img src={`${import.meta.env.BASE_URL}driver_control_panel.png`} alt="Transit tracking HUD" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} />
                         </div>
                       </div>
@@ -2578,7 +2578,7 @@ function App() {
                   </div>
                 </div>
 
-                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
+                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 1rem 0' }}>{t('Entregas Archivadas y Documentos POD', 'Archived Deliveries & PODs')}</h3>
                   <div style={{ overflowX: 'auto' }}>
                     <table className="loads-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
@@ -2599,7 +2599,7 @@ function App() {
                               <strong>{shipment.origin} &rarr; {shipment.dest}</strong>
                             </td>
                             <td style={{ padding: '1rem', color: 'var(--color-text-secondary)' }}>{shipment.date}</td>
-                            <td style={{ padding: '1rem', fontWeight: '700', color: 'var(--color-accent-text)' }}>${shipment.payout.toLocaleString()}</td>
+                            <td style={{ padding: '1rem', fontWeight: '700', color: 'var(--color-accent)' }}>${shipment.payout.toLocaleString()}</td>
                             <td style={{ padding: '1rem', textAlign: 'right' }}>
                               <button
                                 className="btn btn--outline btn--sm"
@@ -2627,7 +2627,7 @@ function App() {
             {/* TAB 2: LOAD BOARDS */}
             {clientActiveTab === 'loadboards' && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                     <div>
                       <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0 }}>{t('Sindicación Automática de Cargas (API Gateway)', 'Automated Load Syndication (API Gateway)')}</h3>
@@ -2642,7 +2642,7 @@ function App() {
                   </div>
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '0.5rem' }}>
-                    <div style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: '6px', backgroundColor: 'var(--color-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: '8px', backgroundColor: 'var(--color-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <span className="platform-badge platform-badge--dat">DAT ONE</span>
                         <strong style={{ fontSize: '0.85rem' }}>DAT Freight</strong>
@@ -2652,7 +2652,7 @@ function App() {
                       </label>
                     </div>
 
-                    <div style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: '6px', backgroundColor: 'var(--color-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: '8px', backgroundColor: 'var(--color-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <span className="platform-badge platform-badge--truckstop">TRUCKSTOP</span>
                         <strong style={{ fontSize: '0.85rem' }}>Truckstop API</strong>
@@ -2662,7 +2662,7 @@ function App() {
                       </label>
                     </div>
 
-                    <div style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: '6px', backgroundColor: 'var(--color-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: '8px', backgroundColor: 'var(--color-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <span className="platform-badge platform-badge--123">123LOAD</span>
                         <strong style={{ fontSize: '0.85rem' }}>123Loadboard</strong>
@@ -2672,7 +2672,7 @@ function App() {
                       </label>
                     </div>
 
-                    <div style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: '6px', backgroundColor: 'var(--color-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: '8px', backgroundColor: 'var(--color-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <span style={{ fontSize: '0.75rem', fontWeight: '700', padding: '0.2rem 0.5rem', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '4px' }}>SMARTER</span>
                         <strong style={{ fontSize: '0.85rem' }}>TruckSmarter</strong>
@@ -2684,7 +2684,7 @@ function App() {
                   </div>
                 </div>
 
-                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
+                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 1rem 0' }}>{t('Cargas Publicadas y Ofertas Activas', 'Published Loads & Active Bids')}</h3>
                   <div style={{ overflowX: 'auto' }}>
                     <table className="loads-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
@@ -2703,7 +2703,7 @@ function App() {
                         {syndicatedLoadsList.map((load) => (
                           <tr key={load.id} style={{ borderBottom: '1px solid var(--color-border)' }}>
                             <td style={{ padding: '1rem' }}>
-                              <strong style={{ color: 'var(--color-accent-text)', display: 'block' }}>#{load.id}</strong>
+                              <strong style={{ color: 'var(--color-accent)', display: 'block' }}>#{load.id}</strong>
                               <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{load.postedDate}</span>
                             </td>
                             <td style={{ padding: '1rem' }}>
@@ -2757,13 +2757,13 @@ function App() {
             {/* TAB 3: CARRIER VETTING TOOL */}
             {clientActiveTab === 'vetting' && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
+                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 0.5rem 0' }}>{t('Verificación de Transportistas (Carrier Vetting API)', 'Carrier Vetting & Compliance Check')}</h3>
                   <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: '0 0 1rem 0' }}>
                     {t('Auditoría instantánea de licencias MC, registros de la FMCSA y cobertura de seguros antes de asignar una carga externa.', 'Instant audit of MC licenses, FMCSA records, and insurance coverage prior to assigning external loads.')}
                   </p>
 
-                  <div style={{ padding: '0.75rem 1rem', backgroundColor: 'rgba(137, 0, 0,0.12)', border: '1px solid rgba(137, 0, 0,0.3)', borderRadius: '6px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
+                  <div style={{ padding: '0.75rem 1rem', backgroundColor: 'rgba(153,0,0,0.12)', border: '1px solid rgba(153,0,0,0.3)', borderRadius: '8px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
                     <IconScale width={20} height={20} color="#ffffff" style={{ flexShrink: 0 }} />
                     <div>
                       <strong style={{ color: '#ffffff' }}>{t('Protección Jurisprudencial SCOTUS (Montgomery v. Caribe Transport 2026):', 'SCOTUS Precedent Protection (Montgomery v. Caribe Transport 2026):')}</strong>{' '}
@@ -2843,7 +2843,7 @@ function App() {
             {/* TAB 4: DAT SPOT RATE BENCHMARK */}
             {clientActiveTab === 'spotrates' && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
+                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 0.5rem 0' }}>{t('Analítica de Tarifas Spot DAT One & Truckstop', 'DAT One & Truckstop Spot Rate Analytics')}</h3>
                   <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: '0 0 1.5rem 0' }}>
                     {t('Estimación de tarifas en tiempo real basadas en el historial de transacciones de carga para camiones de 53\', 26\' y Cargo Vans.', 'Real-time rate estimates based on freight transaction history for 53\', 26\' trucks, and Cargo Vans.')}
@@ -2877,7 +2877,7 @@ function App() {
                   </form>
 
                   {spotResult && (
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem', backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '1.5rem', borderRadius: '6px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem', backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '1.5rem', borderRadius: '8px' }}>
                       <div>
                         <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Carril Consultado', 'Queried Lane')}</span>
                         <strong style={{ fontSize: '1.1rem', color: 'var(--color-text-primary)', display: 'block' }}>{spotResult.originCity} &rarr; {spotResult.destCity}</strong>
@@ -2892,7 +2892,7 @@ function App() {
 
                       <div>
                         <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Tarifa Spot Market (DAT)', 'DAT Spot Rate')}</span>
-                        <strong style={{ fontSize: '1.25rem', color: 'var(--color-accent-text)', display: 'block' }}>${spotResult.spotAvgRate} / mi</strong>
+                        <strong style={{ fontSize: '1.25rem', color: 'var(--color-accent)', display: 'block' }}>${spotResult.spotAvgRate} / mi</strong>
                         <span style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>{t('Rango:', 'Range:')} ${spotResult.spotRangeLow} - ${spotResult.spotRangeHigh} / mi</span>
                       </div>
 
@@ -2918,7 +2918,7 @@ function App() {
                 <div className="api-terminal__log-list">
                   {apiLogs.map((log, i) => (
                     <div key={i} className="api-terminal__log-item">
-                      <span style={{ color: '#A0A0A0' }}>[{log.time}]</span>
+                      <span style={{ color: '#94a3b8' }}>[{log.time}]</span>
                       <strong style={{ color: log.event.includes('DELETE') ? '#ef4444' : log.event.includes('VET') ? '#f59e0b' : '#38bdf8' }}>{log.event}</strong>
                       <span>{log.payload} <code style={{ opacity: 0.6, fontSize: '0.75rem' }}>({log.endpoint})</code></span>
                     </div>
@@ -2935,7 +2935,7 @@ function App() {
             {/* TAB 7: DIRECT SHIPPER GATEWAY (EDI 204) */}
             {clientActiveTab === 'shippers' && (
               <div className="shipper-hub">
-                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                     <div>
                       <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -2956,7 +2956,7 @@ function App() {
                   </div>
 
                   {/* Guaranteed locked rate banner per Code of Conduct Section 3.2 */}
-                  <div style={{ padding: '0.75rem 1rem', backgroundColor: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: '6px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <div style={{ padding: '0.75rem 1rem', backgroundColor: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: '8px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                     <span style={{ fontSize: '1.2rem' }}>🔒</span>
                     <div>
                       <strong style={{ color: '#10b981' }}>{t('Garantía de Tarifa Bloqueada (Código de Conducta Sección 3.2):', 'Locked Rate Guarantee (Code of Conduct Section 3.2):')}</strong>{' '}
@@ -3001,7 +3001,7 @@ function App() {
                 </div>
 
                 {/* Direct Shipper Tenders Table */}
-                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
+                <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 1rem 0' }}>
                     {t('Licitaciones Directas de Carga de Shippers (Direct Tenders)', 'Direct Shipper Freight Tenders')}
                   </h3>
@@ -3022,7 +3022,7 @@ function App() {
                         {shipperTenders.map((tnd) => (
                           <tr key={tnd.id} style={{ borderBottom: '1px solid var(--color-border)' }}>
                             <td style={{ padding: '1rem' }}>
-                              <strong style={{ color: 'var(--color-accent-text)', display: 'block' }}>#{tnd.id}</strong>
+                              <strong style={{ color: 'var(--color-accent)', display: 'block' }}>#{tnd.id}</strong>
                               <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{tnd.postedDate}</span>
                             </td>
                             <td style={{ padding: '1rem' }}>
@@ -3061,7 +3061,7 @@ function App() {
           {/* Modal for Posting New Load */}
           {showPostLoadModal && (
             <div style={{ position: 'fixed', inset: 0, zIndex: 10000, backgroundColor: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-              <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '2rem', maxWidth: '540px', width: '100%', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: '12px', padding: '2rem', maxWidth: '540px', width: '100%', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.75rem' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0 }}>{t('Publicar Nueva Carga en Bolsas', 'Post New Load to Boards')}</h3>
                   <button style={{ fontSize: '1.25rem', cursor: 'pointer', background: 'none', border: 'none', color: 'var(--color-text-primary)' }} onClick={() => setShowPostLoadModal(false)}>✕</button>
@@ -3110,7 +3110,7 @@ function App() {
           {/* Modal for Posting Direct Shipper Tender */}
           {showShipperModal && (
             <div style={{ position: 'fixed', inset: 0, zIndex: 10000, backgroundColor: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-              <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '2rem', maxWidth: '580px', width: '100%', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: '12px', padding: '2rem', maxWidth: '580px', width: '100%', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.75rem' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     🏢 {t('Emitir Licitación Directa de Shipper (EDI 204)', 'Publish Direct Shipper Tender (EDI 204)')}
@@ -3169,7 +3169,7 @@ function App() {
               <div className="shipper-rc-modal" style={{ maxWidth: '650px', width: '100%', maxHeight: '90vh', overflowY: 'auto' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #111', paddingBottom: '1rem', marginBottom: '1rem' }}>
                   <div>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: '900', margin: 0, color: '#890000' }}>HCGA TRADING LLC</h3>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: '900', margin: 0, color: '#990000' }}>HCGA TRADING LLC</h3>
                     <span style={{ fontSize: '0.75rem', color: '#555', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '700' }}>OFFICIAL RATE CONFIRMATION & FREIGHT CONTRACT</span>
                   </div>
                   <button style={{ fontSize: '1.25rem', cursor: 'pointer', background: 'none', border: 'none', color: '#111', fontWeight: '800' }} onClick={() => setSelectedRcTender(null)}>✕</button>
@@ -3194,12 +3194,12 @@ function App() {
                   </div>
                 </div>
 
-                <div style={{ backgroundColor: '#F3F1F0', border: '1px solid #E4E0DE', borderRadius: '6px', padding: '1rem', marginBottom: '1rem' }}>
+                <div style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '1rem', marginBottom: '1rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                     <span style={{ fontWeight: '800', color: '#111', fontSize: '0.95rem' }}>AGREED LOCKED RATE (LOCKED_RATE)</span>
                     <strong style={{ fontSize: '1.35rem', color: '#10b981' }}>${selectedRcTender.lockedRate.toLocaleString()} USD</strong>
                   </div>
-                  <div style={{ fontSize: '0.78rem', color: '#6E6866' }}>
+                  <div style={{ fontSize: '0.78rem', color: '#64748b' }}>
                     Detention Guarantee: {selectedRcTender.detentionRate} · Equipment: {selectedRcTender.vehicle} ({selectedRcTender.equipment})
                   </div>
                 </div>
@@ -3227,7 +3227,7 @@ function App() {
                   setIsClientLoggedIn(false);
                   setShowClientDashboard(false);
                 }}
-                style={{ background: 'none', border: 'none', color: 'var(--color-accent-text)', cursor: 'pointer', fontWeight: '600', textDecoration: 'underline' }}
+                style={{ background: 'none', border: 'none', color: 'var(--color-accent)', cursor: 'pointer', fontWeight: '600', textDecoration: 'underline' }}
               >
                 {t('Cerrar Sesión', 'Sign Out Session')}
               </button>
@@ -3247,7 +3247,7 @@ function App() {
       <header className="header">
         <div className="container header__inner">
           <a href="#" className="header__logo">
-            <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC" className="header__logo-img" />
+            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="HCGA Trading LLC" className="header__logo-img" />
           </a>
           <button
             className="mobile-menu-btn"
@@ -3424,7 +3424,7 @@ function App() {
             <div className="section-banner-header reveal" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}services_header.png)` }}>
               <div className="section-banner-header__overlay"></div>
               <div className="section-banner-header__content">
-                <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
+                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
                 <h2 className="section-title">{t('Servicios de Transporte', 'Transportation Services')}</h2>
                 <p className="section-subtitle">{t('Operaciones escalables, confiables y guiadas por tecnología para clientes comerciales.', 'Scalable, reliable, and technology-driven operations tailored for commercial clients.')}</p>
               </div>
@@ -3473,7 +3473,7 @@ function App() {
                     </div>
 
                     <div className="service-detail__action-col">
-                      <div className="service-detail__map-preview" style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', border: '1px solid var(--color-border)', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', marginBottom: '1rem' }}>
+                      <div className="service-detail__map-preview" style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-border)', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', marginBottom: '1rem' }}>
                         <img src={`${import.meta.env.BASE_URL}services_thumbnail_usa.png`} alt="USA Active Routes HUD" style={{ width: '100%', height: 'auto', display: 'block' }} />
                       </div>
                       <div className="service-detail__kpis-box">
@@ -3565,7 +3565,7 @@ function App() {
             <div className="section-banner-header reveal" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}tech_header.png)` }}>
               <div className="section-banner-header__overlay"></div>
               <div className="section-banner-header__content">
-                <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
+                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
                 <h2 className="section-title">{t('Control Inteligente de Flota', 'Intelligent Fleet Control')}</h2>
                 <p className="section-subtitle">{t('HCGA FleetOS le brinda total visibilidad y control operativo. Nuestra tecnología propia garantiza seguridad, eficiencia y cumplimiento.', 'HCGA FleetOS gives you total operational visibility and control. Our custom-built technology stack ensures safety, efficiency, and compliance.')}</p>
               </div>
@@ -3631,7 +3631,7 @@ function App() {
             <div className="section-banner-header reveal" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}safety_header.png)` }}>
               <div className="section-banner-header__overlay"></div>
               <div className="section-banner-header__content">
-                <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
+                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
                 <h2 className="section-title">{t('Seguridad y Cumplimiento', 'Safety & Compliance')}</h2>
                 <p className="section-subtitle">{t('Una cultura de seguridad integrada en cada ruta, respaldada por registros digitales y monitoreo constante.', 'A culture of safety built into every route, backed by digital records and constant monitoring.')}</p>
               </div>
@@ -3642,10 +3642,10 @@ function App() {
                 (() => {
                   const item = SAFETY_DATA.find(x => x.id === selectedSafetyId);
                   return (
-                    <div className="safety-detail-card" style={{ flex: 1, padding: '2.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
+                    <div className="safety-detail-card" style={{ flex: 1, padding: '2.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '12px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid var(--color-border)', paddingBottom: '1.25rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                          <div className="safety-icon" style={{ margin: 0, width: '48px', height: '48px', backgroundColor: 'rgba(137, 0, 0, 0.1)', color: 'var(--color-accent-text)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <div className="safety-icon" style={{ margin: 0, width: '48px', height: '48px', backgroundColor: 'rgba(153, 0, 0, 0.1)', color: 'var(--color-accent)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             {item.icon}
                           </div>
                           <h3 style={{ fontSize: '1.5rem', fontWeight: '800', margin: 0 }}>{item.title}</h3>
@@ -3658,7 +3658,7 @@ function App() {
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.5rem', alignItems: 'center' }}>
                         <div>
                           <p style={{ fontSize: '1.05rem', color: 'var(--color-text-primary)', marginBottom: '2rem', lineHeight: '1.6' }}>{item.desc}</p>
-                          <h4 style={{ fontSize: '1rem', fontWeight: '800', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-accent-text)' }}>{t('Estándares Clave de Cumplimiento', 'Key Features & Compliance Standards')}</h4>
+                          <h4 style={{ fontSize: '1rem', fontWeight: '800', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-accent)' }}>{t('Estándares Clave de Cumplimiento', 'Key Features & Compliance Standards')}</h4>
                           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {item.bullets.map((bullet, idx) => (
                               <li key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', fontSize: '0.95rem' }}>
@@ -3669,7 +3669,7 @@ function App() {
                           </ul>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                          <div style={{ width: '100%', maxWidth: '480px', aspectRatio: '16/10', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--color-border)', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
+                          <div style={{ width: '100%', maxWidth: '480px', aspectRatio: '16/10', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--color-border)', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
                             <img src={`${import.meta.env.BASE_URL}${item.image}`} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                           </div>
                         </div>
@@ -3728,7 +3728,7 @@ function App() {
             <div className="section-banner-header reveal" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}portal_header.png)` }}>
               <div className="section-banner-header__overlay"></div>
               <div className="section-banner-header__content">
-                <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
+                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
                 <h2 className="section-title">{t('Portal de Clientes', 'Client Portal')}</h2>
                 <p className="section-subtitle">{t('Acceda a su panel de flota dedicado. Monitoree rutas activas, descargue pruebas de entrega y analice el rendimiento.', 'Access your dedicated fleet dashboard. Monitor live routes, download delivery proofs, and analyze performance data.')}</p>
               </div>
@@ -3795,7 +3795,7 @@ function App() {
       <footer className="footer">
         <div className="container footer-container">
           <div className="footer-brand">
-            <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA TRADING LLC Logo" className="footer-logo-img" />
+            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="HCGA TRADING LLC Logo" className="footer-logo-img" />
             <p>{t('Transporte comercial escalable, impulsado por datos.', 'Scalable commercial transportation, powered by data.')}</p>
           </div>
           <div className="footer-links">
@@ -3848,7 +3848,7 @@ function App() {
             <button className="dev-modal-close" onClick={() => setShowDriverLoginModal(false)} aria-label="Close">
               <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
-            <div className="dev-modal-icon" style={{ color: 'var(--color-accent-text)', backgroundColor: 'rgba(137, 0, 0, 0.1)' }}>
+            <div className="dev-modal-icon" style={{ color: 'var(--color-accent)', backgroundColor: 'rgba(153, 0, 0, 0.1)' }}>
               <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
             </div>
             <h3 id="driver-modal-title" style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '1rem', color: 'var(--color-text-primary)' }}>{t('Acceso Portal de Conductores', 'Driver Portal Login')}</h3>
