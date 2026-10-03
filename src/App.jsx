@@ -1455,7 +1455,7 @@ function App() {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
               <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-accent-text)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <h4 style={{ fontSize: '1rem', marginBottom: '0.5rem', color: 'var(--color-accent-text)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                   <IconTruck width={18} height={18} /> {GOVERNANCE_DATA.violations.drivers.actorName}
                 </h4>
                 <div className="gov-table-wrapper">
@@ -1485,7 +1485,7 @@ function App() {
               </div>
 
               <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.5rem', color: 'var(--color-accent-text)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <h4 style={{ fontSize: '1rem', marginBottom: '0.5rem', color: 'var(--color-accent-text)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                   <IconBuilding width={18} height={18} /> {GOVERNANCE_DATA.violations.shippersBrokers.actorName}
                 </h4>
                 <div className="gov-table-wrapper">
@@ -1537,7 +1537,7 @@ function App() {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
               <div className="gov-card">
-                <h4 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#10b981' }}>
+                <h4 style={{ fontSize: '1.1rem', color: '#10b981' }}>
                   {GOVERNANCE_DATA.ladder.driverRules.title}
                 </h4>
                 <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', backgroundColor: 'rgba(16,185,129,0.08)', padding: '0.5rem 0.75rem', borderRadius: '6px', border: '1px solid rgba(16,185,129,0.2)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -1557,7 +1557,7 @@ function App() {
                     <tbody>
                       {GOVERNANCE_DATA.ladder.driverRules.steps.map((st, i) => (
                         <tr key={i}>
-                          <td><strong style={{ color: 'var(--color-accent-text)' }}>#{st.step}</strong></td>
+                          <td><strong className="hcga-data" style={{ color: 'var(--color-accent-text)' }}>#{st.step}</strong></td>
                           <td><strong>{st.name}</strong></td>
                           <td style={{ color: 'var(--color-text-secondary)' }}>{st.trigger}</td>
                           <td>{st.effect}</td>
@@ -1569,7 +1569,7 @@ function App() {
               </div>
 
               <div className="gov-card">
-                <h4 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#3b82f6' }}>
+                <h4 style={{ fontSize: '1.1rem', color: '#3b82f6' }}>
                   {GOVERNANCE_DATA.ladder.brokerRules.title}
                 </h4>
                 <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', backgroundColor: 'rgba(59,130,246,0.08)', padding: '0.5rem 0.75rem', borderRadius: '6px', border: '1px solid rgba(59,130,246,0.2)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -1589,7 +1589,7 @@ function App() {
                     <tbody>
                       {GOVERNANCE_DATA.ladder.brokerRules.steps.map((st, i) => (
                         <tr key={i}>
-                          <td><strong style={{ color: 'var(--color-accent-text)' }}>#{st.step}</strong></td>
+                          <td><strong className="hcga-data" style={{ color: 'var(--color-accent-text)' }}>#{st.step}</strong></td>
                           <td><strong>{st.name}</strong></td>
                           <td style={{ color: 'var(--color-text-secondary)' }}>{st.trigger}</td>
                           <td>{st.effect}</td>
@@ -1664,7 +1664,7 @@ function App() {
             </div>
 
             <div className="gov-card">
-              <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <h4 style={{ fontSize: '1.05rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                 <IconShield width={18} height={18} color="#10b981" /> {t('El Valor Legal Único de HCGA FleetOS:', 'HCGA FleetOS Unique Legal Value:')}
               </h4>
               <p className="gov-card__desc">
@@ -1705,7 +1705,7 @@ function App() {
             </div>
 
             <div className="gov-card">
-              <h4 style={{ fontSize: '1rem', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <h4 style={{ fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                 <IconCheckCircle width={16} height={16} color="var(--color-accent)" /> {t('Puntos Clave de Ejecución:', 'Key Execution Takeaways:')}
               </h4>
               <ul className="gov-comparison__list">
@@ -1756,7 +1756,7 @@ function App() {
                   <tbody>
                     {GOVERNANCE_DATA.legalDocket.items.map((item) => (
                       <tr key={item.id}>
-                        <td><strong style={{ color: 'var(--color-accent-text)' }}>#{item.id}</strong></td>
+                        <td><strong className="hcga-data" style={{ color: 'var(--color-accent-text)' }}>#{item.id}</strong></td>
                         <td><span className="gov-badge gov-badge--draft">{item.code}</span></td>
                         <td><strong>{item.topic}</strong></td>
                         <td style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>{item.task}</td>
@@ -2315,7 +2315,7 @@ function App() {
 
                 <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '1.25rem', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    <h3 style={{ fontSize: '1rem', fontWeight: '800', margin: 0, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <h3 style={{ fontSize: '1rem', margin: 0, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       🛡️ {t('Gobernanza del Conductor & Debido Proceso', 'Driver Governance & Due Process Shield')}
                     </h3>
                     <span style={{ fontSize: '0.75rem', fontWeight: '700', padding: '0.2rem 0.6rem', backgroundColor: 'rgba(16,185,129,0.15)', color: '#10b981', borderRadius: '4px' }}>
@@ -2376,7 +2376,7 @@ function App() {
                           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#10b981" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                         </div>
                         <div className="fos-earnings-history__info">
-                          <strong>#{item.id}</strong>
+                          <strong className="hcga-data">#{item.id}</strong>
                           <span>{item.route}</span>
                         </div>
                         <div className="fos-earnings-history__meta">
@@ -2408,7 +2408,7 @@ function App() {
             <div className="container header__inner" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '80px' }}>
               <div className="client-header__brand" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC" className="header__logo-img" />
-                <span className="client-header__badge" style={{ fontSize: '0.75rem', fontWeight: '800', backgroundColor: 'rgba(255, 255, 255, 0.14)', border: '1px solid rgba(255, 255, 255, 0.35)', color: '#fff', padding: '0.25rem 0.5rem', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.08em', fontFamily: 'var(--font-family-mono)' }}>FleetOS Client</span>
+                <span className="hcga-label client-header__badge" style={{ fontSize: '0.75rem', backgroundColor: 'rgba(255, 255, 255, 0.14)', border: '1px solid rgba(255, 255, 255, 0.35)', color: '#fff', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>FleetOS Client</span>
               </div>
               <div className="client-header__actions" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 {renderLangSwitcher()}
@@ -2442,21 +2442,21 @@ function App() {
               <div className="dashboard-sidebar" style={{ backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '1rem' }}>
                 <div style={{ borderBottom: '1px solid var(--color-border)', paddingBottom: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Cuenta Activa', 'Active Account')}</span>
+                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Cuenta Activa', 'Active Account')}</span>
                     <strong style={{ fontSize: '1.25rem', color: 'var(--color-text-primary)', display: 'block' }}>ACME Logistics Corp</strong>
                   </div>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', backgroundColor: 'rgba(255,255,255,0.05)', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>#AC-92841</span>
+                  <span className="hcga-data" style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', backgroundColor: 'rgba(255,255,255,0.05)', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>#AC-92841</span>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700', display: 'block' }}>{t('Gerente de Cuenta', 'Account Manager')}</span>
+                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>{t('Gerente de Cuenta', 'Account Manager')}</span>
                     <strong style={{ fontSize: '0.95rem', color: 'var(--color-text-primary)' }}>Sarah Jenkins</strong>
                     <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>(800) 555-0192</span>
                   </div>
 
                   <div>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700', display: 'block' }}>{t('Tasa de Puntualidad', 'On-Time Rate')}</span>
+                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>{t('Tasa de Puntualidad', 'On-Time Rate')}</span>
                     <strong style={{ fontSize: '0.95rem', color: '#10b981' }}>99.2% ({t('Excelente', 'Excellent')})</strong>
                     <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>{t('Umbral meta: 98.0%', 'Goal threshold: 98.0%')}</span>
                   </div>
@@ -2469,7 +2469,7 @@ function App() {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Despachos Activos', 'Active Dispatches')}</span>
+                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Despachos Activos', 'Active Dispatches')}</span>
                     <strong style={{ fontSize: '1.25rem', color: 'var(--color-text-primary)' }}>{clientActiveShipments.length} {t('Rutas', 'Routes')}</strong>
                   </div>
                 </div>
@@ -2479,7 +2479,7 @@ function App() {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Cargas Sindicadas', 'Syndicated Loads')}</span>
+                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Cargas Sindicadas', 'Syndicated Loads')}</span>
                     <strong style={{ fontSize: '1.25rem', color: 'var(--color-text-primary)' }}>{syndicatedLoadsList.length} {t('Activas', 'Active')}</strong>
                   </div>
                 </div>
@@ -2489,7 +2489,7 @@ function App() {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Índice Tarifa Spot', 'Spot Rate Index')}</span>
+                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Índice Tarifa Spot', 'Spot Rate Index')}</span>
                     <strong style={{ fontSize: '1.25rem', color: 'var(--color-text-primary)' }}>$2.85 / mi</strong>
                   </div>
                 </div>
@@ -2552,13 +2552,13 @@ function App() {
             {clientActiveTab === 'overview' && (
               <>
                 <div className="active-dispatch-card" style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0 }}>{t('Despachos de Carga Activos', 'Active Cargo Dispatches')}</h3>
+                  <h3 style={{ fontSize: '1.25rem', margin: 0 }}>{t('Despachos de Carga Activos', 'Active Cargo Dispatches')}</h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     {clientActiveShipments.map((shipment) => (
                       <div key={shipment.id} style={{ border: '1px solid var(--color-border)', borderRadius: '6px', padding: '1.5rem', backgroundColor: 'var(--color-surface)', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '2rem', alignItems: 'center', justifyContent: 'space-between' }}>
                         <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.5rem' }}>
-                            <span style={{ fontWeight: '700', fontSize: '1.1rem', color: 'var(--color-accent-text)' }}>#{shipment.id}</span>
+                            <span className="hcga-data" style={{ fontWeight: '700', fontSize: '1.1rem', color: 'var(--color-accent-text)' }}>#{shipment.id}</span>
                             <span style={{ padding: '0.25rem 0.75rem', backgroundColor: 'rgba(16,185,129,0.1)', color: '#10b981', borderRadius: '6px', fontSize: '0.8rem', fontWeight: '700' }}>{shipment.status}</span>
                           </div>
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
@@ -2579,7 +2579,7 @@ function App() {
                 </div>
 
                 <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 1rem 0' }}>{t('Entregas Archivadas y Documentos POD', 'Archived Deliveries & PODs')}</h3>
+                  <h3 style={{ fontSize: '1.25rem', margin: '0 0 1rem 0' }}>{t('Entregas Archivadas y Documentos POD', 'Archived Deliveries & PODs')}</h3>
                   <div style={{ overflowX: 'auto' }}>
                     <table className="loads-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
                       <thead>
@@ -2594,7 +2594,7 @@ function App() {
                       <tbody>
                         {clientCompletedShipments.map((shipment) => (
                           <tr key={shipment.id} style={{ borderBottom: '1px solid var(--color-border)' }}>
-                            <td style={{ padding: '1rem', fontWeight: '700', color: 'var(--color-text-primary)' }}>#{shipment.id}</td>
+                            <td className="hcga-data" style={{ padding: '1rem', fontWeight: '700', color: 'var(--color-text-primary)' }}>#{shipment.id}</td>
                             <td style={{ padding: '1rem' }}>
                               <strong>{shipment.origin} &rarr; {shipment.dest}</strong>
                             </td>
@@ -2630,7 +2630,7 @@ function App() {
                 <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                     <div>
-                      <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0 }}>{t('Sindicación Automática de Cargas (API Gateway)', 'Automated Load Syndication (API Gateway)')}</h3>
+                      <h3 style={{ fontSize: '1.25rem', margin: 0 }}>{t('Sindicación Automática de Cargas (API Gateway)', 'Automated Load Syndication (API Gateway)')}</h3>
                       <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: '0.25rem 0 0 0' }}>
                         {t('Configuración de canales externos para publicar automáticamente en bolsas de carga de EE. UU. (53\', 26\' y Cargo Vans).', 'Configuration of external channels to automatically publish across US load boards (53\', 26\' & Cargo Vans).')}
                       </p>
@@ -2685,7 +2685,7 @@ function App() {
                 </div>
 
                 <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 1rem 0' }}>{t('Cargas Publicadas y Ofertas Activas', 'Published Loads & Active Bids')}</h3>
+                  <h3 style={{ fontSize: '1.25rem', margin: '0 0 1rem 0' }}>{t('Cargas Publicadas y Ofertas Activas', 'Published Loads & Active Bids')}</h3>
                   <div style={{ overflowX: 'auto' }}>
                     <table className="loads-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
                       <thead>
@@ -2703,7 +2703,7 @@ function App() {
                         {syndicatedLoadsList.map((load) => (
                           <tr key={load.id} style={{ borderBottom: '1px solid var(--color-border)' }}>
                             <td style={{ padding: '1rem' }}>
-                              <strong style={{ color: 'var(--color-accent-text)', display: 'block' }}>#{load.id}</strong>
+                              <strong className="hcga-data" style={{ color: 'var(--color-accent-text)', display: 'block' }}>#{load.id}</strong>
                               <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{load.postedDate}</span>
                             </td>
                             <td style={{ padding: '1rem' }}>
@@ -2758,7 +2758,7 @@ function App() {
             {clientActiveTab === 'vetting' && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 0.5rem 0' }}>{t('Verificación de Transportistas (Carrier Vetting API)', 'Carrier Vetting & Compliance Check')}</h3>
+                  <h3 style={{ fontSize: '1.25rem', margin: '0 0 0.5rem 0' }}>{t('Verificación de Transportistas (Carrier Vetting API)', 'Carrier Vetting & Compliance Check')}</h3>
                   <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: '0 0 1rem 0' }}>
                     {t('Auditoría instantánea de licencias MC, registros de la FMCSA y cobertura de seguros antes de asignar una carga externa.', 'Instant audit of MC licenses, FMCSA records, and insurance coverage prior to assigning external loads.')}
                   </p>
@@ -2844,7 +2844,7 @@ function App() {
             {clientActiveTab === 'spotrates' && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 0.5rem 0' }}>{t('Analítica de Tarifas Spot DAT One & Truckstop', 'DAT One & Truckstop Spot Rate Analytics')}</h3>
+                  <h3 style={{ fontSize: '1.25rem', margin: '0 0 0.5rem 0' }}>{t('Analítica de Tarifas Spot DAT One & Truckstop', 'DAT One & Truckstop Spot Rate Analytics')}</h3>
                   <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: '0 0 1.5rem 0' }}>
                     {t('Estimación de tarifas en tiempo real basadas en el historial de transacciones de carga para camiones de 53\', 26\' y Cargo Vans.', 'Real-time rate estimates based on freight transaction history for 53\', 26\' trucks, and Cargo Vans.')}
                   </p>
@@ -2879,25 +2879,25 @@ function App() {
                   {spotResult && (
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem', backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '1.5rem', borderRadius: '6px' }}>
                       <div>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Carril Consultado', 'Queried Lane')}</span>
+                        <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Carril Consultado', 'Queried Lane')}</span>
                         <strong style={{ fontSize: '1.1rem', color: 'var(--color-text-primary)', display: 'block' }}>{spotResult.originCity} &rarr; {spotResult.destCity}</strong>
                         <span style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>{t('Distancia:', 'Distance:')} {spotResult.miles} miles</span>
                       </div>
 
                       <div>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Tarifa Contrato Promedio', 'Avg Contract Rate')}</span>
-                        <strong style={{ fontSize: '1.25rem', color: '#10b981', display: 'block' }}>${spotResult.contractAvgRate} / mi</strong>
+                        <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Tarifa Contrato Promedio', 'Avg Contract Rate')}</span>
+                        <strong className="hcga-figure" style={{ fontSize: '1.25rem', color: '#10b981', display: 'block' }}>${spotResult.contractAvgRate} / mi</strong>
                         <span style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>Total: ${spotResult.contractTotal.toLocaleString()} USD</span>
                       </div>
 
                       <div>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Tarifa Spot Market (DAT)', 'DAT Spot Rate')}</span>
-                        <strong style={{ fontSize: '1.25rem', color: 'var(--color-accent-text)', display: 'block' }}>${spotResult.spotAvgRate} / mi</strong>
+                        <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Tarifa Spot Market (DAT)', 'DAT Spot Rate')}</span>
+                        <strong className="hcga-figure" style={{ fontSize: '1.25rem', color: 'var(--color-accent-text)', display: 'block' }}>${spotResult.spotAvgRate} / mi</strong>
                         <span style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>{t('Rango:', 'Range:')} ${spotResult.spotRangeLow} - ${spotResult.spotRangeHigh} / mi</span>
                       </div>
 
                       <div>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('Índice de Oferta & Confianza', 'Demand Index & Confidence')}</span>
+                        <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Índice de Oferta & Confianza', 'Demand Index & Confidence')}</span>
                         <strong style={{ fontSize: '0.95rem', color: 'var(--color-text-primary)', display: 'block' }}>{spotResult.demandIndex}</strong>
                         <span style={{ fontSize: '0.75rem', color: '#10b981' }}>{spotResult.datOneConfidence}</span>
                       </div>
@@ -2938,7 +2938,7 @@ function App() {
                 <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                     <div>
-                      <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <h3 style={{ fontSize: '1.25rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         🏢 {t('Conexión Directa con Shippers y Portales de Fábrica', 'Direct Shipper & Factory Portal Integration')}
                       </h3>
                       <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: '0.25rem 0 0 0' }}>
@@ -2968,7 +2968,7 @@ function App() {
 
                   {/* Enterprise TMS Integration Gateways */}
                   <div>
-                    <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--color-text-secondary)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+                    <h4 className="hcga-eyebrow" style={{ color: 'var(--color-text-secondary)', marginBottom: '0.75rem' }}>
                       {t('Pasarelas TMS Conectadas en Tiempo Real', 'Real-Time Connected TMS Gateways')}
                     </h4>
                     <div className="shipper-tms-grid">
@@ -3002,7 +3002,7 @@ function App() {
 
                 {/* Direct Shipper Tenders Table */}
                 <div style={{ padding: '1.5rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: '0 0 1rem 0' }}>
+                  <h3 style={{ fontSize: '1.25rem', margin: '0 0 1rem 0' }}>
                     {t('Licitaciones Directas de Carga de Shippers (Direct Tenders)', 'Direct Shipper Freight Tenders')}
                   </h3>
                   <div style={{ overflowX: 'auto' }}>
@@ -3022,7 +3022,7 @@ function App() {
                         {shipperTenders.map((tnd) => (
                           <tr key={tnd.id} style={{ borderBottom: '1px solid var(--color-border)' }}>
                             <td style={{ padding: '1rem' }}>
-                              <strong style={{ color: 'var(--color-accent-text)', display: 'block' }}>#{tnd.id}</strong>
+                              <strong className="hcga-data" style={{ color: 'var(--color-accent-text)', display: 'block' }}>#{tnd.id}</strong>
                               <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{tnd.postedDate}</span>
                             </td>
                             <td style={{ padding: '1rem' }}>
@@ -3063,7 +3063,7 @@ function App() {
             <div style={{ position: 'fixed', inset: 0, zIndex: 10000, backgroundColor: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
               <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '2rem', maxWidth: '540px', width: '100%', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.75rem' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0 }}>{t('Publicar Nueva Carga en Bolsas', 'Post New Load to Boards')}</h3>
+                  <h3 style={{ fontSize: '1.25rem', margin: 0 }}>{t('Publicar Nueva Carga en Bolsas', 'Post New Load to Boards')}</h3>
                   <button style={{ fontSize: '1.25rem', cursor: 'pointer', background: 'none', border: 'none', color: 'var(--color-text-primary)' }} onClick={() => setShowPostLoadModal(false)}>✕</button>
                 </div>
 
@@ -3112,7 +3112,7 @@ function App() {
             <div style={{ position: 'fixed', inset: 0, zIndex: 10000, backgroundColor: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
               <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '2rem', maxWidth: '580px', width: '100%', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.75rem' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <h3 style={{ fontSize: '1.25rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     🏢 {t('Emitir Licitación Directa de Shipper (EDI 204)', 'Publish Direct Shipper Tender (EDI 204)')}
                   </h3>
                   <button style={{ fontSize: '1.25rem', cursor: 'pointer', background: 'none', border: 'none', color: 'var(--color-text-primary)' }} onClick={() => setShowShipperModal(false)}>✕</button>
@@ -3169,27 +3169,27 @@ function App() {
               <div className="shipper-rc-modal" style={{ maxWidth: '650px', width: '100%', maxHeight: '90vh', overflowY: 'auto' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #111', paddingBottom: '1rem', marginBottom: '1rem' }}>
                   <div>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: '900', margin: 0, color: '#890000' }}>HCGA TRADING LLC</h3>
-                    <span style={{ fontSize: '0.75rem', color: '#555', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '700' }}>OFFICIAL RATE CONFIRMATION & FREIGHT CONTRACT</span>
+                    <h3 style={{ fontSize: '1.25rem', margin: 0, color: '#890000' }}>HCGA TRADING LLC</h3>
+                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: '#555' }}>OFFICIAL RATE CONFIRMATION & FREIGHT CONTRACT</span>
                   </div>
                   <button style={{ fontSize: '1.25rem', cursor: 'pointer', background: 'none', border: 'none', color: '#111', fontWeight: '800' }} onClick={() => setSelectedRcTender(null)}>✕</button>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.85rem', marginBottom: '1rem', borderBottom: '1px solid #ddd', paddingBottom: '1rem' }}>
                   <div>
-                    <span style={{ color: '#666', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700' }}>TENDER ID</span>
-                    <strong style={{ display: 'block', fontSize: '1rem', color: '#111' }}>#{selectedRcTender.id}</strong>
+                    <span className="hcga-label" style={{ color: '#666', fontSize: '0.75rem' }}>TENDER ID</span>
+                    <strong className="hcga-data" style={{ display: 'block', fontSize: '1rem', color: '#111' }}>#{selectedRcTender.id}</strong>
                   </div>
                   <div>
-                    <span style={{ color: '#666', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700' }}>SHIPPER COMPANY</span>
+                    <span className="hcga-label" style={{ color: '#666', fontSize: '0.75rem' }}>SHIPPER COMPANY</span>
                     <strong style={{ display: 'block', fontSize: '1rem', color: '#111' }}>{selectedRcTender.shipperName}</strong>
                   </div>
                   <div>
-                    <span style={{ color: '#666', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700' }}>ORIGIN FACILITY</span>
+                    <span className="hcga-label" style={{ color: '#666', fontSize: '0.75rem' }}>ORIGIN FACILITY</span>
                     <span style={{ display: 'block', color: '#111' }}>{selectedRcTender.facilityOrigin}</span>
                   </div>
                   <div>
-                    <span style={{ color: '#666', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: '700' }}>DESTINATION HUB</span>
+                    <span className="hcga-label" style={{ color: '#666', fontSize: '0.75rem' }}>DESTINATION HUB</span>
                     <span style={{ display: 'block', color: '#111' }}>{selectedRcTender.facilityDest}</span>
                   </div>
                 </div>
@@ -3648,7 +3648,7 @@ function App() {
                           <div className="safety-icon" style={{ margin: 0, width: '48px', height: '48px', backgroundColor: 'rgba(137, 0, 0, 0.1)', color: 'var(--color-accent-text)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             {item.icon}
                           </div>
-                          <h3 style={{ fontSize: '1.5rem', fontWeight: '800', margin: 0 }}>{item.title}</h3>
+                          <h3 style={{ fontSize: '1.5rem', margin: 0 }}>{item.title}</h3>
                           <button className="btn btn--secondary btn--sm" onClick={() => setSelectedSafetyId(null)} style={{ marginLeft: '1rem', padding: '0.4rem 1.25rem', fontSize: '0.85rem' }}>
                             {t('Volver', 'Return')}
                           </button>
@@ -3658,7 +3658,7 @@ function App() {
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.5rem', alignItems: 'center' }}>
                         <div>
                           <p style={{ fontSize: '1.05rem', color: 'var(--color-text-primary)', marginBottom: '2rem', lineHeight: '1.6' }}>{item.desc}</p>
-                          <h4 style={{ fontSize: '1rem', fontWeight: '800', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-accent-text)' }}>{t('Estándares Clave de Cumplimiento', 'Key Features & Compliance Standards')}</h4>
+                          <h4 className="hcga-eyebrow" style={{ marginBottom: '1rem', color: 'var(--color-accent-text)' }}>{t('Estándares Clave de Cumplimiento', 'Key Features & Compliance Standards')}</h4>
                           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {item.bullets.map((bullet, idx) => (
                               <li key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', fontSize: '0.95rem' }}>
@@ -3851,7 +3851,7 @@ function App() {
             <div className="dev-modal-icon" style={{ color: 'var(--color-accent-text)', backgroundColor: 'rgba(137, 0, 0, 0.1)' }}>
               <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
             </div>
-            <h3 id="driver-modal-title" style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '1rem', color: 'var(--color-text-primary)' }}>{t('Acceso Portal de Conductores', 'Driver Portal Login')}</h3>
+            <h3 id="driver-modal-title" style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--color-text-primary)' }}>{t('Acceso Portal de Conductores', 'Driver Portal Login')}</h3>
 
             <form onSubmit={handleDriverLogin} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.85rem', textAlign: 'left' }}>
               <div className="form-group">
