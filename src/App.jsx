@@ -3421,7 +3421,7 @@ function App() {
         {/* SERVICES SECTION */}
         <section id="services" ref={servicesRef} className="section services-section">
           <div className="container">
-            <div className="section-banner-header reveal" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}services_header.png)` }}>
+            <div className="section-banner-header reveal" style={{ backgroundImage: `url("${import.meta.env.BASE_URL}highway_semi_truck.png")` }}>
               <div className="section-banner-header__overlay"></div>
               <div className="section-banner-header__content">
                 <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
@@ -3562,7 +3562,7 @@ function App() {
         {/* TECHNOLOGY SECTION */}
         <section id="technology" className="section tech-section">
           <div className="container">
-            <div className="section-banner-header reveal" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}tech_header.png)` }}>
+            <div className="section-banner-header reveal" style={{ backgroundImage: `url("${import.meta.env.BASE_URL}fleet_control_center.png")` }}>
               <div className="section-banner-header__overlay"></div>
               <div className="section-banner-header__content">
                 <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
@@ -3628,7 +3628,7 @@ function App() {
         {/* SAFETY SECTION */}
         <section id="safety" className="section safety-section">
           <div className="container">
-            <div className="section-banner-header reveal" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}safety_header.png)` }}>
+            <div className="section-banner-header reveal" style={{ backgroundImage: `url("${import.meta.env.BASE_URL}ChatGPT%20Image%202%20ago%202026,%2001_27_42%20p.m.png")` }}>
               <div className="section-banner-header__overlay"></div>
               <div className="section-banner-header__content">
                 <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
@@ -3725,7 +3725,7 @@ function App() {
         {/* CLIENT PORTAL SECTION */}
         <section id="client-portal" className="section portal-section">
           <div className="container">
-            <div className="section-banner-header reveal" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}portal_header.png)` }}>
+            <div className="section-banner-header reveal" style={{ backgroundImage: `url("${import.meta.env.BASE_URL}ChatGPT%20Image%202%20ago%202026,%2001_32_14%20p.m.png")` }}>
               <div className="section-banner-header__overlay"></div>
               <div className="section-banner-header__content">
                 <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC Logo" className="section-banner-header__logo" />
