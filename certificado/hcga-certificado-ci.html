@@ -1,0 +1,243 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Certificado CI HCGA</title>
+<link id="fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@1,700;1,800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style id="st">
+/* Layout: barra de herramientas fija + hoja carta (el certificado) a la izquierda + hoja del equipo a la derecha; se apilan en móvil. */
+:root{
+  --bg:#ECEAE8; --surface:#FFFFFF; --fg:#1B1919; --muted:#5E5858; --line:#D6D1CE; --accent:#890000; --accent-fg:#FFFFFF; --chip:#F6E9E9; --chip-fg:#6B0000; --ok:#1F6B3A; --warn:#8A5A00;
+  /* La hoja es papel: se mantiene clara en ambos temas a propósito */
+  --paper:#FFFFFF; --ink:#111111; --ink-2:#4D4D4D; --rule:#D9D4D1; --tint:#F3F1F0; --red:#890000; --red-deep:#6B0000;
+  --f-display:"Saira","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111111; --surface:#1C1B1B; --fg:#EFEBE9; --muted:#A9A1A0; --line:#332F2F; --accent:#EF5350; --accent-fg:#111111; --chip:#3A1F1F; --chip-fg:#FFB4B0; --ok:#7BD495; --warn:#E8B95A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111111; --surface:#1C1B1B; --fg:#EFEBE9; --muted:#A9A1A0; --line:#332F2F; --accent:#EF5350; --accent-fg:#111111; --chip:#3A1F1F; --chip-fg:#FFB4B0; --ok:#7BD495; --warn:#E8B95A; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14px;line-height:1.5}
+*{box-sizing:border-box}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line);padding:10px 16px}
+.bar-in{max-width:880px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.bar h1{margin:0;font:800 italic 18px/1 var(--f-display);letter-spacing:.01em;display:flex;gap:8px;align-items:baseline}
+.bar h1 small{font:500 11px var(--f-mono);color:var(--muted);font-style:normal;letter-spacing:.04em}
+.grp{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.grp button{border:0;background:transparent;color:var(--fg);padding:6px 11px;font-size:13px}
+.grp button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sp{flex:1}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;padding:6px 12px;font-size:13px}
+.btn.edit[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);font-weight:600}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.status{font-size:12px;color:var(--muted);min-width:0}
+.status.dirty{color:var(--warn)} .status.ok{color:var(--ok)}
+
+.wrap{max-width:880px;margin:0 auto;padding-block:24px 48px;padding-inline:16px}
+.hint{grid-column:1/-1;margin:0;font-size:13px;color:var(--muted)}
+.hint b{color:var(--fg)}
+
+/* ---------- Hoja del certificado ---------- */
+.paperbox{min-width:0;overflow-x:auto}
+.sheet{position:relative;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:10.5px;line-height:1.5;max-width:816px;margin:0 auto;padding:38px 46px 30px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 10px 30px rgba(0,0,0,.10);border-top:6px solid var(--red)}
+.sheet .frame{position:absolute;inset:14px;border:1px solid var(--rule);pointer-events:none}
+.s-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.mark{display:flex;flex-direction:column;line-height:1}
+.mark img{display:block;width:220px;max-width:100%;height:auto}
+.mark .w{font:800 italic 30px/1 var(--f-display);color:var(--ink);letter-spacing:.02em}
+.mark .w i{color:var(--red);font-style:inherit}
+.mark .s{font:600 8.5px/1 var(--f-body);letter-spacing:.32em;color:var(--ink-2);margin-top:4px}
+.recno{text-align:right}
+.lbl{font:600 7.5px/1.3 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.val{font:500 10.5px/1.4 var(--f-mono);color:var(--ink);word-break:break-word}
+.s-title{text-align:center;margin:20px 0 16px}
+.eyebrow{font:700 8px/1 var(--f-body);letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+.s-title h2{margin:8px 0 6px;font:800 italic 27px/1.05 var(--f-display);text-transform:uppercase;color:var(--ink);text-wrap:balance}
+.s-title p{margin:0 auto;max-width:56ch;color:var(--ink-2);font-size:10px}
+.meta{display:grid;grid-template-columns:minmax(0,1fr) 128px;gap:16px;background:var(--tint);border:1px solid var(--rule);padding:14px 16px;margin-bottom:16px}
+.meta .rows{display:grid;gap:8px;min-width:0}
+.state{display:inline-flex;gap:6px;align-items:center;font:600 9px/1 var(--f-body);letter-spacing:.06em;color:var(--red-deep);border:1px solid var(--red);padding:4px 7px;border-radius:3px;background:var(--paper)}
+.state::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
+.note{font-size:9px;color:var(--ink-2);margin:2px 0 0}
+.qr{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.qr .box{width:104px;height:104px;border:1.5px dashed var(--ink-2);display:grid;place-items:center;font:500 10px var(--f-mono);color:var(--ink-2);background:var(--paper)}
+.qr .u{font:400 8px/1.3 var(--f-mono);color:var(--ink-2);word-break:break-all}
+.sec{margin-top:14px}
+.sec-h{display:flex;gap:10px;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:4px;margin-bottom:8px}
+.sec-h .n{font:800 italic 13px/1 var(--f-display);color:var(--red);min-width:16px}
+.sec-h h3{margin:0;font:700 8.5px/1 var(--f-body);letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 24px}
+.fields .full{grid-column:1/-1}
+.field{display:grid;gap:2px;border-bottom:1px dotted var(--rule);padding-bottom:5px;min-width:0}
+.cl p{margin:0;max-width:none}
+.cl + .cl{margin-top:8px}
+.cl .ch{font-weight:700;color:var(--ink)}
+.box-nb{background:var(--tint);border-left:3px solid var(--red);padding:8px 10px}
+.consents{margin-top:6px;font-size:9.5px;color:var(--ink-2)}
+.signs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:20px}
+.sign{border-top:1px solid var(--ink);padding-top:6px;text-align:center;display:grid;gap:3px}
+.s-foot{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;border-top:1px solid var(--rule);margin-top:16px;padding-top:8px;font-size:8.5px;color:var(--ink-2)}
+.s-foot .val{font-size:9.5px}
+.ph{font:500 .92em var(--f-mono);background:#F6E9E9;color:#6B0000;border-radius:3px;padding:0 3px;white-space:nowrap}
+.ex{background:#FFF6D6;border-radius:2px;padding:0 2px;box-shadow:inset 0 -1px 0 #E3C766}
+.ribbon{position:absolute;top:6px;left:50%;transform:translateX(-50%);background:#8A5A00;color:#fff;font:700 8.5px/1 var(--f-body);letter-spacing:.16em;padding:5px 10px;text-transform:uppercase;white-space:nowrap}
+[data-k],[data-team]{border-radius:2px}
+.editing [data-k],.editing [data-team]{outline:1px dashed #C9A0A0;outline-offset:2px;cursor:text;background:rgba(137,0,0,.035)}
+.editing [data-k]:focus,.editing [data-team]:focus{outline:2px solid #890000;background:#FFF8F8}
+/* Responsive: carta completa en escritorio, márgenes reducidos en tableta, una columna y texto más grande en móvil */
+.s-title h2{font-size:clamp(21px,4.4vw,27px)}
+@media (max-width:860px){
+  .wrap{padding-block:16px 32px}
+  .sheet{padding:32px 30px 26px}
+  .sheet .frame{inset:10px}
+}
+@media (max-width:640px){
+  .wrap{padding-block:12px 24px}
+  .sheet{padding:26px 20px 20px;font-size:13px;line-height:1.55;border-top-width:5px}
+  .sheet .frame{inset:7px}
+  .s-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .mark img{width:min(240px,100%)}
+  .recno{text-align:left;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .lbl{font-size:9.5px;letter-spacing:.12em}
+  .val{font-size:12.5px}
+  .eyebrow{font-size:9.5px;letter-spacing:.18em;line-height:1.4}
+  .s-title{margin:16px 0 14px}
+  .s-title p{font-size:12.5px}
+  .meta{grid-template-columns:minmax(0,1fr);padding:14px;gap:14px}
+  .state{font-size:11px;line-height:1.3;white-space:normal}
+  .note{font-size:11.5px}
+  .qr{flex-direction:row;text-align:left;justify-content:flex-start;align-items:center;gap:12px;border-top:1px solid var(--rule);padding-top:12px}
+  .qr .box{width:84px;height:84px;flex:none}
+  .qr .u{font-size:10.5px}
+  .sec{margin-top:18px}
+  .sec-h h3{font-size:10.5px;line-height:1.3}
+  .sec-h .n{font-size:15px}
+  .fields,.signs{grid-template-columns:minmax(0,1fr)}
+  .fields{gap:10px}
+  .cl + .cl{margin-top:12px}
+  .box-nb{padding:10px 12px}
+  .consents{font-size:12px}
+  .signs{gap:18px;margin-top:22px}
+  .s-foot{flex-direction:column;align-items:flex-start;gap:10px;font-size:11px}
+  .s-foot > div{text-align:left!important}
+  .ph{white-space:normal;word-break:break-all}
+}
+@media (max-width:380px){
+  .sheet{padding:22px 16px 18px}
+  .qr{flex-direction:column;align-items:flex-start}
+}
+
+
+@media (prefers-reduced-motion:no-preference){.btn,.grp button{transition:background .15s,color .15s,border-color .15s}}
+</style>
+<div id="app"></div>
+<script type="application/json" id="state">{"rev":5,"saved":"","t":{"es":{"brand_sub":"TRADING LLC","rec_label":"N.º de registro","eyebrow":"Registro de interés · No vinculante","title":"Certificado Digital de Intención Comercial","subtitle":"Constancia de que el titular registró su interés en la plataforma de transporte de carga de HCGA Trading LLC.","m_cui":"Código único (CUI)","m_date":"Fecha y hora del registro","v_date":"{{FECHA_HORA_REGISTRO}}","m_state":"Estado al emitirse","v_state":"Registrado · correo pendiente de confirmación","m_state_note":"Este PDF no cambia después de enviarse. El estado actual (Registrado, Verificado o Anulado) se consulta escaneando el código QR.","qr_label":"Escanee para verificar","s1_h":"Emisor","f_issuer":"Emitido por","v_issuer":"HCGA Trading LLC, operador de la plataforma","f_reg":"Registro de la empresa","v_reg":"{{EMPRESA_REGISTRO}}","f_contact":"Contacto","v_contact":"ing.alberto@hcgatrading.com · www.hcgatrading.com","s2_h":"Titular del registro","f_name":"Nombre o razón social","v_name":"{{NOMBRE_PUBLICO}}","f_role":"Rol","v_role":"{{ROL}}","f_id":"Identificación (parcial)","v_id":"{{ID_TIPO}} {{ID_PARCIAL}}","f_mail":"Correo electrónico","v_mail":"{{CORREO_ENMASCARADO}}","s3_h":"Condiciones del registro","c1_h":"1. Qué es este documento.","c1":"Este certificado deja constancia de que la persona o empresa indicada completó el formulario de registro de HCGA Trading LLC (\"HCGA\") y manifestó su interés en establecer relaciones comerciales con HCGA a través de su plataforma de transporte de carga, una vez que esta se encuentre operativa.","c2_h":"2. Manifestación de intención.","c2":"El titular declara su interés e intención de establecer futuras relaciones comerciales con HCGA y de utilizar su plataforma, como cargador o como transportista, una vez que esta se encuentre plenamente operativa.","c3_h":"3. Sin obligaciones ni cobros.","c3":"Este certificado no es un contrato ni una oferta. No obliga a ninguna de las partes a contratar, prestar ni pagar ningún servicio, no crea exclusividad y no garantiza precios, condiciones ni fecha de lanzamiento. El registro es gratuito: HCGA no cobra ni solicita pagos, depósitos ni datos de pago por él. Cualquier pago por el uso de la plataforma solo se solicitará cuando esta esté activa y el titular decida contratar, bajo las condiciones vigentes en ese momento. Si las partes llegan a un acuerdo, este se formalizará en un contrato posterior.","c4_h":"4. Declaración del titular.","c4":"Quien se registró declara que los datos proporcionados son veraces y que está autorizado para actuar en nombre de la persona o empresa indicada.","c5_h":"5. Uso de los datos y confidencialidad.","c5":"HCGA usa los datos para gestionar este registro, contactar al titular sobre el lanzamiento de la plataforma y calcular indicadores agregados del interés del mercado. HCGA no vende estos datos ni publica los datos de contacto. El nombre y el rol solo aparecen en la plataforma si el titular lo autorizó. Los datos identificables solo se comparten con terceros, como posibles financiadores o socios, con autorización expresa del titular y bajo confidencialidad; en los demás casos solo se comparten cifras agregadas. Los datos se conservan durante {{PLAZO_CONSERVACION}} o hasta que el titular pida la baja.","c5b":"Autorizaciones registradas: nombre público en la plataforma: {{CONSENT_PUBLICO}} · compartir datos con financiadores: {{CONSENT_FINANCIADORES}}.","c6_h":"6. Verificación.","c6":"El CUI y el código QR permiten comprobar que este registro existe y fue emitido por HCGA. La página de verificación muestra solo el CUI, la fecha, el rol, el estado actual y el nombre público (si se autorizó). La huella digital permite comprobar que este PDF no fue modificado.","c7_h":"7. Baja y correcciones.","c7":"El titular puede pedir la corrección o la eliminación de su registro escribiendo a ing.alberto@hcgatrading.com. HCGA puede anular registros con datos falsos o duplicados.","sig_issuer":"Emitido digitalmente por HCGA Trading LLC","hash_label":"Huella digital (SHA-256)","v_hash":"{{HUELLA_SHA256}}","sig_accept":"Aceptado electrónicamente por el titular","v_accept":"{{FECHA_HORA_ACEPTACION}}","foot":"Documento generado digitalmente. Su autenticidad se comprueba con el CUI y el código QR. No es una firma electrónica cualificada.","foot_ver":"Plantilla v5 · ES"},"en":{"brand_sub":"TRADING LLC","rec_label":"Record No.","eyebrow":"Interest registration · Non-binding","title":"Digital Certificate of Commercial Intent","subtitle":"Record that the holder registered interest in the freight transportation platform of HCGA Trading LLC.","m_cui":"Unique code (CUI)","m_date":"Registration date and time","v_date":"{{FECHA_HORA_REGISTRO}}","m_state":"Status at issue","v_state":"Registered · email pending confirmation","m_state_note":"This PDF does not change after it is sent. The current status (Registered, Verified or Voided) is shown by scanning the QR code.","qr_label":"Scan to verify","s1_h":"Issuer","f_issuer":"Issued by","v_issuer":"HCGA Trading LLC, platform operator","f_reg":"Company registration","v_reg":"{{EMPRESA_REGISTRO}}","f_contact":"Contact","v_contact":"ing.alberto@hcgatrading.com · www.hcgatrading.com","s2_h":"Registrant","f_name":"Name or company name","v_name":"{{NOMBRE_PUBLICO}}","f_role":"Role","v_role":"{{ROL}}","f_id":"Identification (partial)","v_id":"{{ID_TIPO}} {{ID_PARCIAL}}","f_mail":"Email","v_mail":"{{CORREO_ENMASCARADO}}","s3_h":"Registration terms","c1_h":"1. What this document is.","c1":"This certificate records that the person or company named above completed the registration form of HCGA Trading LLC (\"HCGA\") and expressed interest in establishing a commercial relationship with HCGA through its freight transportation platform once it is operational.","c2_h":"2. Declaration of intent.","c2":"The registrant declares its interest and intention to establish future commercial relations with HCGA and to use its platform, as a shipper or as a carrier, once it is fully operational.","c3_h":"3. No obligations or charges.","c3":"This certificate is not a contract or an offer. It does not oblige either party to contract for, provide, or pay for any service, creates no exclusivity, and does not guarantee prices, terms, or a launch date. Registration is free: HCGA does not charge or request payments, deposits, or payment details for it. Any payment for use of the platform will be requested only once the platform is active and the registrant decides to subscribe, under the terms in effect at that time. If the parties reach an agreement, it will be set out in a later contract.","c4_h":"4. Declaration by the registrant.","c4":"The person who registered declares that the information provided is accurate and that they are authorized to act on behalf of the person or company named.","c5_h":"5. Use of data and confidentiality.","c5":"HCGA uses the data to manage this registration, to contact the registrant about the platform launch, and to compile aggregate indicators of market interest. HCGA does not sell this data or publish contact details. The name and role appear on the platform only if the registrant authorized it. Identifiable data is shared with third parties, such as prospective financiers or partners, only with the registrant's express authorization and under confidentiality; otherwise only aggregate figures are shared. Data is kept for {{PLAZO_CONSERVACION}} or until the registrant asks to be removed.","c5b":"Recorded authorizations: public name on the platform: {{CONSENT_PUBLICO}} · share data with financiers: {{CONSENT_FINANCIADORES}}.","c6_h":"6. Verification.","c6":"The CUI and the QR code let anyone confirm that this record exists and was issued by HCGA. The verification page shows only the CUI, the date, the role, the current status, and the public name (if authorized). The digital fingerprint confirms that this PDF has not been altered.","c7_h":"7. Removal and corrections.","c7":"The registrant may request correction or deletion of the record by writing to ing.alberto@hcgatrading.com. HCGA may void records with false or duplicate data.","sig_issuer":"Digitally issued by HCGA Trading LLC","hash_label":"Digital fingerprint (SHA-256)","v_hash":"{{HUELLA_SHA256}}","sig_accept":"Electronically accepted by the registrant","v_accept":"{{FECHA_HORA_ACEPTACION}}","foot":"Digitally generated document. Authenticity is checked with the CUI and the QR code. This is not a qualified electronic signature.","foot_ver":"Template v5 · EN"}}}</script>
+<script id="main">
+(function(){
+  "use strict";
+  // Logo horizontal oficial HCGA (rojo maestro #890000), 720×156 px
+  var LOGO = "data:image/png;base64,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";
+  var STATE = JSON.parse(document.getElementById("state").textContent);
+  var ui = {lang:"es", mode:"markers", editing:false, dirty:false, canSave:null, saving:false};
+  try{ var p = JSON.parse(localStorage.getItem("hcga-ci-ui")||"{}"); if(p.lang) ui.lang=p.lang; if(p.mode) ui.mode=p.mode; }catch(e){}
+  try{ var draft = sessionStorage.getItem("hcga-ci-draft"); if(draft){ var d=JSON.parse(draft); if(d && d.rev===STATE.rev && d.saved===STATE.saved){ STATE=d; ui.dirty=true; } sessionStorage.removeItem("hcga-ci-draft"); } }catch(e){}
+
+  // Marcadores: qué contiene cada uno, de dónde sale y un valor de ejemplo (claramente ficticio)
+  var MARKERS = [
+    ["CUI","Código legible del registro. No secuencial a la vista.","Sistema","HCGA-26-7K3QX9","HCGA-26-7K3QX9"],
+    ["FECHA_HORA_REGISTRO","Fecha y hora ET con desfase UTC.","Sistema","2026-10-07 · 14:32 ET (UTC−4)","2026-10-07 · 2:32 PM ET (UTC−4)"],
+    ["EMPRESA_REGISTRO","Estado de constitución y n.º de la LLC. Dato fijo.","HCGA (pendiente)","[Estado] · N.º [pendiente]","[State] · No. [pending]"],
+    ["NOMBRE_PUBLICO","Nombre o razón social.","Formulario","Rivera Freight Lines LLC","Rivera Freight Lines LLC"],
+    ["ROL","Rol con traducción.","Formulario","Transportista (Carrier)","Carrier"],
+    ["ID_TIPO","USDOT, MC o EIN.","Formulario","USDOT","USDOT"],
+    ["ID_PARCIAL","Últimos 4 caracteres.","Formulario","••••4821","••••4821"],
+    ["CORREO_ENMASCARADO","Primera letra y dominio.","Formulario","r•••@riverafreight.com","r•••@riverafreight.com"],
+    ["CONSENT_PUBLICO","Casilla opcional 3.","Formulario","sí","yes"],
+    ["CONSENT_FINANCIADORES","Casilla opcional 4.","Formulario","no","no"],
+    ["PLAZO_CONSERVACION","Plazo de conservación (abogado).","HCGA (pendiente)","24 meses","24 months"],
+    ["QR","Imagen QR con la URL de verificación.","Sistema","",""],
+    ["URL_VERIFICACION","URL con token aleatorio de 16+ caracteres.","Sistema","hcgatrading.com/verificar/a8Fq2LwX9pTz3Kd1","hcgatrading.com/verify/a8Fq2LwX9pTz3Kd1"],
+    ["HUELLA_SHA256","Hash del PDF final, guardado en la base de datos.","Sistema","9f2c41ab…5e07d3c1","9f2c41ab…5e07d3c1"],
+    ["FECHA_HORA_ACEPTACION","Momento en que marcó las casillas.","Auditoría","2026-10-07 · 14:32 ET (UTC−4)","2026-10-07 · 2:32 PM ET (UTC−4)"],
+    ["ENLACE_CONFIRMACION","Solo en el correo, no en el PDF.","Sistema","https://hcgatrading.com/confirmar/…","https://hcgatrading.com/confirm/…"]
+  ];
+  var EX = {es:{}, en:{}};
+  MARKERS.forEach(function(m){ EX.es[m[0]]=m[3]; EX.en[m[0]]=m[4]; });
+
+  var STATES = [
+    ["Registrado","Formulario recibido; correo sin confirmar.","Se envía el certificado. No cuenta para financiadores."],
+    ["Verificado","El titular confirmó su correo con el enlace.","La página del QR lo muestra con fecha. Único estado que cuenta."],
+    ["Anulado","Datos falsos, duplicado o baja pedida.","La página del QR lo muestra como anulado. No cuenta."]
+  ];
+
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
+  // mode: markers (chips), example (valores de ejemplo), raw (texto plano para la plantilla)
+  function fill(text, mode, lang){
+    var h = esc(text);
+    return h.replace(/\{\{([A-Z0-9_]+)\}\}/g, function(all, k){
+      if(mode==="raw") return all;
+      if(mode==="example"){ var v = EX[lang][k]; return v ? '<span class="ex">'+esc(v)+'</span>' : '<span class="ph">'+all+'</span>'; }
+      return '<span class="ph">'+all+'</span>';
+    });
+  }
+
+  function cert(lang, mode, editable){
+    var T = STATE.t[lang];
+    function k(key, tag, cls){
+      var attrs = ' data-k="'+key+'"'+(cls?' class="'+cls+'"':'');
+      if(editable) return '<'+tag+attrs+' contenteditable="plaintext-only" spellcheck="true">'+esc(T[key])+'</'+tag+'>';
+      return '<'+tag+(cls?' class="'+cls+'"':'')+(mode==="raw"?'':' data-k="'+key+'"')+'>'+fill(T[key], mode, lang)+'</'+tag+'>';
+    }
+    function field(lk, vk, full){ return '<div class="field'+(full?' full':'')+'">'+k(lk,"div","lbl")+k(vk,"div","val")+'</div>'; }
+    function clause(n){ return '<div class="cl"><p>'+k("c"+n+"_h","span","ch")+' '+k("c"+n,"span","")+'</p></div>'; }
+    var qrInner = mode==="raw" ? "{{QR}}" : (mode==="example" ? "QR" : '<span class="ph">{{QR}}</span>');
+    var url = fill("{{URL_VERIFICACION}}", mode, lang);
+    return ''+
+    '<article class="sheet" lang="'+lang+'">'+
+      '<div class="frame"></div>'+
+      (mode==="example" ? '<div class="ribbon">'+(lang==="es"?"Datos de ejemplo":"Sample data")+'</div>' : '')+
+      '<header class="s-head">'+
+        '<div class="mark"><img src="'+LOGO+'" alt="HCGA Trading LLC" width="220" height="48"></div>'+
+        '<div class="recno">'+k("rec_label","div","lbl")+'<div class="val">'+fill("{{CUI}}",mode,lang)+'</div></div>'+
+      '</header>'+
+      '<div class="s-title">'+k("eyebrow","div","eyebrow")+k("title","h2","")+k("subtitle","p","")+'</div>'+
+      '<section class="meta">'+
+        '<div class="rows">'+
+          '<div>'+k("m_cui","div","lbl")+'<div class="val">'+fill("{{CUI}}",mode,lang)+'</div></div>'+
+          '<div>'+k("m_date","div","lbl")+k("v_date","div","val")+'</div>'+
+          '<div>'+k("m_state","div","lbl")+'<div style="margin-top:3px">'+k("v_state","span","state")+'</div>'+k("m_state_note","p","note")+'</div>'+
+        '</div>'+
+        '<div class="qr"><div class="box">'+qrInner+'</div><div>'+k("qr_label","div","lbl")+'<div class="u">'+url+'</div></div></div>'+
+      '</section>'+
+      '<section class="sec"><div class="sec-h"><span class="n">I</span>'+k("s1_h","h3","")+'</div>'+
+        '<div class="fields">'+field("f_issuer","v_issuer")+field("f_reg","v_reg")+field("f_contact","v_contact",true)+'</div></section>'+
+      '<section class="sec"><div class="sec-h"><span class="n">II</span>'+k("s2_h","h3","")+'</div>'+
+        '<div class="fields">'+field("f_name","v_name",true)+field("f_role","v_role")+field("f_id","v_id")+field("f_mail","v_mail",true)+'</div></section>'+
+      '<section class="sec"><div class="sec-h"><span class="n">III</span>'+k("s3_h","h3","")+'</div>'+
+        clause(1)+clause(2)+'<div class="cl box-nb"><p>'+k("c3_h","span","ch")+' '+k("c3","span","")+'</p></div>'+clause(4)+
+        '<div class="cl"><p>'+k("c5_h","span","ch")+' '+k("c5","span","")+'</p>'+k("c5b","p","consents")+'</div>'+
+        clause(6)+clause(7)+
+      '</section>'+
+      '<div class="signs">'+
+        '<div class="sign">'+k("sig_issuer","div","lbl")+k("hash_label","div","lbl")+k("v_hash","div","val")+'</div>'+
+        '<div class="sign">'+k("sig_accept","div","lbl")+k("v_accept","div","val")+'</div>'+
+      '</div>'+
+      '<footer class="s-foot">'+k("foot","span","")+'<div style="text-align:right">'+k("foot_ver","div","lbl")+'<div class="val">'+fill("{{CUI}}",mode,lang)+'</div></div></footer>'+
+    '</article>';
+  }
+
+  // Solo la hoja. Idioma: español por defecto; añade #en al enlace para la versión en inglés.
+  var app = document.getElementById("app");
+  function render(){
+    var lang = (location.hash||"").toLowerCase()==="#en" ? "en" : "es";
+    document.documentElement.lang = lang;
+    app.innerHTML = '<main class="wrap"><div class="paperbox">'+cert(lang, "markers", false)+'</div></main>';
+  }
+  window.addEventListener("hashchange", render);
+  render();
+})();
+</script>
+</body></html>

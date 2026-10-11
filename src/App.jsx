@@ -3,6 +3,7 @@ import './index.css';
 import mobileVideo from './assets/video/mobile-hero-video.mp4';
 import TruckBackground from './TruckBackground.jsx';
 import { getGovernanceData } from './data/governanceData.js';
+import RegistrationFloatMenu from './RegistrationFloatMenu.jsx';
 
 // Unified Linear SVG Icons
 const IconShield = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
@@ -64,6 +65,27 @@ const IconHome = ({ width = 18, height = 18, color = 'currentColor', strokeWidth
 );
 const IconMessageSquare = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
   <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+);
+const IconCpu = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><rect x="4" y="4" width="16" height="16" rx="3"></rect><rect x="9" y="9" width="6" height="6" rx="1.5"></rect><path d="M9 1v3m6-3v3m-6 16v3m6-3v3M1 9h3m-3 6h3m16-6h3m-3 6h3"></path></svg>
+);
+const IconSun = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+);
+const IconMoon = ({ width = 18, height = 18, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+);
+const IconGlobe = ({ width = 15, height = 15, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+);
+const IconClipboard = ({ width = 16, height = 16, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1.5" ry="1.5"></rect><path d="M9 14l2 2 4-4"></path></svg>
+);
+const IconMenu = ({ width = 22, height = 22, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+);
+const IconX = ({ width = 22, height = 22, color = 'currentColor', strokeWidth = 2, style = {} }) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', ...style }}><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 );
 
 // Data functions for bilingual support
@@ -624,7 +646,7 @@ const getSafetyData = (lang) => {
 
 function App() {
   const [lang, setLang] = useState(() => localStorage.getItem('hcga_lang') || 'es');
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -638,6 +660,17 @@ function App() {
   const [showGovernanceModal, setShowGovernanceModal] = useState(false);
   const [governanceTab, setGovernanceTab] = useState('separation');
   const [copyFeedback, setCopyFeedback] = useState(false);
+  const [showRegistrationModal, setShowRegistrationModal] = useState(false);
+  const [showDemoController, setShowDemoController] = useState(true);
+  const [isUserRegistered, setIsUserRegistered] = useState(() => {
+    try {
+      return localStorage.getItem('hcga_user_registered') === 'true';
+    } catch {
+      return false;
+    }
+  });
+  const [pendingTargetState, setPendingTargetState] = useState(null);
+  const [registrationRequiredNotice, setRegistrationRequiredNotice] = useState('');
   const videoRef = useRef(null);
   const servicesRef = useRef(null);
 
@@ -649,6 +682,72 @@ function App() {
 
   // Helper for quick string translations
   const t = (esStr, enStr) => (lang === 'es' ? esStr : enStr);
+
+  // Listen for iframe registration completion
+  useEffect(() => {
+    const handleRegistrationMessage = (e) => {
+      if (e.data && (e.data.type === 'HCGA_REGISTRATION_COMPLETED' || e.data.type === 'HCGA_REGISTRATION_DONE')) {
+        setIsUserRegistered(true);
+        try {
+          localStorage.setItem('hcga_user_registered', 'true');
+        } catch (err) {}
+      }
+    };
+    window.addEventListener('message', handleRegistrationMessage);
+    return () => window.removeEventListener('message', handleRegistrationMessage);
+  }, []);
+
+  const handleRestrictedAccess = (targetState, portalLabelEs, portalLabelEn) => {
+    if (isUserRegistered) {
+      if (typeof targetState === 'function') {
+        targetState();
+      } else {
+        launchDemoState(targetState);
+      }
+    } else {
+      setPendingTargetState(typeof targetState === 'string' ? targetState : null);
+      setRegistrationRequiredNotice(
+        t(
+          `Para acceder a ${portalLabelEs || 'esta consola'}, primero debe completar el Registro de Interés.`,
+          `To access ${portalLabelEn || 'this console'}, you must first complete the Interest Registration.`
+        )
+      );
+      setShowRegistrationModal(true);
+    }
+  };
+
+  const handleUnlockDemo = () => {
+    setIsUserRegistered(true);
+    try {
+      localStorage.setItem('hcga_user_registered', 'true');
+    } catch (err) {}
+    if (pendingTargetState) {
+      const target = pendingTargetState;
+      setPendingTargetState(null);
+      setShowRegistrationModal(false);
+      setRegistrationRequiredNotice('');
+      launchDemoState(target);
+    }
+  };
+
+  const handleResetRegistration = () => {
+    setIsUserRegistered(false);
+    try {
+      localStorage.removeItem('hcga_user_registered');
+    } catch (err) {}
+  };
+
+  const handleCloseRegistrationModal = (val) => {
+    setShowRegistrationModal(val);
+    if (!val) {
+      setRegistrationRequiredNotice('');
+      if (isUserRegistered && pendingTargetState) {
+        const target = pendingTargetState;
+        setPendingTargetState(null);
+        launchDemoState(target);
+      }
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem('hcga_lang', lang);
@@ -679,6 +778,7 @@ function App() {
   const [isDemoPanelOpen, setIsDemoPanelOpen] = useState(false);
   const [driverNavSection, setDriverNavSection] = useState('loads'); // 'loads' | 'dispatch' | 'safety' | 'earnings'
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isClientSidebarOpen, setIsClientSidebarOpen] = useState(false);
 
   const launchDemoState = (state) => {
     setShowDriverDashboard(false);
@@ -687,6 +787,8 @@ function App() {
     setIsClientLoggedIn(false);
     setSelectedServiceId(null);
     setSelectedSafetyId(null);
+    setIsSidebarOpen(false);
+    setIsClientSidebarOpen(false);
 
     if (state === 'driver_marketplace') {
       setIsDriverLoggedIn(true);
@@ -1156,6 +1258,11 @@ function App() {
 
   const handleDriverLogin = (e) => {
     e.preventDefault();
+    if (!isUserRegistered) {
+      setLoginError(t('Registro requerido: Debe completar el Registro de Interés antes de ingresar.', 'Registration required: You must complete Interest Registration before signing in.'));
+      handleRestrictedAccess('driver_marketplace', 'la Consola de Conductor', 'the Driver Console');
+      return;
+    }
     if ((driverUsername.toLowerCase() === 'carlos' && driverPin === '1042') ||
         (driverUsername.toLowerCase() === 'sarah' && driverPin === '1192') ||
         driverUsername.toLowerCase() === 'demo') {
@@ -1170,6 +1277,11 @@ function App() {
 
   const handleClientLogin = (e) => {
     e.preventDefault();
+    if (!isUserRegistered) {
+      setClientLoginError(t('Registro requerido: Complete su Registro de Interés para acceder a FleetOS.', 'Registration required: Complete your Interest Registration to access FleetOS.'));
+      handleRestrictedAccess('client_dashboard', 'el Portal de Clientes', 'the Client Portal');
+      return;
+    }
     if (clientWorkEmail.length > 3 && clientPassword.length >= 4) {
       setIsClientLoggedIn(true);
       setShowClientDashboard(true);
@@ -1245,7 +1357,19 @@ function App() {
         if (videoRef.current.ended || (videoRef.current.duration && videoRef.current.currentTime >= videoRef.current.duration - 0.3)) {
           videoRef.current.currentTime = 0;
         }
-        videoRef.current.play().catch(err => console.log("Play failed:", err));
+        // Siempre que se manda a reproducir, el audio arranca en ON
+        videoRef.current.muted = false;
+        videoRef.current.volume = 1.0;
+        setIsMuted(false);
+
+        videoRef.current.play().catch(err => {
+          console.log("Play with sound failed:", err);
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            setIsMuted(true);
+            videoRef.current.play().catch(e => console.log("Muted play failed:", e));
+          }
+        });
         setIsPlaying(true);
       }
     }
@@ -1260,13 +1384,43 @@ function App() {
   };
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted;
-      videoRef.current.play().catch(() => {
-        videoRef.current.muted = true;
-        setIsMuted(true);
-        videoRef.current.play().catch(e => console.log("Muted autoplay fallback:", e));
-      });
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = false;
+    video.volume = 1.0;
+    setIsMuted(false);
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setIsPlaying(true);
+          setIsMuted(false);
+        })
+        .catch((err) => {
+          console.log("Autoplay con sonido prevenido por política del navegador:", err);
+          video.muted = true;
+          setIsMuted(true);
+          video.play().catch(e => console.log("Muted fallback play error:", e));
+
+          const unmuteOnInteraction = () => {
+            if (videoRef.current) {
+              videoRef.current.muted = false;
+              videoRef.current.volume = 1.0;
+              setIsMuted(false);
+            }
+            window.removeEventListener('click', unmuteOnInteraction);
+            window.removeEventListener('touchstart', unmuteOnInteraction);
+            window.removeEventListener('keydown', unmuteOnInteraction);
+            window.removeEventListener('scroll', unmuteOnInteraction);
+          };
+
+          window.addEventListener('click', unmuteOnInteraction, { once: true, passive: true });
+          window.addEventListener('touchstart', unmuteOnInteraction, { once: true, passive: true });
+          window.addEventListener('keydown', unmuteOnInteraction, { once: true, passive: true });
+          window.addEventListener('scroll', unmuteOnInteraction, { once: true, passive: true });
+        });
     }
   }, []);
 
@@ -1792,32 +1946,167 @@ function App() {
   }, [isDemoPanelOpen]);
 
   const DEMO_DRIVER_STATES = [
-    ['driver_marketplace', '1. Available Loads'],
-    ['driver_pretrip', '2. DVIR (Uncompliant)'],
-    ['driver_compliant', '3. DVIR (Compliant)'],
-    ['driver_transit', '4. In Transit (50%)'],
-    ['driver_arrived', '5. Arrived (100%)'],
+    {
+      state: 'driver_marketplace',
+      label: '1. Available Loads',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="1" y="3" width="15" height="13" rx="2"></rect>
+          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+          <circle cx="5.5" cy="18.5" r="2.5"></circle>
+          <circle cx="18.5" cy="18.5" r="2.5"></circle>
+        </svg>
+      )
+    },
+    {
+      state: 'driver_pretrip',
+      label: '2. DVIR (Uncompliant)',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      )
+    },
+    {
+      state: 'driver_compliant',
+      label: '3. DVIR (Compliant)',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      )
+    },
+    {
+      state: 'driver_transit',
+      label: '4. In Transit (50%)',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+      )
+    },
+    {
+      state: 'driver_arrived',
+      label: '5. Arrived (100%)',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="16 10 11 15 8 12"></polyline>
+        </svg>
+      )
+    },
   ];
+
   const DEMO_CLIENT_STATES = [
-    ['client_dashboard', '1. Client Overview HUD'],
-    ['client_loadboards', '2. Load Boards Hub (DAT/Truckstop)'],
-    ['client_vetting', '3. Carrier Vetting (MC Check)'],
-    ['client_spotrates', '4. DAT Spot Rate Benchmark'],
-    ['client_apilogs', '5. API Gateway Logs'],
-    ['client_governance', '6. Code of Conduct & Legal'],
+    {
+      state: 'client_dashboard',
+      label: '1. Client Overview HUD',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"></line>
+          <line x1="12" y1="20" x2="12" y2="4"></line>
+          <line x1="6" y1="20" x2="6" y2="14"></line>
+        </svg>
+      )
+    },
+    {
+      state: 'client_loadboards',
+      label: '2. Load Boards Hub (DAT/TS)',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+          <polyline points="2 17 12 22 22 17"></polyline>
+          <polyline points="2 12 12 17 22 12"></polyline>
+        </svg>
+      )
+    },
+    {
+      state: 'client_vetting',
+      label: '3. Carrier Vetting (MC Check)',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+      )
+    },
+    {
+      state: 'client_spotrates',
+      label: '4. DAT Spot Rate Benchmark',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="12" y1="3" x2="12" y2="21"></line>
+          <path d="M16 16l3-8 3 8c-.87.37-1.92.5-3 .5s-2.13-.13-3-.5zM2 16l3-8 3 8c-.87.37-1.92.5-3 .5s-2.13-.13-3-.5z"></path>
+        </svg>
+      )
+    },
+    {
+      state: 'client_apilogs',
+      label: '5. API Gateway Logs',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      )
+    },
+    {
+      state: 'client_governance',
+      label: '6. Code of Conduct & Legal',
+      icon: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+      )
+    },
   ];
 
   const renderDemoController = () => {
+    const isDashboard = showDriverDashboard || showClientDashboard;
+    if (!showDemoController && !isDashboard) {
+      return (
+        <button
+          type="button"
+          className="demo-controller__reopen-btn"
+          onClick={() => {
+            setShowDemoController(true);
+            setIsDemoPanelOpen(true);
+          }}
+          title={t('Abrir Demo Controller', 'Open Demo Controller')}
+          aria-label="Demo Controller"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>Demo Controller</span>
+        </button>
+      );
+    }
+
     let itemIndex = 0;
     const selectAndCollapse = (action) => () => { setIsDemoPanelOpen(false); action(); };
-    const item = (label, action, className = '') => (
+    const item = (label, icon, action, className = '') => (
       <button
         key={label}
+        type="button"
         className={`demo-controller__btn ${className}`}
         style={{ '--i': itemIndex++ }}
         onClick={selectAndCollapse(action)}
       >
-        {label}
+        <span className="demo-controller__btn-left">
+          <span className="demo-controller__icon" aria-hidden="true">
+            {icon}
+          </span>
+          <span className="demo-controller__label">{label}</span>
+        </span>
+        <svg className="demo-controller__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
       </button>
     );
 
@@ -1831,17 +2120,21 @@ function App() {
             aria-expanded={isDemoPanelOpen}
             aria-controls="demo-controller-panel"
           >
-            {isDemoPanelOpen ? t('Plegar', 'Collapse') : t('Demostración Interactiva', 'Interactive Demo Links')}
+            {isDemoPanelOpen ? t('Plegar', 'Collapse') : t('Demostración', 'Demo Links')}
             <svg className="demo-controller__chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 15 12 9 18 15"></polyline></svg>
           </button>
         </div>
         <div id="demo-controller-panel" className="demo-controller__panel" inert={!isDemoPanelOpen}>
           <div className="demo-controller__body">
-            {item(`🏠 ${t('Volver al Inicio', 'Back to Landing Page')}`, () => { setShowDriverDashboard(false); setShowClientDashboard(false); })}
+            {item(
+              t('Volver al Inicio', 'Back to Landing Page'),
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>,
+              () => { setShowDriverDashboard(false); setShowClientDashboard(false); }
+            )}
             <div className="demo-controller__section-title">Driver Console States</div>
-            {DEMO_DRIVER_STATES.map(([state, label]) => item(label, () => launchDemoState(state)))}
+            {DEMO_DRIVER_STATES.map((ds) => item(ds.label, ds.icon, () => launchDemoState(ds.state)))}
             <div className="demo-controller__section-title">Client &amp; Brokerage States</div>
-            {DEMO_CLIENT_STATES.map(([state, label]) => item(label, () => launchDemoState(state), 'demo-controller__btn--client'))}
+            {DEMO_CLIENT_STATES.map((cs) => item(cs.label, cs.icon, () => launchDemoState(cs.state), 'demo-controller__btn--client'))}
           </div>
         </div>
       </div>
@@ -1856,7 +2149,7 @@ function App() {
       aria-label={t('Cambiar a Inglés', 'Switch to Spanish')}
       title={t('Cambiar idioma', 'Switch language')}
     >
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+      <IconGlobe width={15} height={15} color="#ffffff" />
       <span>{lang === 'es' ? 'ES' : 'EN'}</span>
     </button>
   );
@@ -1994,7 +2287,7 @@ function App() {
               <div className="fos-topbar__right" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 {renderLangSwitcher()}
                 <button className="theme-toggle-btn" onClick={toggleTheme} title={t('Cambiar Tema', 'Toggle Theme')}>
-                  {theme === 'dark' ? '☀️' : '🌙'}
+                  {theme === 'dark' ? <IconSun width={18} height={18} color="#ffffff" /> : <IconMoon width={18} height={18} color="#ffffff" />}
                 </button>
                 <div className="fos-topbar__status-pill">
                   <span className="fos-topbar__status-dot"></span>
@@ -2402,151 +2695,273 @@ function App() {
   if (showClientDashboard) {
     return (
       <>
-        <TruckBackground />
-        <div className="client-dashboard" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', color: 'var(--color-text-primary)' }}>
-          <header className="header" style={{ position: 'sticky', top: 0, zIndex: 100, borderBottom: '1px solid var(--color-border)' }}>
-            <div className="container header__inner" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '80px' }}>
-              <div className="client-header__brand" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <img src={`${import.meta.env.BASE_URL}hcga-logo-horizontal-white.png`} alt="HCGA Trading LLC" className="header__logo-img" />
-                <span className="hcga-label client-header__badge" style={{ fontSize: '0.75rem', backgroundColor: 'rgba(255, 255, 255, 0.14)', border: '1px solid rgba(255, 255, 255, 0.35)', color: '#fff', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>FleetOS Client</span>
+        <TruckBackground variant="dark" />
+        <div className="fos-layout client-dashboard">
+          {/* ============ CLIENT SIDEBAR ============ */}
+          <aside className={`fos-sidebar ${isClientSidebarOpen ? 'fos-sidebar--open' : ''}`}>
+            <div className="fos-sidebar__header">
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="HCGA Trading LLC" className="fos-sidebar__logo" />
+              <span className="fos-sidebar__badge">FleetOS Client</span>
+              <button className="fos-sidebar__close" onClick={() => setIsClientSidebarOpen(false)} aria-label="Close sidebar">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+
+            <div className="fos-sidebar__profile">
+              <div className="fos-sidebar__avatar">
+                <span>AC</span>
+                <span className="fos-sidebar__avatar-status"></span>
               </div>
-              <div className="client-header__actions" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div className="fos-sidebar__profile-info">
+                <strong>ACME Logistics Corp</strong>
+                <span>#AC-92841 · Enterprise</span>
+              </div>
+            </div>
+
+            <div className="fos-sidebar__eld-block">
+              <div className="fos-sidebar__eld-row">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#EF5350" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span className="fos-sidebar__eld-label">{t('Gerente de Cuenta', 'Account Manager')}</span>
+                <span className="fos-sidebar__eld-value">Sarah Jenkins</span>
+              </div>
+              <div className="fos-sidebar__eld-row">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A0A0A0" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span className="fos-sidebar__eld-label">{t('Línea Directa', 'Direct Line')}</span>
+                <span className="fos-sidebar__eld-value">(800) 555-0192</span>
+              </div>
+              <div className="fos-sidebar__eld-row">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <span className="fos-sidebar__eld-label">{t('Puntualidad SLA', 'On-Time SLA')}</span>
+                <span className="fos-sidebar__eld-value" style={{ color: '#10b981' }}>99.2% ({t('Excelente', 'Excellent')})</span>
+              </div>
+            </div>
+
+            <nav className="fos-sidebar__nav">
+              <button
+                className={`fos-sidebar__nav-item ${clientActiveTab === 'overview' ? 'fos-sidebar__nav-item--active' : ''}`}
+                onClick={() => { setClientActiveTab('overview'); setIsClientSidebarOpen(false); }}
+              >
+                <IconBarChart width={16} height={16} />
+                <span>{t('Despachos Activos y PODs', 'Active Dispatches & PODs')}</span>
+                {clientActiveShipments.length > 0 && <span className="fos-sidebar__nav-badge">{clientActiveShipments.length}</span>}
+              </button>
+              <button
+                className={`fos-sidebar__nav-item ${clientActiveTab === 'loadboards' ? 'fos-sidebar__nav-item--active' : ''}`}
+                onClick={() => { setClientActiveTab('loadboards'); setIsClientSidebarOpen(false); }}
+              >
+                <IconTruck width={16} height={16} />
+                <span>{t('Bolsas DAT & Truckstop', 'Load Boards Hub (DAT/TS)')}</span>
+                {syndicatedLoadsList.length > 0 && <span className="fos-sidebar__nav-badge">{syndicatedLoadsList.length}</span>}
+              </button>
+              <button
+                className={`fos-sidebar__nav-item ${clientActiveTab === 'vetting' ? 'fos-sidebar__nav-item--active' : ''}`}
+                onClick={() => { setClientActiveTab('vetting'); setIsClientSidebarOpen(false); }}
+              >
+                <IconShield width={16} height={16} />
+                <span>{t('Verificación MC (FMCSA)', 'Carrier Vetting (MC)')}</span>
+              </button>
+              <button
+                className={`fos-sidebar__nav-item ${clientActiveTab === 'spotrates' ? 'fos-sidebar__nav-item--active' : ''}`}
+                onClick={() => { setClientActiveTab('spotrates'); setIsClientSidebarOpen(false); }}
+              >
+                <IconBarChart width={16} height={16} />
+                <span>{t('Tarifas Spot DAT', 'DAT Spot Rates')}</span>
+              </button>
+              <button
+                className={`fos-sidebar__nav-item ${clientActiveTab === 'apilogs' ? 'fos-sidebar__nav-item--active' : ''}`}
+                onClick={() => { setClientActiveTab('apilogs'); setIsClientSidebarOpen(false); }}
+              >
+                <IconZap width={16} height={16} />
+                <span>{t('Gateway API & Logs', 'API Gateway Logs')}</span>
+                <span className="fos-sidebar__nav-badge">{apiLogs.length}</span>
+              </button>
+              <button
+                className={`fos-sidebar__nav-item ${clientActiveTab === 'shippers' ? 'fos-sidebar__nav-item--active' : ''}`}
+                onClick={() => { setClientActiveTab('shippers'); setIsClientSidebarOpen(false); }}
+              >
+                <IconBuilding width={16} height={16} />
+                <span>{t('Shippers Directos (EDI 204)', 'Direct Shippers (EDI 204)')}</span>
+              </button>
+              <button
+                className={`fos-sidebar__nav-item ${clientActiveTab === 'governance' ? 'fos-sidebar__nav-item--active' : ''}`}
+                onClick={() => { setClientActiveTab('governance'); setIsClientSidebarOpen(false); }}
+              >
+                <IconScale width={16} height={16} />
+                <span>{t('Código de Conducta & Legal', 'Code of Conduct & Legal')}</span>
+              </button>
+            </nav>
+
+            <div className="fos-sidebar__footer">
+              <button
+                className="fos-sidebar__footer-btn"
+                onClick={() => {
+                  setShowClientDashboard(false);
+                  setTimeout(() => {
+                    const el = document.querySelector('#safety');
+                    if (el) el.scrollIntoView({ block: 'start', behavior: 'smooth' });
+                  }, 250);
+                }}
+              >
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                {t('Volver al Sitio Web', 'Back to Website')}
+              </button>
+              <button
+                className="fos-sidebar__footer-btn fos-sidebar__footer-btn--signout"
+                onClick={() => {
+                  setIsClientLoggedIn(false);
+                  setShowClientDashboard(false);
+                }}
+              >
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                {t('Cerrar Sesión', 'Sign Out')}
+              </button>
+            </div>
+          </aside>
+
+          {isClientSidebarOpen && (
+            <div className="fos-sidebar__overlay" onClick={() => setIsClientSidebarOpen(false)} />
+          )}
+
+          <main className="fos-main">
+            <header className="fos-topbar">
+              <div className="fos-topbar__left">
+                <button className="fos-topbar__hamburger" onClick={() => setIsClientSidebarOpen(true)} aria-label="Open sidebar">
+                  <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                <div>
+                  <h1 className="fos-topbar__title">
+                    {clientActiveTab === 'overview' && t('Despachos Activos y PODs', 'Active Dispatches & PODs')}
+                    {clientActiveTab === 'loadboards' && t('Bolsas de Cargas (DAT & Truckstop)', 'Load Boards Hub (DAT/TS)')}
+                    {clientActiveTab === 'vetting' && t('Verificación de Transportistas (FMCSA MC)', 'Carrier Vetting (MC Check)')}
+                    {clientActiveTab === 'spotrates' && t('Benchmark Tarifas Spot DAT', 'DAT Spot Rates Benchmark')}
+                    {clientActiveTab === 'apilogs' && t('Gateway API & Logs EDI 204', 'API Gateway & EDI 204 Logs')}
+                    {clientActiveTab === 'shippers' && t('Directorio de Shippers Verificados', 'Verified Shippers Directory')}
+                    {clientActiveTab === 'governance' && t('Gobernanza y Código Legal', 'Governance & Code of Ethics')}
+                  </h1>
+                  <p className="fos-topbar__subtitle">FleetOS Client Console · {t('Cuenta', 'Account')}: ACME Logistics Corp</p>
+                </div>
+              </div>
+              <div className="fos-topbar__right" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 {renderLangSwitcher()}
                 <button className="theme-toggle-btn" onClick={toggleTheme} title={t('Cambiar Tema', 'Toggle Theme')}>
-                  {theme === 'dark' ? '☀️' : '🌙'}
+                  {theme === 'dark' ? <IconSun width={18} height={18} color="#ffffff" /> : <IconMoon width={18} height={18} color="#ffffff" />}
                 </button>
-                <button
-                  className="btn btn--outline btn--sm client-header__back"
-                  onClick={() => {
-                    setShowClientDashboard(false);
-                    setTimeout(() => {
-                      const el = document.querySelector('#safety');
-                      if (el) el.scrollIntoView({ block: 'start', behavior: 'smooth' });
-                    }, 250);
-                  }}
-                >
-                  {t('Volver a Seguridad', 'Return to Safety')}
-                </button>
+                <div className="fos-topbar__status-pill">
+                  <span className="fos-topbar__status-dot"></span>
+                  LIVE · 99.2% ON-TIME
+                </div>
                 <button
                   className="btn btn--outline btn--sm"
                   onClick={() => setShowClientDashboard(false)}
                 >
-                  {t('Salir de Consola', 'Exit Console')}
+                  {t('Salir', 'Exit')}
+                </button>
+              </div>
+            </header>
+
+            {/* KPI Cards Row */}
+            <section className="fos-kpis">
+              <div className="fos-kpi-card">
+                <div className="fos-kpi-card__icon fos-kpi-card__icon--green">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div>
+                  <span className="fos-kpi-card__label">{t('Despachos Activos', 'Active Dispatches')}</span>
+                  <strong className="fos-kpi-card__value">{clientActiveShipments.length} {t('Rutas', 'Routes')}</strong>
+                </div>
+                <div className="fos-kpi-card__trend fos-kpi-card__trend--up">+2 {t('en tránsito', 'in transit')}</div>
+              </div>
+
+              <div className="fos-kpi-card">
+                <div className="fos-kpi-card__icon fos-kpi-card__icon--red">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <div>
+                  <span className="fos-kpi-card__label">{t('Cargas Sindicadas', 'Syndicated Loads')}</span>
+                  <strong className="fos-kpi-card__value">{syndicatedLoadsList.length} {t('Activas', 'Active')}</strong>
+                </div>
+                <div className="fos-kpi-card__trend fos-kpi-card__trend--up">DAT + Truckstop</div>
+              </div>
+
+              <div className="fos-kpi-card">
+                <div className="fos-kpi-card__icon fos-kpi-card__icon--yellow">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                </div>
+                <div>
+                  <span className="fos-kpi-card__label">{t('Índice Tarifa Spot', 'Spot Rate Index')}</span>
+                  <strong className="fos-kpi-card__value">$2.85 / mi</strong>
+                </div>
+                <div className="fos-kpi-card__trend fos-kpi-card__trend--up">+4.2% {t('mercado', 'market')}</div>
+              </div>
+
+              <div className="fos-kpi-card">
+                <div className="fos-kpi-card__icon fos-kpi-card__icon--blue">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div>
+                  <span className="fos-kpi-card__label">{t('Tasa Puntualidad', 'On-Time SLA')}</span>
+                  <strong className="fos-kpi-card__value">99.2%</strong>
+                </div>
+                <div className="fos-kpi-card__trend fos-kpi-card__trend--up">98.0% {t('meta SLA', 'target')}</div>
+              </div>
+            </section>
+
+            {/* Quick pill tabs selector */}
+            <div style={{ padding: '1rem 1.5rem 0', overflowX: 'auto' }}>
+              <div className="loadboard-tabs" style={{ marginBottom: 0 }}>
+                <button
+                  className={`loadboard-tab-btn ${clientActiveTab === 'overview' ? 'loadboard-tab-btn--active' : ''}`}
+                  onClick={() => setClientActiveTab('overview')}
+                >
+                  <IconBarChart width={16} height={16} style={{ marginRight: '6px' }} />
+                  {t('Despachos Activos y PODs', 'Active Dispatches & PODs')}
+                </button>
+                <button
+                  className={`loadboard-tab-btn ${clientActiveTab === 'loadboards' ? 'loadboard-tab-btn--active' : ''}`}
+                  onClick={() => setClientActiveTab('loadboards')}
+                >
+                  <IconTruck width={16} height={16} style={{ marginRight: '6px' }} />
+                  {t('Bolsas de Carga (DAT & Truckstop)', 'Load Boards Hub (DAT/Truckstop)')}
+                </button>
+                <button
+                  className={`loadboard-tab-btn ${clientActiveTab === 'vetting' ? 'loadboard-tab-btn--active' : ''}`}
+                  onClick={() => setClientActiveTab('vetting')}
+                >
+                  <IconShield width={16} height={16} style={{ marginRight: '6px' }} />
+                  {t('Verificación de Transportistas (MC)', 'Carrier Vetting (MC Check)')}
+                </button>
+                <button
+                  className={`loadboard-tab-btn ${clientActiveTab === 'spotrates' ? 'loadboard-tab-btn--active' : ''}`}
+                  onClick={() => setClientActiveTab('spotrates')}
+                >
+                  <IconBarChart width={16} height={16} style={{ marginRight: '6px' }} />
+                  {t('Tarifas Spot DAT Benchmark', 'DAT Spot Rates Benchmark')}
+                </button>
+                <button
+                  className={`loadboard-tab-btn ${clientActiveTab === 'apilogs' ? 'loadboard-tab-btn--active' : ''}`}
+                  onClick={() => setClientActiveTab('apilogs')}
+                >
+                  <IconZap width={16} height={16} style={{ marginRight: '6px' }} />
+                  API Gateway Logs ({apiLogs.length})
+                </button>
+                <button
+                  className={`loadboard-tab-btn ${clientActiveTab === 'shippers' ? 'loadboard-tab-btn--active' : ''}`}
+                  onClick={() => setClientActiveTab('shippers')}
+                >
+                  <IconBuilding width={16} height={16} style={{ marginRight: '6px' }} />
+                  {t('Conexión Directa Shippers (EDI 204)', 'Direct Shipper Gateway (EDI 204)')}
+                </button>
+                <button
+                  className={`loadboard-tab-btn ${clientActiveTab === 'governance' ? 'loadboard-tab-btn--active' : ''}`}
+                  onClick={() => setClientActiveTab('governance')}
+                >
+                  <IconScale width={16} height={16} style={{ marginRight: '6px' }} />
+                  {t('Código de Conducta & Legal', 'Code of Conduct & Legal')}
                 </button>
               </div>
             </div>
-          </header>
 
-          <div className="container" style={{ flex: 1, padding: '2rem 1rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div className="client-overview-grid" style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr', gap: '1.5rem', alignItems: 'stretch' }}>
-              <div className="dashboard-sidebar" style={{ backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '1rem' }}>
-                <div style={{ borderBottom: '1px solid var(--color-border)', paddingBottom: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div>
-                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Cuenta Activa', 'Active Account')}</span>
-                    <strong style={{ fontSize: '1.25rem', color: 'var(--color-text-primary)', display: 'block' }}>ACME Logistics Corp</strong>
-                  </div>
-                  <span className="hcga-data" style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', backgroundColor: 'rgba(255,255,255,0.05)', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>#AC-92841</span>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                  <div>
-                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>{t('Gerente de Cuenta', 'Account Manager')}</span>
-                    <strong style={{ fontSize: '0.95rem', color: 'var(--color-text-primary)' }}>Sarah Jenkins</strong>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>(800) 555-0192</span>
-                  </div>
-
-                  <div>
-                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>{t('Tasa de Puntualidad', 'On-Time Rate')}</span>
-                    <strong style={{ fontSize: '0.95rem', color: '#10b981' }}>99.2% ({t('Excelente', 'Excellent')})</strong>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', display: 'block' }}>{t('Umbral meta: 98.0%', 'Goal threshold: 98.0%')}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="dashboard-metrics" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                <div className="summary-card" style={{ padding: '1rem 1.25rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'rgba(16,185,129,0.1)', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Despachos Activos', 'Active Dispatches')}</span>
-                    <strong style={{ fontSize: '1.25rem', color: 'var(--color-text-primary)' }}>{clientActiveShipments.length} {t('Rutas', 'Routes')}</strong>
-                  </div>
-                </div>
-
-                <div className="summary-card" style={{ padding: '1rem 1.25rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'rgba(137, 0, 0,0.1)', color: 'var(--color-accent-text)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Cargas Sindicadas', 'Syndicated Loads')}</span>
-                    <strong style={{ fontSize: '1.25rem', color: 'var(--color-text-primary)' }}>{syndicatedLoadsList.length} {t('Activas', 'Active')}</strong>
-                  </div>
-                </div>
-
-                <div className="summary-card" style={{ padding: '1rem 1.25rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'rgba(245,158,11,0.1)', color: '#f59e0b', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span className="hcga-label" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{t('Índice Tarifa Spot', 'Spot Rate Index')}</span>
-                    <strong style={{ fontSize: '1.25rem', color: 'var(--color-text-primary)' }}>$2.85 / mi</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="loadboard-tabs">
-              <button
-                className={`loadboard-tab-btn ${clientActiveTab === 'overview' ? 'loadboard-tab-btn--active' : ''}`}
-                onClick={() => setClientActiveTab('overview')}
-              >
-                <IconBarChart width={16} height={16} style={{ marginRight: '6px' }} />
-                {t('Despachos Activos y PODs', 'Active Dispatches & PODs')}
-              </button>
-              <button
-                className={`loadboard-tab-btn ${clientActiveTab === 'loadboards' ? 'loadboard-tab-btn--active' : ''}`}
-                onClick={() => setClientActiveTab('loadboards')}
-              >
-                <IconTruck width={16} height={16} style={{ marginRight: '6px' }} />
-                {t('Bolsas de Carga (DAT & Truckstop)', 'Load Boards Hub (DAT/Truckstop)')}
-              </button>
-              <button
-                className={`loadboard-tab-btn ${clientActiveTab === 'vetting' ? 'loadboard-tab-btn--active' : ''}`}
-                onClick={() => setClientActiveTab('vetting')}
-              >
-                <IconShield width={16} height={16} style={{ marginRight: '6px' }} />
-                {t('Verificación de Transportistas (MC)', 'Carrier Vetting (MC Check)')}
-              </button>
-              <button
-                className={`loadboard-tab-btn ${clientActiveTab === 'spotrates' ? 'loadboard-tab-btn--active' : ''}`}
-                onClick={() => setClientActiveTab('spotrates')}
-              >
-                <IconBarChart width={16} height={16} style={{ marginRight: '6px' }} />
-                {t('Tarifas Spot DAT Benchmark', 'DAT Spot Rates Benchmark')}
-              </button>
-              <button
-                className={`loadboard-tab-btn ${clientActiveTab === 'apilogs' ? 'loadboard-tab-btn--active' : ''}`}
-                onClick={() => setClientActiveTab('apilogs')}
-              >
-                <IconZap width={16} height={16} style={{ marginRight: '6px' }} />
-                API Gateway Logs ({apiLogs.length})
-              </button>
-              <button
-                className={`loadboard-tab-btn ${clientActiveTab === 'shippers' ? 'loadboard-tab-btn--active' : ''}`}
-                onClick={() => setClientActiveTab('shippers')}
-              >
-                <IconBuilding width={16} height={16} style={{ marginRight: '6px' }} />
-                {t('Conexión Directa Shippers (EDI 204)', 'Direct Shipper Gateway (EDI 204)')}
-              </button>
-              <button
-                className={`loadboard-tab-btn ${clientActiveTab === 'governance' ? 'loadboard-tab-btn--active' : ''}`}
-                onClick={() => setClientActiveTab('governance')}
-              >
-                <IconScale width={16} height={16} style={{ marginRight: '6px' }} />
-                {t('Código de Conducta & Legal', 'Code of Conduct & Legal')}
-              </button>
-            </div>
+            <div style={{ flex: 1, padding: '1.25rem 1.5rem 2.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
 
             {/* TAB 1: OVERVIEW */}
             {clientActiveTab === 'overview' && (
@@ -3218,8 +3633,8 @@ function App() {
             </div>
           )}
 
-          <footer className="footer" style={{ borderTop: '1px solid var(--color-border)', padding: '1.5rem 0', marginTop: 'auto' }}>
-            <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>
+            {/* Console Footer */}
+            <footer style={{ borderTop: '1px solid var(--fos-border)', padding: '1rem 1.5rem', marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', fontSize: '0.8rem', color: 'var(--fos-text-secondary)', backgroundColor: 'var(--fos-surface)' }}>
               <span>HCGA FleetOS &copy; {new Date().getFullYear()}</span>
               <span>Client Session: ACME Logistics Corp</span>
               <button
@@ -3227,12 +3642,13 @@ function App() {
                   setIsClientLoggedIn(false);
                   setShowClientDashboard(false);
                 }}
-                style={{ background: 'none', border: 'none', color: 'var(--color-accent-text)', cursor: 'pointer', fontWeight: '600', textDecoration: 'underline' }}
+                className="fos-btn fos-btn--ghost"
+                style={{ fontSize: '0.75rem', padding: '0.3rem 0.8rem' }}
               >
                 {t('Cerrar Sesión', 'Sign Out Session')}
               </button>
-            </div>
-          </footer>
+            </footer>
+          </main>
         </div>
 
         {/* Floating Demo Controller */}
@@ -3255,9 +3671,9 @@ function App() {
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <IconX width={22} height={22} color="#ffffff" />
             ) : (
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+              <IconMenu width={22} height={22} color="#ffffff" />
             )}
           </button>
 
@@ -3266,11 +3682,30 @@ function App() {
           <div className={`header__menu ${isMobileMenuOpen ? 'header__menu--open' : ''}`}>
             <nav className="nav">
               <ul className="nav__list">
-                <li><a href="#services" className="nav__link" onClick={() => { setIsMobileMenuOpen(false); setSelectedServiceId(null); }}>{t('Servicios', 'Services')}</a></li>
-                <li><a href="#technology" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>{t('Tecnología', 'Technology')}</a></li>
-                <li><a href="#safety" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>{t('Seguridad', 'Safety')}</a></li>
-                <li><a href="#client-portal" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>{t('Portal Clientes', 'Client Portal')}</a></li>
-                <li><a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowGovernanceModal(true); }}>🛡️ {t('Código de Conducta', 'Code of Conduct')}</a></li>
+                <li>
+                  <a href="#services" className="nav__link" onClick={() => { setIsMobileMenuOpen(false); setSelectedServiceId(null); }}>
+                    <IconTruck width={16} height={16} color="#ffffff" />
+                    <span>{t('Servicios', 'Services')}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#technology" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>
+                    <IconCpu width={16} height={16} color="#ffffff" />
+                    <span>{t('Tecnología', 'Technology')}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#safety" className="nav__link" onClick={() => setIsMobileMenuOpen(false)}>
+                    <IconShield width={16} height={16} color="#ffffff" />
+                    <span>{t('Seguridad', 'Safety')}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowGovernanceModal(true); }}>
+                    <IconScale width={16} height={16} color="#ffffff" />
+                    <span>{t('Código de Conducta', 'Code of Conduct')}</span>
+                  </a>
+                </li>
               </ul>
             </nav>
 
@@ -3284,24 +3719,24 @@ function App() {
                 title={t('Cambiar Tema', 'Toggle Theme')}
               >
                 {theme === 'dark' ? (
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                  <IconSun width={18} height={18} color="#ffffff" />
                 ) : (
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                  <IconMoon width={18} height={18} color="#ffffff" />
                 )}
               </button>
 
-              {isDriverLoggedIn ? (
-                <a href="#" className="nav__link nav__link--btn-driver nav__link--dashboard" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowDriverDashboard(true); }}>{t('Panel Conductor', 'Driver Panel')}</a>
-              ) : (
-                <a href="#" className="nav__link nav__link--btn-driver" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowDriverLoginModal(true); }}>{t('Acceso Conductor', 'Driver Login')}</a>
-              )}
-              {isClientLoggedIn ? (
-                <a href="#" className="nav__link nav__link--btn-client nav__link--dashboard" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setShowClientDashboard(true); }}>{t('Panel Cliente', 'Client Panel')}</a>
-              ) : (
-                <a href="#client-portal" className="nav__link nav__link--btn-client" onClick={() => setIsMobileMenuOpen(false)}>
-                  {t('Acceso Clientes', 'Client Login')}
-                </a>
-              )}
+              <button
+                type="button"
+                className="header__btn-register"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setShowRegistrationModal(true);
+                }}
+              >
+                <IconClipboard width={16} height={16} color="#ffffff" />
+                <span>{t('Registro', 'Registration')}</span>
+              </button>
             </div>
           </div>
         </div>
@@ -3314,78 +3749,63 @@ function App() {
             className="hero__video-bg"
             autoPlay
             playsInline
-            onPlay={() => { setShowContent(false); setIsPlaying(true); }}
-            onPause={() => { setShowContent(true); setIsPlaying(false); }}
+            muted={isMuted}
+            onPlay={() => { setIsPlaying(true); }}
+            onPause={() => { setIsPlaying(false); }}
             onEnded={() => {
               if (videoRef.current && videoRef.current.duration) {
                 videoRef.current.currentTime = videoRef.current.duration - 0.05;
               }
-              setShowContent(true);
               setIsPlaying(false);
             }}
           >
-            <source src={`${import.meta.env.BASE_URL}video2.mp4`} media="(max-width: 1023px)" type="video/mp4" />
             <source src={`${import.meta.env.BASE_URL}video1.mp4`} type="video/mp4" />
+            <source src={`${import.meta.env.BASE_URL}video2.mp4`} media="(max-width: 600px) and (orientation: portrait)" type="video/mp4" />
           </video>
           <div className="hero__video-overlay"></div>
 
-          <div className="hero__video-controls">
-            <button onClick={togglePlayStop} className="btn-play-pause" aria-label={isPlaying ? t("Pausar Video", "Pause Video") : t("Reproducir Video", "Play Video")}>
-              {isPlaying ? (
-                <>
-                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="currentColor"><rect x="6" y="6" width="12" height="12"></rect></svg>
-                  <span>{t('Pausar', 'Pause')}</span>
-                </>
-              ) : (
-                <>
-                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  <span>{t('Reproducir', 'Play')}</span>
-                </>
-              )}
-            </button>
-            <button onClick={toggleMute} className="btn-play-pause" aria-label={isMuted ? t("Activar Sonido", "Unmute Audio") : t("Silenciar Sonido", "Mute Audio")}>
-              {isMuted ? (
-                <>
-                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-                  <span>{t('Sin Sonido', 'Muted')}</span>
-                </>
-              ) : (
-                <>
-                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                  <span>{t('Con Sonido', 'Sound')}</span>
-                </>
-              )}
-            </button>
-          </div>
+          <div className="container hero__content">
+            <div className="hero__video-controls">
+              <button onClick={togglePlayStop} className="btn-play-pause" aria-label={isPlaying ? t("Pausar Video", "Pause Video") : t("Reproducir Video", "Play Video")}>
+                {isPlaying ? (
+                  <>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="currentColor"><rect x="6" y="6" width="12" height="12"></rect></svg>
+                    <span>{t('Pausar', 'Pause')}</span>
+                  </>
+                ) : (
+                  <>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    <span>{t('Reproducir', 'Play')}</span>
+                  </>
+                )}
+              </button>
+              <button onClick={toggleMute} className="btn-play-pause" aria-label={isMuted ? t("Activar Sonido", "Unmute Audio") : t("Silenciar Sonido", "Mute Audio")}>
+                {isMuted ? (
+                  <>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                    <span>{t('Sin Sonido', 'Muted')}</span>
+                  </>
+                ) : (
+                  <>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                    <span>{t('Con Sonido', 'Sound')}</span>
+                  </>
+                )}
+              </button>
+            </div>
 
-          <div className={`container hero__content ${showContent ? 'hero__content--visible' : 'hero__content--hidden'}`}>
-            <h1 className="hero__title">
-              {t('Transporte comercial escalable,', 'Scalable commercial transportation,')}{' '}
-              <span className="hero__title-highlight">{t('impulsado por datos.', 'powered by data.')}</span>
-            </h1>
+            <div className={`hero__text-group ${isPlaying ? 'hero__text-group--hidden' : 'hero__text-group--visible'}`}>
+              <h1 className="hero__title">
+                {t('Transporte comercial escalable,', 'Scalable commercial transportation,')}{' '}
+                <span className="hero__title-highlight">{t('impulsado por datos.', 'powered by data.')}</span>
+              </h1>
 
-            <p className="hero__description">
-              {t(
-                'HCGA TRADING LLC proporciona soluciones de transporte comercial escalables con visibilidad de flota en tiempo real, operaciones disciplinadas, conductores profesionales y tecnología moderna de gestión de rutas.',
-                'HCGA TRADING LLC provides scalable commercial transportation solutions supported by real-time fleet visibility, disciplined operations, professional drivers, and modern route-management technology.'
-              )}
-            </p>
-
-            <div className="hero__actions">
-              <a href="#services" className="btn btn--primary" onClick={() => setSelectedServiceId(null)}>
-                {t('Solicitar Servicios de Transporte', 'Request Transportation Services')}
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </a>
-
-              <a href="#technology" className="btn btn--secondary">
-                {t('Explorar Nuestra Tecnología', 'Explore Our Technology')}
-              </a>
-              <a href="#" className="btn btn--outline" onClick={openDevNotice}>
-                {t('Asociarse con HCGA', 'Partner With HCGA')}
-              </a>
+              <p className="hero__description">
+                {t(
+                  'HCGA TRADING LLC ofrece transporte comercial escalable con procesos de carga totalmente automatizados, visibilidad de flota en tiempo real, conductores profesionales y tecnología avanzada de gestión de rutas.',
+                  'HCGA TRADING LLC delivers scalable commercial transportation powered by fully automated freight workflows, real-time fleet visibility, professional drivers, and advanced route-management technology.'
+                )}
+              </p>
             </div>
           </div>
         </section>
@@ -3552,7 +3972,11 @@ function App() {
               </div>
             )}
             <div className="section-cta-box" style={{ marginTop: '3rem', textAlign: 'center' }}>
-              <button className="btn btn--secondary" onClick={() => launchDemoState('driver_marketplace')}>
+              <button
+                className="btn btn--secondary"
+                onClick={() => handleRestrictedAccess('driver_marketplace', 'la Consola de Despacho para Conductores', 'the Driver Dispatch Console')}
+              >
+                {!isUserRegistered && <IconLock width={15} height={15} style={{ marginRight: '6px', verticalAlign: '-2px' }} />}
                 {t('Probar Consola de Despacho para Conductores', 'Launch Live Driver Dispatch Console Demo')}
               </button>
             </div>
@@ -3611,7 +4035,12 @@ function App() {
                     <span>{t('Análisis de costos y rutas asistido por IA', 'AI-assisted route & cost analysis')}</span>
                   </li>
                 </ul>
-                <button className="btn btn--secondary" style={{ marginTop: '2rem' }} onClick={() => launchDemoState('driver_transit')}>
+                <button
+                  className="btn btn--secondary"
+                  style={{ marginTop: '2rem' }}
+                  onClick={() => handleRestrictedAccess('driver_transit', 'el Simulador de Ruta Satelital', 'the Live Route Simulator')}
+                >
+                  {!isUserRegistered && <IconLock width={15} height={15} style={{ marginRight: '6px', verticalAlign: '-2px' }} />}
                   {t('Probar Simulador de Ruta Satelital', 'Launch Live Route Simulator Demo')}
                 </button>
               </div>
@@ -3676,7 +4105,14 @@ function App() {
                       </div>
 
                       <div style={{ borderTop: '1px solid var(--color-border)', marginTop: '2.5rem', paddingTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                        <button className="btn btn--primary" onClick={() => { launchDemoState(item.ctaState); setSelectedSafetyId(null); }}>
+                        <button
+                          className="btn btn--primary"
+                          onClick={() => {
+                            handleRestrictedAccess(item.ctaState, item.title, item.title);
+                            setSelectedSafetyId(null);
+                          }}
+                        >
+                          {!isUserRegistered && <IconLock width={15} height={15} style={{ marginRight: '6px', verticalAlign: '-2px' }} />}
                           {item.ctaText}
                         </button>
                       </div>
@@ -3714,7 +4150,11 @@ function App() {
             </div>
             {!selectedSafetyId && (
               <div className="section-cta-box" style={{ marginTop: '3rem', textAlign: 'center' }}>
-                <button className="btn btn--secondary" onClick={() => launchDemoState('driver_compliant')}>
+                <button
+                  className="btn btn--secondary"
+                  onClick={() => handleRestrictedAccess('driver_compliant', 'la Consola de Seguridad y Cumplimiento', 'the Safety Compliance Console')}
+                >
+                  {!isUserRegistered && <IconLock width={15} height={15} style={{ marginRight: '6px', verticalAlign: '-2px' }} />}
                   {t('Probar Consola de Seguridad y Cumplimiento', 'Launch Safety Compliance Console Demo')}
                 </button>
               </div>
@@ -3767,13 +4207,41 @@ function App() {
                     </div>
                   )}
                   <div className="form-actions">
-                    <a href="#" className="forgot-password" onClick={openDevNotice}>{t('¿Olvidó su contraseña?', 'Forgot password?')}</a>
-                    <button type="submit" className="btn btn--primary btn--full">{t('Iniciar Sesión en FleetOS', 'Sign In to FleetOS')}</button>
+                    <a
+                      href="#"
+                      className="forgot-password"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setRegistrationRequiredNotice('');
+                        setShowRegistrationModal(true);
+                      }}
+                    >
+                      {t('¿Olvidó su contraseña?', 'Forgot password?')}
+                    </a>
+                    <button type="submit" className="btn btn--primary btn--full">
+                      {!isUserRegistered && <IconLock width={15} height={15} style={{ marginRight: '6px', verticalAlign: '-2px' }} />}
+                      {t('Iniciar Sesión en FleetOS', 'Sign In to FleetOS')}
+                    </button>
                   </div>
                 </form>
 
                 <div className="portal-footer">
-                  <p>{t('¿Aún no es cliente?', 'Not a client yet?')} <a href="#" onClick={openDevNotice}>{t('Solicitar Alianza Comercial', 'Request Partnership')}</a></p>
+                  <p>
+                    {t('¿Aún no es cliente?', 'Not a client yet?')}{' '}
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setRegistrationRequiredNotice('');
+                        setShowRegistrationModal(true);
+                      }}
+                    >
+                      {t('Solicitar Alianza Comercial', 'Request Partnership')}
+                    </a>
+                  </p>
+                  <p className="portal-footer__demo-note">
+                    {t('Revisa la maqueta del DEMO CONTROLLER por tiempo limitado', 'Check out the DEMO CONTROLLER mockup for a limited time')}
+                  </p>
                 </div>
               </div>
 
@@ -3782,8 +4250,13 @@ function App() {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="portal-lock-icon"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                   <h3>{t('Acceso Seguro', 'Secure Access')}</h3>
                   <p>{t('Encriptación de nivel empresarial para sus datos operativos.', 'Enterprise-grade encryption for your operational data.')}</p>
-                  <button className="btn btn--secondary" style={{ marginTop: '1.5rem', width: '100%' }} onClick={() => launchDemoState('client_dashboard')}>
-                    {t('Probar HUD Interactivo para Clientes', 'Instant Client HUD Demo')}
+                  <button
+                    className="btn btn--secondary portal-hud-btn"
+                    style={{ marginTop: '1.5rem' }}
+                    onClick={() => handleRestrictedAccess('client_dashboard', 'el HUD Interactivo para Clientes', 'the Instant Client HUD')}
+                  >
+                    {!isUserRegistered && <IconLock width={15} height={15} style={{ marginRight: '6px', verticalAlign: '-2px' }} />}
+                    <span>{t('Probar HUD Interactivo para Clientes', 'Instant Client HUD Demo')}</span>
                   </button>
                 </div>
               </div>
@@ -3906,6 +4379,22 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Floating Registration Menu & Interactive Dialog */}
+      <RegistrationFloatMenu
+        lang={lang}
+        isOpen={showRegistrationModal}
+        setIsOpen={handleCloseRegistrationModal}
+        requiredNotice={registrationRequiredNotice}
+        isRegistered={isUserRegistered}
+        onUnlockDemo={handleUnlockDemo}
+        onRegistered={() => {
+          setIsUserRegistered(true);
+          try {
+            localStorage.setItem('hcga_user_registered', 'true');
+          } catch (err) {}
+        }}
+      />
 
       {/* Floating Demo Controller */}
       {renderDemoController()}

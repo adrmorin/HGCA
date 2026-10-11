@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>HCGA Trading — Registro de interés / Interest registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Registre su interés en la plataforma de HCGA Trading LLC. Es gratis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14171A; --panel:#1C2024; --panel-2:#22262B;
+    --line:rgba(255,255,255,0.12); --line-strong:rgba(255,255,255,0.22);
+    --text:#F3F1ED; --dim:#A3A8AD; --dimmer:#7D838A;
+    --red:#9E2A2F; --red-bright:#C6383E;
+    --green:#7FCF97; --green-bg:rgba(76,139,93,0.18);
+    --amber:#E6A04A; --amber-bg:rgba(217,138,43,0.16);
+    --err:#F29AA0;
+    --radius:14px;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--ink); color:var(--text); font-family:'Inter',system-ui,sans-serif; font-size:16px; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  h1,h2,h3{ font-family:'Barlow Condensed','Inter',sans-serif; font-weight:700; margin:0; letter-spacing:.2px; }
+  .wrap{ max-width:720px; margin:0 auto; padding:20px 20px 64px; }
+
+  /* barra superior */
+  .top{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:6px 0 18px; }
+  .brand{ display:flex; align-items:center; gap:9px; }
+  .brand svg{ width:28px; height:28px; }
+  .brand b{ font-family:'Barlow Condensed',sans-serif; font-size:20px; line-height:1; color:#fff; }
+  .brand small{ display:block; font-family:'Inter',system-ui,sans-serif; font-size:9px; letter-spacing:1.6px; color:var(--dim); font-weight:600; margin-top:2px; }
+  .lang{ display:flex; border:1.5px solid #ffffff; border-radius:100px; overflow:hidden; box-shadow:0 0 8px rgba(255,255,255,0.2); }
+  .lang button{ background:none; border:0; color:var(--dim); font:600 13px 'Inter',system-ui,sans-serif; padding:8px 14px; cursor:pointer; min-height:36px; }
+  .lang button[aria-pressed="true"]{ background:var(--red-bright); color:#fff; }
+
+  .proto{ background:var(--amber-bg); border:1px solid rgba(230,160,74,.45); color:var(--amber); border-radius:10px; padding:9px 14px; font-size:13px; font-weight:600; margin-bottom:18px; }
+
+  .hero h1{ font-size:clamp(34px,6.5vw,48px); line-height:1.05; color:#fff; }
+  .hero p{ color:var(--dim); margin:10px 0 0; font-size:17px; max-width:560px; }
+  .free{ display:inline-flex; gap:8px; align-items:center; margin-top:16px; background:var(--green-bg); color:var(--green); border-radius:100px; padding:8px 14px; font-weight:600; font-size:14px; }
+
+  form, .card{ margin-top:26px; }
+  fieldset{ border:0; padding:0; margin:0 0 26px; min-width:0; }
+  legend, .sec-title{ font-family:'Barlow Condensed',sans-serif; font-size:24px; font-weight:700; color:#fff; padding:0; margin-bottom:4px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .tag{ font:600 12px 'Inter',system-ui,sans-serif; color:var(--dim); background:var(--panel-2); border:1px solid var(--line); border-radius:100px; padding:3px 10px; }
+  .hint{ color:var(--dim); font-size:14px; margin:2px 0 12px; }
+
+  .roles{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px; }
+  .role{ position:relative; display:flex; gap:12px; align-items:flex-start; background:var(--panel); border:1.5px solid var(--line-strong); border-radius:var(--radius); padding:16px; cursor:pointer; min-height:84px; }
+  .role input{ position:absolute; opacity:0; inset:0; cursor:pointer; }
+  .role .dot{ width:20px; height:20px; border-radius:50%; border:2px solid var(--dim); flex-shrink:0; margin-top:3px; display:flex; align-items:center; justify-content:center; }
+  .role.on{ border-color:var(--red-bright); background:#241619; }
+  .role.on .dot{ border-color:var(--red-bright); }
+  .role.on .dot::after{ content:""; width:10px; height:10px; border-radius:50%; background:var(--red-bright); }
+  .role:focus-within{ outline:3px solid #fff; outline-offset:2px; }
+  .role strong{ display:block; font-size:18px; color:#fff; }
+  .role span{ color:var(--dim); font-size:14px; }
+  @media (max-width:480px){ .roles{ grid-template-columns:1fr; } }
+
+  .field{ margin-bottom:16px; }
+  .field label, .lbl{ display:block; font-weight:600; font-size:15px; margin-bottom:6px; color:var(--text); }
+  .opt{ color:var(--dimmer); font-weight:500; font-size:13px; }
+  input[type=text], input[type=email], input[type=tel], input[type=number], select{
+    width:100%; background:var(--panel-2); color:var(--text); border:1.5px solid var(--line-strong); border-radius:10px;
+    padding:13px 14px; font:400 16px 'Inter',sans-serif; min-height:48px;
+  }
+  select{ appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--dim) 50%),linear-gradient(135deg,var(--dim) 50%,transparent 50%); background-position:calc(100% - 20px) 21px, calc(100% - 14px) 21px; background-size:6px 6px; background-repeat:no-repeat; padding-right:38px; }
+  input::placeholder{ color:var(--dimmer); }
+  input:focus, select:focus{ outline:3px solid #fff; outline-offset:1px; border-color:#fff; }
+  input[aria-invalid="true"], select[aria-invalid="true"]{ border-color:var(--err); }
+  .help{ color:var(--dim); font-size:13.5px; margin-top:5px; }
+  .error{ color:var(--err); font-size:14px; margin-top:5px; font-weight:600; }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:560px){ .row2{ grid-template-columns:1fr; } }
+
+  details{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px; }
+  details summary{ cursor:pointer; font-weight:600; min-height:28px; }
+  details[open] summary{ margin-bottom:12px; }
+  .optional-block{ margin-bottom:26px; }
+
+  .consents{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:6px 16px; }
+  .consent{ display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--line); }
+  .consent:last-child{ border-bottom:0; }
+  .consent input{ width:22px; height:22px; margin-top:2px; accent-color:var(--red-bright); flex-shrink:0; }
+  .consent label{ font-weight:400; font-size:15px; margin:0; }
+  .consent .req{ color:var(--amber); font-weight:600; font-size:13px; }
+  .consent .optx{ color:var(--dimmer); font-size:13px; }
+  .consent input:focus-visible{ outline:3px solid #fff; outline-offset:2px; }
+  .linkbtn{ background:none; border:0; padding:0; color:#fff; text-decoration:underline; font:inherit; cursor:pointer; }
+  .datause{ margin-top:12px; font-size:14.5px; color:var(--dim); }
+
+  .summary{ background:rgba(198,56,62,.12); border:1px solid var(--err); color:var(--text); border-radius:10px; padding:14px 16px; margin-bottom:18px; }
+  .summary strong{ color:var(--err); display:block; margin-bottom:6px; }
+  .summary a{ color:#fff; }
+
+  .submit{ display:flex; flex-direction:column; gap:12px; margin-top:8px; }
+  .btn{ background:var(--red-bright); color:#fff; border:1.5px solid #ffffff; border-radius:100px; font:700 17px 'Inter',system-ui,sans-serif; padding:15px 28px; cursor:pointer; min-height:52px; box-shadow:0 0 10px rgba(255,255,255,0.2); transition:all .2s ease; }
+  .btn:hover{ filter:brightness(1.08); box-shadow:0 0 16px rgba(255,255,255,0.45); transform:translateY(-1px); }
+  .btn:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+  .btn.ghost{ background:transparent; border:1.5px solid #ffffff; color:var(--text); }
+  .btn.ghost:hover{ background:rgba(255,255,255,0.12); }
+  .note{ color:var(--dim); font-size:14px; }
+
+  /* confirmación */
+  .okhead{ display:flex; gap:12px; align-items:center; }
+  .okicon{ width:44px; height:44px; border-radius:50%; background:var(--green-bg); color:var(--green); border:1.5px solid #ffffff; box-shadow:0 0 10px rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .cert{ background:#F7F4EF; color:#1C2024; border-radius:12px; padding:20px; margin-top:18px; border:1px solid #D9D2C7; }
+  .cert h3{ font-size:20px; color:#9E2A2F; letter-spacing:.5px; }
+  .cert dl{ margin:12px 0 0; display:grid; grid-template-columns:150px 1fr; gap:8px 12px; font-size:14.5px; }
+  .cert dt{ color:#6B7177; font-size:12px; text-transform:uppercase; letter-spacing:.08em; padding-top:2px; }
+  .cert dd{ margin:0; word-break:break-word; }
+  .cert .mono{ font-family:ui-monospace,Consolas,monospace; font-size:14px; }
+  .pill{ display:inline-block; border-radius:100px; padding:3px 12px; font-size:12px; font-weight:700; letter-spacing:.06em; }
+  .pill.reg{ background:#F6E3C5; color:#7A4A07; }
+  .pill.ver{ background:#D5EBDC; color:#1E5C34; }
+  .cert .fine{ font-size:13px; color:#555; margin-top:14px; }
+  @media (max-width:480px){ .cert dl{ grid-template-columns:1fr; gap:2px; } .cert dt{ margin-top:8px; } }
+  pre{ background:#0E1012; border:1px solid var(--line); border-radius:10px; padding:14px; overflow:auto; font-size:12.5px; line-height:1.5; color:#CFE6D5; max-height:360px; }
+  .protonote{ margin-top:22px; padding-top:16px; border-top:1px dashed var(--line-strong); }
+  .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
+
+  .hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .foot{ margin-top:40px; color:var(--dimmer); font-size:13px; text-align:center; }
+  [hidden]{ display:none !important; }
+  @media (prefers-reduced-motion:no-preference){ .card{ animation:in .25s ease; } @keyframes in{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+
+  <!-- ===================== FORMULARIO ===================== -->
+  <div id="formView">
+    <div class="hero">
+      <h1 data-i18n="title"></h1>
+      <p data-i18n="lead"></p>
+      <div class="free"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="free"></span></div>
+    </div>
+
+    <form id="form" novalidate autocomplete="on">
+      <div id="summary" class="summary" role="alert" tabindex="-1" hidden></div>
+
+      <fieldset aria-describedby="roleErr">
+        <legend data-i18n="roleLegend"></legend>
+        <div class="roles">
+          <label class="role" data-role="carrier"><input type="radio" name="role" value="carrier"><span class="dot"></span><div><strong>Carrier</strong><span data-i18n="carrierSub"></span></div></label>
+          <label class="role" data-role="shipper"><input type="radio" name="role" value="shipper"><span class="dot"></span><div><strong>Shipper</strong><span data-i18n="shipperSub"></span></div></label>
+        </div>
+        <div class="error" id="roleErr" hidden></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span data-i18n="secPublic"></span><span class="tag" data-i18n="tagPublic"></span></legend>
+        <div class="field">
+          <label for="name" id="nameLabel"></label>
+          <input type="text" id="name" name="name" autocomplete="organization" maxlength="120" aria-describedby="nameErr">
+          <div class="error" id="nameErr" hidden></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span data-i18n="secPrivate"></span><span class="tag" data-i18n="tagPrivate"></span></legend>
+        <div id="idBlock"></div>
+        <div class="row2">
+          <div class="field">
+            <label for="email" data-i18n="emailLabel"></label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" maxlength="160" aria-describedby="emailHelp emailErr">
+            <div class="help" id="emailHelp" data-i18n="emailHelp"></div>
+            <div class="error" id="emailErr" hidden></div>
+          </div>
+          <div class="field">
+            <label for="phone" data-i18n="phoneLabel"></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="30" aria-describedby="phoneHelp phoneErr">
+            <div class="help" id="phoneHelp" data-i18n="phoneHelp"></div>
+            <div class="error" id="phoneErr" hidden></div>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="optional-block"><details id="optDetails"><summary id="optSummary"></summary><div id="optBlock"></div></details></div>
+
+      <fieldset>
+        <legend data-i18n="secConsent"></legend>
+        <div class="consents">
+          <div class="consent"><input type="checkbox" id="c_terms" name="c_terms" aria-describedby="c_termsErr"><div><label for="c_terms"><span id="c1"></span> <span class="req" data-i18n="required"></span></label><div class="error" id="c_termsErr" hidden></div></div></div>
+          <div class="consent"><input type="checkbox" id="c_contact" name="c_contact" aria-describedby="c_contactErr"><div><label for="c_contact"><span data-i18n="c2"></span> <span class="req" data-i18n="required"></span></label><div class="error" id="c_contactErr" hidden></div></div></div>
+          <div class="consent"><input type="checkbox" id="c_public" name="c_public"><div><label for="c_public"><span data-i18n="c3"></span> <span class="optx" data-i18n="optional"></span></label></div></div>
+          <div class="consent"><input type="checkbox" id="c_share" name="c_share"><div><label for="c_share"><span data-i18n="c4"></span> <span class="optx" data-i18n="optional"></span></label></div></div>
+        </div>
+        <details id="dataUse" class="datause"><summary data-i18n="dataUseTitle"></summary><div data-i18n="dataUseText"></div></details>
+      </fieldset>
+
+      <div class="hp" aria-hidden="true"><label>Website <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
+
+      <div class="submit">
+        <button type="submit" class="btn" data-i18n="submit"></button>
+        <div class="note" data-i18n="submitNote"></div>
+      </div>
+    </form>
+  </div>
+
+  <!-- ===================== CONFIRMACIÓN ===================== -->
+  <div id="doneView" class="card" hidden>
+    <div class="okhead">
+      <div class="okicon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <h1 id="doneTitle" tabindex="-1" style="font-size:34px;color:#fff" data-i18n="doneTitle"></h1>
+    </div>
+    <p id="doneMsg" style="color:var(--dim);margin:12px 0 0"></p>
+
+    <div class="cert" aria-label="Certificate">
+      <h3 data-i18n="certTitle"></h3>
+      <dl id="certList"></dl>
+      <p class="fine" data-i18n="certFine"></p>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn ghost" id="again" data-i18n="again"></button>
+    </div>
+
+    <div class="protonote">
+      <div class="note" data-i18n="protoDone"></div>
+      <div class="actions">
+        <button type="button" class="btn ghost" id="simulate" data-i18n="simulate"></button>
+      </div>
+      <details style="margin-top:14px"><summary data-i18n="payloadTitle"></summary><pre id="payload"></pre></details>
+    </div>
+  </div>
+
+  <div class="foot">HCGA Trading LLC · <span data-i18n="footContact"></span> ing.alberto@hcgatrading.com</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* =========================================================
+     Configuración (para desarrollo)
+     ========================================================= */
+  var PROTOTYPE = true;                       // false = formulario real: quitar el aviso y enviar el payload al servidor
+  var TEXT_VERSION = { certificate: "v4", consents: "v1" };
+  var CONTACT_EMAIL = "ing.alberto@hcgatrading.com";
+
+  /* =========================================================
+     Textos ES / EN
+     ========================================================= */
+  var I18N = {
+    es: {
+      proto: "Prototipo: lo que escriba aquí no se guarda ni se envía.",
+      title: "Regístrese y sea de los primeros en usar HCGA",
+      lead: "Cuéntenos cómo quiere participar. Le avisaremos cuando la plataforma esté activa.",
+      free: "Registrarse es gratis. No se solicita ningún pago ni datos de pago.",
+      roleLegend: "¿Cómo participará?",
+      carrierSub: "Transportista", shipperSub: "Remitente",
+      secPublic: "Información pública", tagPublic: "Solo se muestra si usted lo autoriza",
+      secPrivate: "Datos de verificación", tagPrivate: "Confidenciales: no se muestran",
+      nameCarrier: "Nombre del transportista o de la empresa", nameShipper: "Nombre de la empresa",
+      namePh: "Ej.: Transportes Rivera LLC",
+      idTypeLabelCarrier: "Tipo de número", idTypeLabelShipper: "Identificación de la empresa",
+      idNumCarrier: "Número", idNumEIN: "EIN (número de identificación fiscal)", idNumWeb: "Sitio web de la empresa",
+      idHelp: "No escriba su número de seguro social ni de licencia de conducir.",
+      idChooseRole: "Elija primero cómo participará (Carrier o Shipper).",
+      websiteOpt: "Sitio web de la empresa",
+      emailLabel: "Correo electrónico", emailHelp: "Le enviaremos un enlace para confirmarlo.",
+      phoneLabel: "Teléfono", phoneHelp: "Ej.: (239) 555-0123",
+      optTitle: "Opcional: ayúdenos a estimar el potencial (1 minuto)",
+      optHint: "No es necesario para registrarse. Estos datos solo se usan para calcular indicadores agregados.",
+      trucks: "Número de camiones", equipUsed: "Tipo de equipo que usa", equipNeeded: "Tipo de equipo que necesita",
+      states: "Estados donde trabaja", statesPh: "Ej.: FL, GA, TX",
+      loadsMonth: "Cargas por mes (aproximado)",
+      board: "¿Paga hoy una plataforma de cargas?", boardNone: "No", boardDat: "DAT One", boardTruckstop: "Truckstop", boardOther: "Otra",
+      boardCost: "¿Cuánto paga al mes? (USD)",
+      member: "¿Le interesaría una membresía mensual de HCGA?", memberYes: "Sí", memberNo: "No", memberDepends: "Depende del precio",
+      memberHelp: "Precio de referencia: USD 300 al mes. Es solo una referencia: no es una oferta y no se cobra nada.",
+      lanes: "Rutas principales", lanesPh: "Ej.: Orlando → Atlanta",
+      brokers: "¿Usa brokers hoy?", brokersYes: "Sí", brokersNo: "No", brokersSome: "A veces",
+      avgRate: "Tarifa promedio que paga por carga (USD), si desea compartirla",
+      choose: "Seleccione…",
+      eq1: "Camión recto de 26 pies", eq2: "Camión recto de 16 a 24 pies", eq3: "Cargo van o Sprinter", eq4: "Tractor con tráiler de 53 pies", eq5: "Otro",
+      secConsent: "Autorizaciones",
+      required: "(obligatoria)", optional: "(opcional)",
+      c1pre: "Declaro que los datos son veraces, que estoy autorizado para representar a la persona o empresa registrada y acepto el ", c1link: "Aviso de privacidad de HCGA", c1post: ".",
+      c2: "Acepto que HCGA me contacte por correo electrónico y teléfono, incluidos mensajes de texto, sobre mi registro y el lanzamiento de la plataforma.",
+      c3: "Autorizo que el nombre de mi empresa o transportista y mi rol aparezcan como «interesado» en la plataforma.",
+      c4: "Autorizo que HCGA comparta mis datos de contacto con posibles financiadores o socios de HCGA, bajo confidencialidad.",
+      dataUseTitle: "Cómo usamos sus datos",
+      dataUseText: "HCGA usa los datos para gestionar este registro, contactarlo sobre el lanzamiento de la plataforma y calcular indicadores agregados del interés del mercado. No los vende ni publica los datos de contacto. El nombre y el rol solo aparecen en la plataforma si usted lo autorizó. Los datos identificables solo se comparten con terceros, como posibles financiadores o socios, con su autorización expresa y bajo confidencialidad; en los demás casos solo se comparten cifras agregadas. Para corregir o eliminar su registro: " + CONTACT_EMAIL + ".",
+      submit: "Registrar interés",
+      submitNote: "Se emitirá un certificado digital de intención comercial. No es un contrato y no genera cobros.",
+      summaryTitle: "Revise los campos marcados:",
+      eRequired: "Este campo es obligatorio.", eRole: "Elija Carrier o Shipper.",
+      eEmail: "Escriba un correo válido, por ejemplo nombre@empresa.com.",
+      ePhone: "Escriba un teléfono válido, por ejemplo (239) 555-0123.",
+      eUsdot: "El número USDOT tiene entre 5 y 8 dígitos.", eMc: "El número MC tiene entre 5 y 7 dígitos.",
+      eEin: "El EIN tiene 9 dígitos, por ejemplo 12-3456789.", eWeb: "Escriba un sitio web válido, por ejemplo empresa.com.",
+      eConsent: "Esta autorización es necesaria para registrarse.",
+      doneTitle: "Recibimos y registramos su interés",
+      doneMsg: "Le enviamos su certificado y un enlace para confirmar su correo a ",
+      doneMsgProto: " (en este prototipo no se envía ningún correo).",
+      certTitle: "CERTIFICADO DIGITAL DE INTENCIÓN COMERCIAL",
+      certCui: "Código único (CUI)", certDate: "Fecha y hora", certName: "Nombre / razón social", certRole: "Rol",
+      certId: "Identificación", certEmail: "Correo electrónico", certPhone: "Teléfono", certStatus: "Estado", certVerified: "Fecha de verificación",
+      stReg: "REGISTRADO · correo pendiente de confirmar", stVer: "VERIFICADO", pending: "—",
+      certFine: "Este certificado no es un contrato ni genera cobros. El registro es gratuito. Para corregir o eliminar su registro: " + CONTACT_EMAIL + ".",
+      again: "Hacer otro registro",
+      protoDone: "Solo en el prototipo: así se vería el cambio de estado cuando el titular hace clic en el enlace de confirmación del correo.",
+      simulate: "Simular: confirmar mi correo",
+      payloadTitle: "Datos que enviaría el formulario (para desarrollo)",
+      footContact: "Contacto:",
+      carrierRole: "Carrier (transportista)", shipperRole: "Shipper (remitente)"
+    },
+    en: {
+      proto: "Prototype: what you type here is not saved or sent.",
+      title: "Register and be among the first to use HCGA",
+      lead: "Tell us how you want to take part. We will let you know when the platform is live.",
+      free: "Registration is free. No payment or payment details are requested.",
+      roleLegend: "How will you take part?",
+      carrierSub: "Carrier (trucking company or driver)", shipperSub: "Shipper (freight owner)",
+      secPublic: "Public information", tagPublic: "Shown only if you authorize it",
+      secPrivate: "Verification details", tagPrivate: "Confidential: never shown",
+      nameCarrier: "Carrier or company name", nameShipper: "Company name",
+      namePh: "e.g. Rivera Transport LLC",
+      idTypeLabelCarrier: "Number type", idTypeLabelShipper: "Company identification",
+      idNumCarrier: "Number", idNumEIN: "EIN (tax identification number)", idNumWeb: "Company website",
+      idHelp: "Do not enter your Social Security or driver's license number.",
+      idChooseRole: "Choose first how you will take part (Carrier or Shipper).",
+      websiteOpt: "Company website",
+      emailLabel: "Email", emailHelp: "We will send you a link to confirm it.",
+      phoneLabel: "Phone", phoneHelp: "e.g. (239) 555-0123",
+      optTitle: "Optional: help us estimate the potential (1 minute)",
+      optHint: "Not required to register. This data is only used to compile aggregate indicators.",
+      trucks: "Number of trucks", equipUsed: "Type of equipment you use", equipNeeded: "Type of equipment you need",
+      states: "States where you operate", statesPh: "e.g. FL, GA, TX",
+      loadsMonth: "Loads per month (approximate)",
+      board: "Do you pay for a load board today?", boardNone: "No", boardDat: "DAT One", boardTruckstop: "Truckstop", boardOther: "Other",
+      boardCost: "How much do you pay per month? (USD)",
+      member: "Would you be interested in an HCGA monthly membership?", memberYes: "Yes", memberNo: "No", memberDepends: "Depends on the price",
+      memberHelp: "Reference price: USD 300 per month. It is only a reference: it is not an offer and nothing is charged.",
+      lanes: "Main lanes", lanesPh: "e.g. Orlando → Atlanta",
+      brokers: "Do you use brokers today?", brokersYes: "Yes", brokersNo: "No", brokersSome: "Sometimes",
+      avgRate: "Average rate you pay per load (USD), if you wish to share it",
+      choose: "Select…",
+      eq1: "26-ft straight truck", eq2: "16 to 24-ft straight truck", eq3: "Cargo van or Sprinter", eq4: "Tractor with 53-ft trailer", eq5: "Other",
+      secConsent: "Authorizations",
+      required: "(required)", optional: "(optional)",
+      c1pre: "I declare that the information is accurate, that I am authorized to represent the person or company registered, and I accept HCGA's ", c1link: "Privacy Notice", c1post: ".",
+      c2: "I agree that HCGA may contact me by email and phone, including text messages, about my registration and the platform launch.",
+      c3: "I authorize my company or carrier name and role to appear as “interested” on the platform.",
+      c4: "I authorize HCGA to share my contact details with prospective financiers or partners of HCGA, under confidentiality.",
+      dataUseTitle: "How we use your data",
+      dataUseText: "HCGA uses the data to manage this registration, to contact you about the platform launch, and to compile aggregate indicators of market interest. HCGA does not sell it or publish contact details. Your name and role appear on the platform only if you authorized it. Identifiable data is shared with third parties, such as prospective financiers or partners, only with your express authorization and under confidentiality; otherwise only aggregate figures are shared. To correct or delete your record: " + CONTACT_EMAIL + ".",
+      submit: "Register interest",
+      submitNote: "A digital certificate of commercial intent will be issued. It is not a contract and creates no charges.",
+      summaryTitle: "Please review the marked fields:",
+      eRequired: "This field is required.", eRole: "Choose Carrier or Shipper.",
+      eEmail: "Enter a valid email, for example name@company.com.",
+      ePhone: "Enter a valid phone number, for example (239) 555-0123.",
+      eUsdot: "A USDOT number has 5 to 8 digits.", eMc: "An MC number has 5 to 7 digits.",
+      eEin: "An EIN has 9 digits, for example 12-3456789.", eWeb: "Enter a valid website, for example company.com.",
+      eConsent: "This authorization is required to register.",
+      doneTitle: "We received and registered your interest",
+      doneMsg: "We sent your certificate and a link to confirm your email to ",
+      doneMsgProto: " (this prototype does not send any email).",
+      certTitle: "DIGITAL CERTIFICATE OF COMMERCIAL INTENT",
+      certCui: "Unique code (CUI)", certDate: "Date and time", certName: "Name / company", certRole: "Role",
+      certId: "Identification", certEmail: "Email", certPhone: "Phone", certStatus: "Status", certVerified: "Verification date",
+      stReg: "REGISTERED · email not yet confirmed", stVer: "VERIFIED", pending: "—",
+      certFine: "This certificate is not a contract and creates no charges. Registration is free. To correct or delete your record: " + CONTACT_EMAIL + ".",
+      again: "Make another registration",
+      protoDone: "Prototype only: this is how the status would change when the registrant clicks the confirmation link in the email.",
+      simulate: "Simulate: confirm my email",
+      payloadTitle: "Data the form would send (for development)",
+      footContact: "Contact:",
+      carrierRole: "Carrier", shipperRole: "Shipper"
+    }
+  };
+
+  /* =========================================================
+     Estado
+     ========================================================= */
+  var qs = new URLSearchParams(location.search);
+  var lang = (qs.get("lang") || (navigator.language || "es")).toLowerCase().indexOf("en") === 0 ? "en" : "es";
+  var source = (qs.get("src") || "web").slice(0, 40).replace(/[^\w-]/g, "");
+  var vals = { role: "", name: "", idType: "", idValue: "", email: "", phone: "" };
+  var last = null;      // último registro (prototipo)
+  var verifiedAt = null;
+
+  function t(k){ return (I18N[lang] && I18N[lang][k] != null) ? I18N[lang][k] : I18N.es[k]; }
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+
+  /* =========================================================
+     Render dinámico
+     ========================================================= */
+  function equipOptions(selected){
+    var list = [["straight_26ft","eq1"],["straight_16_24ft","eq2"],["cargo_van","eq3"],["tractor_53ft","eq4"],["other","eq5"]];
+    return '<option value="">' + esc(t("choose")) + '</option>' + list.map(function(o){
+      return '<option value="' + o[0] + '"' + (selected === o[0] ? " selected" : "") + '>' + esc(t(o[1])) + '</option>';
+    }).join("");
+  }
+  function opts(list, selected){
+    return '<option value="">' + esc(t("choose")) + '</option>' + list.map(function(o){
+      return '<option value="' + o[0] + '"' + (selected === o[0] ? " selected" : "") + '>' + esc(t(o[1])) + '</option>';
+    }).join("");
+  }
+
+  function renderIdBlock(){
+    var el = $("idBlock");
+    if (!vals.role){
+      el.innerHTML = '<div class="field"><div class="help">' + esc(t("idChooseRole")) + '</div></div>';
+      return;
+    }
+    var html = "";
+    if (vals.role === "carrier"){
+      if (vals.idType !== "USDOT" && vals.idType !== "MC") vals.idType = "USDOT";
+      html += '<div class="row2"><div class="field"><label for="idType">' + esc(t("idTypeLabelCarrier")) + '</label>' +
+        '<select id="idType" name="idType"><option value="USDOT"' + (vals.idType==="USDOT"?" selected":"") + '>USDOT</option><option value="MC"' + (vals.idType==="MC"?" selected":"") + '>MC</option></select></div>' +
+        '<div class="field"><label for="idValue">' + esc(t("idNumCarrier")) + '</label>' +
+        '<input type="text" id="idValue" name="idValue" inputmode="numeric" maxlength="20" placeholder="' + (vals.idType==="MC" ? "MC-123456" : "1234567") + '" value="' + esc(vals.idValue) + '" aria-describedby="idHelp idErr"></div></div>';
+    } else {
+      if (vals.idType !== "EIN" && vals.idType !== "WEB") vals.idType = "EIN";
+      html += '<div class="row2"><div class="field"><label for="idType">' + esc(t("idTypeLabelShipper")) + '</label>' +
+        '<select id="idType" name="idType"><option value="EIN"' + (vals.idType==="EIN"?" selected":"") + '>EIN</option><option value="WEB"' + (vals.idType==="WEB"?" selected":"") + '>' + esc(t("websiteOpt")) + '</option></select></div>' +
+        '<div class="field"><label for="idValue">' + esc(vals.idType==="EIN" ? t("idNumEIN") : t("idNumWeb")) + '</label>' +
+        '<input type="text" id="idValue" name="idValue" ' + (vals.idType==="EIN" ? 'inputmode="numeric" placeholder="12-3456789"' : 'inputmode="url" placeholder="empresa.com"') + ' maxlength="120" value="' + esc(vals.idValue) + '" aria-describedby="idHelp idErr"></div></div>';
+    }
+    html += '<div class="help" id="idHelp" style="margin:-8px 0 16px">' + esc(t("idHelp")) + '</div><div class="error" id="idErr" hidden></div>';
+    el.innerHTML = html;
+  }
+
+  function renderOptional(){
+    $("optSummary").textContent = t("optTitle");
+    var el = $("optBlock");
+    var o = vals.opt || (vals.opt = {});
+    if (!vals.role){ el.innerHTML = '<p class="hint">' + esc(t("idChooseRole")) + '</p>'; return; }
+    var h = '<p class="hint">' + esc(t("optHint")) + '</p>';
+    if (vals.role === "carrier"){
+      h += '<div class="row2">' +
+        fld("o_trucks", t("trucks"), '<input type="number" id="o_trucks" name="o_trucks" min="1" max="999" inputmode="numeric" value="' + esc(o.trucks||"") + '">') +
+        fld("o_equip", t("equipUsed"), '<select id="o_equip" name="o_equip">' + equipOptions(o.equip) + '</select>') + '</div>' +
+        '<div class="row2">' +
+        fld("o_states", t("states"), '<input type="text" id="o_states" name="o_states" maxlength="60" placeholder="' + esc(t("statesPh")) + '" value="' + esc(o.states||"") + '">') +
+        fld("o_loads", t("loadsMonth"), '<input type="number" id="o_loads" name="o_loads" min="0" max="9999" inputmode="numeric" value="' + esc(o.loads||"") + '">') + '</div>' +
+        '<div class="row2">' +
+        fld("o_board", t("board"), '<select id="o_board" name="o_board">' + opts([["none","boardNone"],["dat","boardDat"],["truckstop","boardTruckstop"],["other","boardOther"]], o.board) + '</select>') +
+        ((o.board && o.board !== "none") ? fld("o_boardCost", t("boardCost"), '<input type="number" id="o_boardCost" name="o_boardCost" min="0" max="9999" inputmode="numeric" value="' + esc(o.boardCost||"") + '">') : '<div></div>') + '</div>' +
+        fld("o_member", t("member"), '<select id="o_member" name="o_member" aria-describedby="memberHelp">' + opts([["yes","memberYes"],["no","memberNo"],["depends","memberDepends"]], o.member) + '</select><div class="help" id="memberHelp">' + esc(t("memberHelp")) + '</div>');
+    } else {
+      h += '<div class="row2">' +
+        fld("o_loads", t("loadsMonth"), '<input type="number" id="o_loads" name="o_loads" min="0" max="9999" inputmode="numeric" value="' + esc(o.loads||"") + '">') +
+        fld("o_equip", t("equipNeeded"), '<select id="o_equip" name="o_equip">' + equipOptions(o.equip) + '</select>') + '</div>' +
+        fld("o_lanes", t("lanes"), '<input type="text" id="o_lanes" name="o_lanes" maxlength="120" placeholder="' + esc(t("lanesPh")) + '" value="' + esc(o.lanes||"") + '">') +
+        '<div class="row2">' +
+        fld("o_brokers", t("brokers"), '<select id="o_brokers" name="o_brokers">' + opts([["yes","brokersYes"],["no","brokersNo"],["sometimes","brokersSome"]], o.brokers) + '</select>') +
+        fld("o_avgRate", t("avgRate"), '<input type="number" id="o_avgRate" name="o_avgRate" min="0" max="99999" inputmode="numeric" value="' + esc(o.avgRate||"") + '">') + '</div>';
+    }
+    el.innerHTML = h;
+  }
+  function fld(id, label, control){ return '<div class="field"><label for="' + id + '">' + esc(label) + ' <span class="opt">' + esc(t("optional")) + '</span></label>' + control + '</div>'; }
+
+  function renderStatic(){
+    document.documentElement.lang = lang;
+    document.title = lang === "en" ? "HCGA Trading — Interest registration" : "HCGA Trading — Registro de interés";
+    document.querySelectorAll("[data-i18n]").forEach(function(el){ el.textContent = t(el.getAttribute("data-i18n")); });
+    $("nameLabel").textContent = vals.role === "shipper" ? t("nameShipper") : t("nameCarrier");
+    $("name").placeholder = t("namePh");
+    $("c1").innerHTML = esc(t("c1pre")) + '<button type="button" class="linkbtn" id="privLink">' + esc(t("c1link")) + '</button>' + esc(t("c1post"));
+    $("privLink").addEventListener("click", function(){ var d = $("dataUse"); d.open = true; d.scrollIntoView({behavior:"smooth", block:"center"}); });
+    if ($("lang-es")) $("lang-es").setAttribute("aria-pressed", lang === "es");
+    if ($("lang-en")) $("lang-en").setAttribute("aria-pressed", lang === "en");
+    if ($("proto")) $("proto").hidden = !PROTOTYPE;
+    renderIdBlock(); renderOptional();
+    if (last) renderDone();
+  }
+
+  /* =========================================================
+     Validación
+     ========================================================= */
+  function digits(s){ return String(s||"").replace(/\D/g, ""); }
+  function validate(){
+    var e = {};
+    if (!vals.role) e.role = t("eRole");
+    if (!vals.name || vals.name.trim().length < 2) e.name = t("eRequired");
+    if (vals.role){
+      var v = (vals.idValue || "").trim();
+      if (!v) e.idValue = t("eRequired");
+      else if (vals.idType === "USDOT"){ var d = digits(v.replace(/^(usdot|dot)[\s-]*/i, "")); if (!/^\d{5,8}$/.test(d)) e.idValue = t("eUsdot"); }
+      else if (vals.idType === "MC"){ var m = digits(v.replace(/^mc[\s-]*/i, "")); if (!/^\d{5,7}$/.test(m)) e.idValue = t("eMc"); }
+      else if (vals.idType === "EIN"){ if (!/^\d{2}-?\d{7}$/.test(v)) e.idValue = t("eEin"); }
+      else if (vals.idType === "WEB"){ if (!/^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/\S*)?$/i.test(v)) e.idValue = t("eWeb"); }
+    }
+    if (!vals.email) e.email = t("eRequired");
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(vals.email.trim())) e.email = t("eEmail");
+    var pd = digits(vals.phone);
+    if (!vals.phone) e.phone = t("eRequired");
+    else if (!(pd.length === 10 || (pd.length === 11 && pd[0] === "1") || (/^\s*\+/.test(vals.phone) && pd.length >= 8 && pd.length <= 15))) e.phone = t("ePhone");
+    if (!$("c_terms").checked) e.c_terms = t("eConsent");
+    if (!$("c_contact").checked) e.c_contact = t("eConsent");
+    return e;
+  }
+  var ERR_IDS = { role:"roleErr", name:"nameErr", idValue:"idErr", email:"emailErr", phone:"phoneErr", c_terms:"c_termsErr", c_contact:"c_contactErr" };
+  var FOCUS_IDS = { role:"form", name:"name", idValue:"idValue", email:"email", phone:"phone", c_terms:"c_terms", c_contact:"c_contact" };
+  var ORDER = ["role","name","idValue","email","phone","c_terms","c_contact"];
+  function fieldName(k){
+    if (k === "role") return t("roleLegend");
+    if (k === "name") return vals.role === "shipper" ? t("nameShipper") : t("nameCarrier");
+    if (k === "idValue") return vals.idType === "WEB" ? t("idNumWeb") : (vals.idType === "EIN" ? "EIN" : (vals.idType || t("idNumCarrier")));
+    if (k === "email") return t("emailLabel");
+    if (k === "phone") return t("phoneLabel");
+    return t("secConsent") + (k === "c_terms" ? " 1" : " 2");
+  }
+
+  function showErrors(e){
+    ORDER.forEach(function(k){
+      var el = $(ERR_IDS[k]); if (!el) return;
+      if (e[k]){ el.textContent = e[k]; el.hidden = false; } else { el.textContent = ""; el.hidden = true; }
+      var input = $(FOCUS_IDS[k]);
+      if (input && input.tagName !== "FORM") input.setAttribute("aria-invalid", e[k] ? "true" : "false");
+    });
+    var keys = ORDER.filter(function(k){ return e[k]; });
+    var s = $("summary");
+    if (!keys.length){ s.hidden = true; s.innerHTML = ""; return keys; }
+    s.innerHTML = '<strong>' + esc(t("summaryTitle")) + '</strong>' + keys.map(function(k){
+      return '<div><a href="#' + (FOCUS_IDS[k] === "form" ? "roleErr" : FOCUS_IDS[k]) + '" data-focus="' + k + '"><b>' + esc(fieldName(k)) + ':</b> ' + esc(e[k]) + '</a></div>';
+    }).join("");
+    s.hidden = false;
+    return keys;
+  }
+
+  /* =========================================================
+     Enmascarado y registro
+     ========================================================= */
+  function maskId(){
+    var v = (vals.idValue || "").trim();
+    if (vals.idType === "WEB") return v.replace(/^https?:\/\//i, "").replace(/\/.*$/, "");
+    var d = digits(v);
+    var tag = vals.idType === "EIN" ? "EIN" : vals.idType;
+    return tag + " ••••" + d.slice(-4);
+  }
+  function maskEmail(e){ e = e.trim().toLowerCase(); var i = e.indexOf("@"); return e.charAt(0) + "•••" + e.slice(i); }
+  function maskPhone(p){ return "•••-•••-" + digits(p).slice(-4); }
+  function cui(){ return "HCGA-CI-" + new Date().getFullYear() + "-" + String(Math.floor(100000 + Math.random() * 900000)); }
+  function fmtDate(d){
+    try { return d.toLocaleString(lang === "en" ? "en-US" : "es-US", { timeZone:"America/New_York", dateStyle:"medium", timeStyle:"short" }) + " ET"; }
+    catch(e){ return d.toISOString(); }
+  }
+
+  function buildPayload(code, when){
+    var o = vals.opt || {};
+    var optional = {};
+    Object.keys(o).forEach(function(k){ if (o[k] !== "" && o[k] != null) optional[k] = o[k]; });
+    return {
+      schema: "hcga-ci-registration/1",
+      cui: code,
+      status: "registered",
+      submittedAt: when.toISOString(),
+      role: vals.role,
+      name: vals.name.trim(),
+      idType: vals.idType,
+      idValue: vals.idValue.trim(),
+      email: vals.email.trim().toLowerCase(),
+      phone: vals.phone.trim(),
+      optional: optional,
+      consents: { terms: $("c_terms").checked, contact: $("c_contact").checked, publicListing: $("c_public").checked, shareWithFinanciers: $("c_share").checked },
+      textVersions: TEXT_VERSION,
+      language: lang,
+      source: source,
+      userAgent: navigator.userAgent,
+      serverAdds: ["ip", "verifiedAt"]
+    };
+  }
+
+  function renderDone(){
+    if (!last) return;
+    document.querySelectorAll("#doneView [data-i18n]").forEach(function(el){ el.textContent = t(el.getAttribute("data-i18n")); });
+    $("doneMsg").textContent = t("doneMsg") + last.maskedEmail + (PROTOTYPE ? t("doneMsgProto") : ".") ;
+    var st = verifiedAt ? '<span class="pill ver">' + esc(t("stVer")) + '</span>' : '<span class="pill reg">' + esc(t("stReg")) + '</span>';
+    var rows = [
+      [t("certCui"), '<span class="mono">' + esc(last.cui) + '</span>'],
+      [t("certDate"), esc(fmtDate(last.when))],
+      [t("certName"), esc(last.name)],
+      [t("certRole"), esc(t(last.role === "carrier" ? "carrierRole" : "shipperRole"))],
+      [t("certId"), '<span class="mono">' + esc(last.maskedId) + '</span>'],
+      [t("certEmail"), '<span class="mono">' + esc(last.maskedEmail) + '</span>'],
+      [t("certPhone"), '<span class="mono">' + esc(last.maskedPhone) + '</span>'],
+      [t("certStatus"), st],
+      [t("certVerified"), verifiedAt ? esc(fmtDate(verifiedAt)) : esc(t("pending"))]
+    ];
+    $("certList").innerHTML = rows.map(function(r){ return "<dt>" + esc(r[0]) + "</dt><dd>" + r[1] + "</dd>"; }).join("");
+    $("simulate").hidden = !!verifiedAt;
+    $("payload").textContent = JSON.stringify(last.payload, null, 2);
+  }
+
+  /* =========================================================
+     Eventos
+     ========================================================= */
+  var form = $("form");
+
+  form.addEventListener("input", function(ev){
+    var n = ev.target.name;
+    if (n === "name") vals.name = ev.target.value;
+    else if (n === "idValue") vals.idValue = ev.target.value;
+    else if (n === "email") vals.email = ev.target.value;
+    else if (n === "phone") vals.phone = ev.target.value;
+    else if (n && n.indexOf("o_") === 0) (vals.opt || (vals.opt = {}))[n.slice(2)] = ev.target.value;
+  });
+  form.addEventListener("change", function(ev){
+    var n = ev.target.name;
+    if (n === "role"){
+      vals.role = ev.target.value; vals.idValue = ""; vals.idType = ""; vals.opt = {};
+      document.querySelectorAll(".role").forEach(function(l){ l.classList.toggle("on", l.getAttribute("data-role") === vals.role); });
+      $("nameLabel").textContent = vals.role === "shipper" ? t("nameShipper") : t("nameCarrier");
+      renderIdBlock(); renderOptional();
+      $("roleErr").hidden = true;
+    } else if (n === "idType"){
+      vals.idType = ev.target.value; vals.idValue = ""; renderIdBlock(); $("idValue").focus();
+    } else if (n === "o_board"){
+      (vals.opt || (vals.opt = {})).board = ev.target.value; renderOptional(); $("o_board").focus();
+    } else if (n && n.indexOf("o_") === 0){
+      (vals.opt || (vals.opt = {}))[n.slice(2)] = ev.target.value;
+    }
+  });
+
+  $("summary").addEventListener("click", function(ev){
+    var a = ev.target.closest("a[data-focus]"); if (!a) return;
+    ev.preventDefault();
+    var k = a.getAttribute("data-focus");
+    var target = k === "role" ? document.querySelector('.role input') : $(FOCUS_IDS[k]);
+    if (target) target.focus();
+  });
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    vals.name = $("name").value; vals.email = $("email").value; vals.phone = $("phone").value;
+    var idv = $("idValue"); if (idv) vals.idValue = idv.value;
+    var hp = form.elements["company_website"];
+    var errs = validate();
+    var keys = showErrors(errs);
+    if (keys.length){
+      var s = $("summary"); s.focus(); s.scrollIntoView({ behavior:"smooth", block:"start" });
+      return;
+    }
+    if (hp && hp.value) return;                       // honeypot: se descarta en silencio
+    var when = new Date(), code = cui();
+    last = { cui: code, when: when, role: vals.role, name: vals.name.trim(),
+             maskedId: maskId(), maskedEmail: maskEmail(vals.email), maskedPhone: maskPhone(vals.phone),
+             payload: buildPayload(code, when) };
+    verifiedAt = null;
+    try {
+      localStorage.setItem("hcga_user_registered", "true");
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          type: "HCGA_REGISTRATION_COMPLETED",
+          cui: code,
+          role: vals.role,
+          name: vals.name
+        }, "*");
+      }
+    } catch(err) {}
+    $("formView").hidden = true; $("doneView").hidden = false;
+    renderDone();
+    var h = $("doneTitle"); h.focus(); window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  $("simulate").addEventListener("click", function(){
+    verifiedAt = new Date();
+    last.payload.status = "verified";
+    last.payload.verifiedAt = verifiedAt.toISOString();
+    try {
+      localStorage.setItem("hcga_user_registered", "true");
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: "HCGA_REGISTRATION_COMPLETED" }, "*");
+      }
+    } catch(err) {}
+    renderDone();
+  });
+  $("again").addEventListener("click", function(){
+    last = null; verifiedAt = null; form.reset();
+    vals = { role:"", name:"", idType:"", idValue:"", email:"", phone:"", opt:{} };
+    document.querySelectorAll(".role").forEach(function(l){ l.classList.remove("on"); });
+    showErrors({});
+    $("doneView").hidden = true; $("formView").hidden = false;
+    renderStatic(); window.scrollTo({ top: 0 });
+  });
+
+  if ($("lang-es")) $("lang-es").addEventListener("click", function(){ lang = "es"; showErrors({}); renderStatic(); });
+  if ($("lang-en")) $("lang-en").addEventListener("click", function(){ lang = "en"; showErrors({}); renderStatic(); });
+
+  renderStatic();
+})();
+</script>
+</body>
+</html>
