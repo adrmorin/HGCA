@@ -626,12 +626,12 @@ const getSafetyData = (lang) => {
         ? "Perfil de cumplimiento FMCSA impecable con excelentes índices de seguridad y paquetes de documentación inmediata."
         : "Flawless FMCSA compliance profile with top-tier safety scores and instant documentation packages.",
       bullets: isEs ? [
-        "Registro DOT activo y verificación de autoridad comercial",
+        "Registro DOT activo (USDOT #4150721) y verificación de autoridad comercial",
         "Calificación de seguridad satisfactoria en auditorías oficiales DOT",
         "Revisiones de cumplimiento del Registro Unificado de Transportistas (UCR)",
         "Permisos estatales e interestatales activos (IFTA, HUT, límites de peso)"
       ] : [
-        "Clean DOT registration and active authority verification",
+        "Active DOT registration (USDOT #4150721) and active commercial authority",
         "Satisfactory safety ratings from official DOT audits",
         "Unified carrier registration (UCR) compliance checks",
         "Intrastate and interstate permits active (IFTA, HUT, weight)"
@@ -3734,7 +3734,7 @@ function App() {
                 }}
               >
                 <IconClipboard width={16} height={16} color="#ffffff" />
-                <span>{t('Registro', 'Registration')}</span>
+                <span>{t('Registrarse', 'Sign Up')}</span>
               </button>
             </div>
           </div>
@@ -4293,7 +4293,7 @@ function App() {
         </div>
         <div className="footer-bottom">
           <div className="container">
-            <p>&copy; {new Date().getFullYear()} HCGA TRADING LLC. {t('Todos los derechos reservados.', 'All rights reserved.')}</p>
+            <p>&copy; {new Date().getFullYear()} HCGA TRADING LLC · USDOT #4150721 · Tel. (239) 961-0175. {t('Todos los derechos reservados.', 'All rights reserved.')}</p>
           </div>
         </div>
       </footer>
@@ -4382,6 +4382,7 @@ function App() {
       {/* Floating Registration Menu & Interactive Dialog */}
       <RegistrationFloatMenu
         lang={lang}
+        showLauncher={true}
         isOpen={showRegistrationModal}
         setIsOpen={handleCloseRegistrationModal}
         requiredNotice={registrationRequiredNotice}

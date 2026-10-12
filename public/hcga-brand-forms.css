@@ -1,0 +1,137 @@
+/* ==========================================================================
+   HCGA — Capa corporativa compartida para formularios embebidos
+   Replica los tokens del brand book (src/index.css):
+   Saira 800/700 italic (wdth 125/115) · Inter · IBM Plex Mono
+   Rojo HCGA #890000 / Signal Red #EF5350 · superficies #111 / #1a1a1a
+   Se carga DESPUÉS del <style> propio de cada formulario.
+   ========================================================================== */
+
+:root {
+  /* Superficies y líneas */
+  --ink: #111111;
+  --panel: #1a1a1a;
+  --panel-2: #1f1f1f;
+  --panel-3: #2a2a2a;
+  --line: #2a2a2a;
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --text: #F3F1F0;
+  --dim: #a0a0a0;
+  --dimmer: #777777;
+
+  /* Acento corporativo (reemplaza rojos y azules previos) */
+  --red: #890000;
+  --red-bright: #890000;
+  --red-glow: rgba(137, 0, 0, 0.4);
+  --accent-text: #EF5350;
+  --blue: #EF5350;
+  --blue-bg: rgba(137, 0, 0, 0.18);
+
+  /* Radios del brand book */
+  --radius-sm: 0.375rem;
+  --radius: 0.5rem;
+  --radius-lg: 0.5rem;
+
+  /* Tipografía */
+  --font-head: 'Saira', 'Arial Narrow', Arial, sans-serif;
+  --font-base: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+}
+
+/* Escala tipográfica corporativa */
+:where(h1, h2, h3, h4, .acc-title, .sub-box-title, .btn-submit) {
+  font-family: var(--font-head);
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+:where(h1, h2) { font-weight: 800; font-variation-settings: 'wdth' 125; }
+:where(h3, h4, .acc-title, .sub-box-title) { font-weight: 700; font-variation-settings: 'wdth' 115; }
+
+/* Etiquetas tipo eyebrow: Plex Mono caps */
+:where(.badge, .acc-pill, .acc-status-tag, .acc-num, .acc-number, .progress-meta span) {
+  font-family: var(--font-mono);
+  font-style: normal;
+  letter-spacing: 0.08em;
+}
+
+/* Hero unificado */
+.hero {
+  background: linear-gradient(135deg, rgba(137, 0, 0, 0.22) 0%, var(--panel) 70%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.hero::after { background: radial-gradient(circle at top right, rgba(137, 0, 0, 0.18), transparent 70%); }
+.badge--dot,
+.badge--fmcsa {
+  background: rgba(137, 0, 0, 0.18);
+  border-color: rgba(239, 83, 80, 0.4);
+  color: var(--accent-text);
+}
+
+/* Progreso */
+.progress-bar-fill { background: linear-gradient(90deg, #890000 0%, #EF5350 100%); }
+.progress-meta span,
+.btn-text { color: var(--accent-text); }
+
+/* Acordeón */
+.acc-item.open { border-color: rgba(239, 83, 80, 0.45); }
+.acc-item.open .acc-num,
+.acc-item.open .acc-number {
+  background: var(--red);
+  border-color: var(--red);
+  color: #ffffff;
+}
+.acc-number { color: var(--accent-text); }
+.acc-item.open .acc-chevron { stroke: var(--accent-text); }
+.acc-trigger:focus-visible,
+.acc-header:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: -2px;
+}
+
+/* Campos */
+:is(input, select, textarea):focus {
+  border-color: var(--accent-text);
+  box-shadow: 0 0 0 3px rgba(239, 83, 80, 0.2);
+}
+:is(.check-label, .consent-item, .consent, .chip) input { accent-color: var(--red); }
+.info-box {
+  background: rgba(137, 0, 0, 0.12);
+  border-color: rgba(239, 83, 80, 0.3);
+  color: var(--text);
+}
+.info-box svg { stroke: var(--accent-text); }
+
+/* Botones */
+:is(.btn-submit, .btn-step--primary) {
+  background: var(--red);
+  border: 1.5px solid #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+.btn-submit { font-size: 1.15rem; }
+:is(.btn-submit, .btn-step--primary):is(:hover, :focus-visible):not(:disabled) {
+  background: #6B0000;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
+}
+
+/* Confirmación */
+.done-card { border-color: rgba(239, 83, 80, 0.4); }
+.done-icon {
+  background: rgba(137, 0, 0, 0.18);
+  color: var(--accent-text);
+  border-color: rgba(239, 83, 80, 0.4);
+}
+.cert-paper-head { border-bottom-color: #890000; }
+.cert-paper-brand h3,
+.cert h3 { color: #890000; }
+.cert-cui-badge {
+  background: #F3F1F0;
+  color: #890000;
+  border-color: #E4E0DE;
+}
+
+/* Incrustado en el modal de registro de la web: fondo transparente */
+html.is-embedded,
+html.is-embedded body {
+  background: transparent !important;
+}

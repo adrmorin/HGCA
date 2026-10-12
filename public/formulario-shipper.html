@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>HCGA Trading — Formulario Oficial de Alta del Shipper / Shipper Onboarding</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Formulario oficial de registro y alta comercial de embarcadores (Shippers) para HCGA Trading LLC (USDOT #4150721, MC-1689201).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira:ital,wdth,wght@0,100..125,400..800;1,100..125,400..800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111417;
+    --panel: #181C20;
+    --panel-2: #21262C;
+    --panel-3: #2A3038;
+    --line: rgba(255, 255, 255, 0.12);
+    --line-strong: rgba(255, 255, 255, 0.22);
+    --text: #F4F2EE;
+    --dim: #A1A7AD;
+    --dimmer: #757B82;
+    --red: #8B1E23;
+    --red-bright: #C6383E;
+    --red-glow: rgba(198, 56, 62, 0.3);
+    --blue: #38bdf8;
+    --blue-bg: rgba(56, 189, 248, 0.14);
+    --green: #7FCF97;
+    --green-bg: rgba(76, 139, 93, 0.18);
+    --amber: #E6A04A;
+    --amber-bg: rgba(217, 138, 43, 0.16);
+    --err: #F29AA0;
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --font-head: 'Barlow Condensed', sans-serif;
+    --font-base: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--font-base);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 1.15;
+  }
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 16px 16px 64px;
+  }
+
+  /* HERO HEADER */
+  .hero {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.45) 0%, rgba(24, 28, 32, 0.8) 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 280px; height: 100%;
+    background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+  }
+  .badge--dot {
+    background: var(--blue-bg);
+    color: var(--blue);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+  .badge--edi {
+    background: var(--green-bg);
+    color: var(--green);
+    border: 1px solid rgba(127, 207, 151, 0.3);
+  }
+  .badge--fmcsa {
+    background: rgba(198, 56, 62, 0.15);
+    color: #fca5a5;
+    border: 1px solid rgba(198, 56, 62, 0.3);
+  }
+  .hero h1 {
+    font-size: clamp(26px, 5vw, 36px);
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+  .hero p {
+    color: var(--dim);
+    font-size: 15px;
+    max-width: 680px;
+    line-height: 1.5;
+  }
+
+  /* BARRA DE PROGRESO GLOBAL */
+  .progress-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    position: sticky;
+    top: 10px;
+    z-index: 40;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 13.5px;
+  }
+  .progress-meta strong {
+    color: #fff;
+    font-weight: 600;
+  }
+  .progress-meta span {
+    font-family: var(--font-mono);
+    color: var(--blue);
+    font-weight: 700;
+  }
+  .progress-bar-track {
+    width: 100%;
+    height: 8px;
+    background: var(--panel-3);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #38bdf8 0%, #0284c7 100%);
+    border-radius: 999px;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .progress-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--dimmer);
+  }
+  .btn-text {
+    background: none;
+    border: none;
+    color: var(--blue);
+    font-family: var(--font-base);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+  }
+
+  /* ACORDEÓN DESPLEGABLE */
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .acc-item {
+    background: var(--panel);
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .acc-item.open {
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  .acc-item.completed {
+    border-color: rgba(127, 207, 151, 0.35);
+  }
+
+  /* TRIGGER DEL ACORDEÓN */
+  .acc-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.18s ease;
+  }
+  .acc-trigger:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .acc-trigger:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: -2px;
+  }
+  .acc-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+  .acc-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+  .acc-item.completed .acc-number {
+    background: var(--green-bg);
+    color: var(--green);
+    border-color: rgba(127, 207, 151, 0.4);
+  }
+  .acc-title-group {
+    min-width: 0;
+  }
+  .acc-title {
+    font-family: var(--font-head);
+    font-size: 21px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .acc-desc {
+    color: var(--dim);
+    font-size: 13px;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .acc-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .acc-status-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--panel-2);
+    color: var(--dimmer);
+    border: 1px solid var(--line);
+  }
+  .acc-item.completed .acc-status-tag {
+    background: var(--green-bg);
+    color: var(--green);
+    border-color: rgba(127, 207, 151, 0.35);
+  }
+  .acc-chevron {
+    width: 20px;
+    height: 20px;
+    stroke: var(--dim);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .acc-item.open .acc-chevron {
+    transform: rotate(180deg);
+    stroke: var(--blue);
+  }
+
+  /* PANEL DE CONTENIDO */
+  .acc-panel {
+    display: none;
+    padding: 0 20px 24px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    animation: accSlideDown 0.22s ease-out;
+  }
+  .acc-item.open .acc-panel {
+    display: block;
+  }
+  @keyframes accSlideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CAMPOS Y FORMULARIOS */
+  .field {
+    margin-top: 16px;
+  }
+  .lbl {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .req {
+    color: #ef4444 !important;
+    font-weight: 800;
+    margin-left: 2px;
+    font-size: 1.15em;
+    line-height: 1;
+    display: inline-block;
+  }
+  .opt {
+    color: var(--dimmer);
+    font-size: 12.5px;
+    font-weight: 400;
+    margin-left: 4px;
+  }
+  .help {
+    color: var(--dim);
+    font-size: 12.5px;
+    margin-top: 5px;
+    line-height: 1.4;
+  }
+  .error-msg {
+    color: var(--err);
+    font-size: 13px;
+    margin-top: 5px;
+    font-weight: 500;
+    display: none;
+  }
+  .field.has-error .error-msg {
+    display: block;
+  }
+  .field.has-error input,
+  .field.has-error select,
+  .field.has-error textarea {
+    border-color: var(--err) !important;
+    background: rgba(242, 154, 160, 0.04);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100%;
+    background: var(--panel-2);
+    color: var(--text);
+    border: 1.5px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    padding: 11px 14px;
+    font-family: var(--font-base);
+    font-size: 14.5px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+  }
+  input::placeholder, textarea::placeholder {
+    color: var(--dimmer);
+  }
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A1A7AD' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  /* RETÍCULAS RESPONSIVAS */
+  .row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .row3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 640px) {
+    .row2, .row3 {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+
+  /* CAJAS DE INFORMACIÓN Y ALERTAS */
+  .info-box {
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #e0f2fe;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .info-box svg {
+    flex-shrink: 0;
+    stroke: var(--blue);
+    margin-top: 2px;
+  }
+
+  .corp-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* CHECKBOXES Y RADIOS MODERNOS */
+  .check-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  @media (max-width: 580px) {
+    .check-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .check-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--panel-2);
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 13.5px;
+    user-select: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .check-label:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+  .check-label input {
+    margin-top: 2px;
+    width: 17px;
+    height: 17px;
+    accent-color: var(--blue);
+    cursor: pointer;
+  }
+
+  /* CONSENTIMIENTOS */
+  .consent-block {
+    background: var(--panel-2);
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .consent-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  .consent-item input {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--blue);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  /* DIGITAL SIGNATURE CANVAS */
+  .sig-container {
+    background: #ffffff;
+    border: 2px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .sig-canvas {
+    width: 100%;
+    height: 150px;
+    display: block;
+    cursor: crosshair;
+    background: #ffffff;
+    touch-action: none;
+  }
+  .sig-watermark {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: #94a3b8;
+    pointer-events: none;
+    user-select: none;
+  }
+  .sig-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 12.5px;
+  }
+
+  /* BOTÓN DE ACCIÓN FINAL */
+  .submit-bar {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn-submit {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 9999px;
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 16px 32px;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(2, 132, 199, 0.4);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(2, 132, 199, 0.55);
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+  }
+  .btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  /* VISTA CONFIRMACIÓN (CUI-S) */
+  .done-card {
+    background: var(--panel);
+    border: 1.5px solid rgba(56, 189, 248, 0.4);
+    border-radius: var(--radius-lg);
+    padding: 32px 24px;
+    text-align: center;
+    margin-top: 20px;
+    animation: accSlideDown 0.3s ease;
+  }
+  .done-icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: var(--blue-bg);
+    color: var(--blue);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    border: 2px solid rgba(56, 189, 248, 0.4);
+  }
+  .done-card h2 {
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+  .done-card p {
+    color: var(--dim);
+    max-width: 540px;
+    margin: 0 auto 24px;
+    font-size: 15px;
+  }
+
+  .cert-paper {
+    background: #fafaf9;
+    color: #1c1917;
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: left;
+    border: 1px solid #d6d3d1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .cert-paper-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid #0284c7;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+  }
+  .cert-paper-brand h3 {
+    font-family: var(--font-head);
+    font-size: 24px;
+    color: #0369a1;
+  }
+  .cert-paper-brand span {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: #64748b;
+    font-weight: 600;
+  }
+  .cert-cui-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid #bae6fd;
+  }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 10px 14px;
+    font-size: 13.5px;
+  }
+  .cert-grid dt {
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+  }
+  .cert-grid dd {
+    font-weight: 500;
+  }
+  .cert-footer-note {
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px dashed #cbd5e1;
+    font-size: 11.5px;
+    color: #64748b;
+    line-height: 1.4;
+  }
+
+  [hidden] { display: none !important; }
+</style>
+<link rel="stylesheet" href="hcga-brand-forms.css">
+<script>if (window.self !== window.top) document.documentElement.classList.add("is-embedded");</script>
+<script src="hcga-required.js" defer></script>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- VISTA FORMULARIO PRINCIPAL -->
+  <div id="formView">
+    <div class="hero">
+      <div class="hero-badges">
+        <span class="badge badge--dot">USDOT #4150721</span>
+        <span class="badge badge--edi">EDI 204 / 214 / 210 READY</span>
+        <span class="badge badge--fmcsa">MC-1689201</span>
+      </div>
+      <h1 data-i18n="heroTitle">Expediente Oficial de Alta del Shipper / Embarcador</h1>
+      <p data-i18n="heroLead">Registre su empresa comercial como generador de carga verificado en la red de transporte de HCGA Trading LLC. Complete los 8 acápites del acordeón para habilitar despacho directo, términos de facturación y licitación tecnológica de cargas.</p>
+    </div>
+
+    <!-- TARJETA DE PROGRESO GLOBAL -->
+    <div class="progress-card" aria-label="Progreso del expediente shipper">
+      <div class="progress-meta">
+        <strong data-i18n="progTitle">Progreso del Expediente Comercial</strong>
+        <span id="progressText">0% (0 de 8 completados)</span>
+      </div>
+      <div class="progress-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+      </div>
+      <div class="progress-controls">
+        <span data-i18n="progHelp">Haga clic en cada acápite para desplegar y completar</span>
+        <button type="button" class="btn-text" id="btnToggleAll" data-i18n="expandAll">Expandir todos</button>
+      </div>
+    </div>
+
+    <form id="shipperForm" novalidate autocomplete="on">
+
+      <!-- =========================================================
+           ACORDEÓN DESPLEGABLE (8 ACÁPITES)
+           ========================================================= -->
+      <div class="accordion" role="region" aria-label="Acordeón de alta shipper">
+
+        <!-- 1. EMPRESA Y DATOS CORPORATIVOS -->
+        <div class="acc-item open" id="acc1">
+          <button type="button" class="acc-trigger" aria-expanded="true" aria-controls="panel1">
+            <div class="acc-left">
+              <span class="acc-number">01</span>
+              <div class="acc-title-group">
+                <span class="acc-title" data-i18n="sec1Title">Empresa & Perfil Corporativo</span>
+                <span class="acc-desc" data-i18n="sec1Desc">Razón social, DBA, Tax ID (EIN), industria y trayectoria</span>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-status-tag" id="status1">En curso</span>
+              <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="acc-panel" id="panel1">
+            <div class="row2">
+              <div class="field">
+                <label class="lbl" for="company_name"><span data-i18n="lblCompanyName">Razón Social Legal</span> <span class="req">*</span></label>
+                <input type="text" id="company_name" name="company_name" placeholder="Ej: Kraft Heinz Foods Co / Tyson Logistics" required>
+                <div class="error-msg" data-i18n="errCompanyName">Ingrese la razón social de la empresa.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="company_dba"><span data-i18n="lblCompanyDba">Nombre Comercial / DBA</span> <span class="opt">(Opcional)</span></label>
+                <input type="text" id="company_dba" name="company_dba" placeholder="Nombre comercial si difiere de la razón social">
+              </div>
+            </div>
+
+            <div class="row3">
+              <div class="field">
+                <label class="lbl" for="company_ein"><span data-i18n="lblEin">Tax ID / EIN</span> <span class="req">*</span></label>
+                <input type="text" id="company_ein" name="company_ein" placeholder="XX-XXXXXXX" maxlength="10" required>
+                <div class="help" data-i18n="helpEin">Formato federal de 9 dígitos (XX-XXXXXXX)</div>
+                <div class="error-msg" data-i18n="errEin">EIN inválido. Debe tener formato XX-XXXXXXX.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="company_years"><span data-i18n="lblYears">Años en Operación</span> <span class="req">*</span></label>
+                <select id="company_years" name="company_years" required>
+                  <option value="">Seleccione...</option>
+                  <option value="1">Menos de 1 año</option>
+                  <option value="1-3">1 a 3 años</option>
+                  <option value="3-5">3 a 5 años</option>
+                  <option value="5+">Más de 5 años</option>
+                  <option value="10+">Más de 10 años</option>
+                </select>
+                <div class="error-msg" data-i18n="errYears">Seleccione los años de operación.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="company_industry"><span data-i18n="lblIndustry">Sector Industrial</span> <span class="req">*</span></label>
+                <select id="company_industry" name="company_industry" required>
+                  <option value="">Seleccione industria...</option>
+                  <option value="Alimentos y Bebidas (Cadena de Frío)">Alimentos y Bebidas (Cadena de Frío)</option>
+                  <option value="Productos de Consumo / Retail">Productos de Consumo / Retail</option>
+                  <option value="Manufactura & Industrial">Manufactura & Industrial</option>
+                  <option value="Materiales de Construcción">Materiales de Construcción</option>
+                  <option value="Agricultura & Materias Primas">Agricultura & Materias Primas</option>
+                  <option value="Automotriz & Repuestos">Automotriz & Repuestos</option>
+                  <option value="Papel, Envases y Embalajes">Papel, Envases y Embalajes</option>
+                  <option value="Otro">Otro sector comercial</option>
+                </select>
+                <div class="error-msg" data-i18n="errIndustry">Seleccione el sector industrial.</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="lbl" for="company_website"><span data-i18n="lblWebsite">Sitio Web Corporativo</span> <span class="opt">(Opcional)</span></label>
+              <input type="text" id="company_website" name="company_website" placeholder="https://www.empresa.com">
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. CONTACTO LOGÍSTICO Y DESPACHO 24/7 -->
+        <div class="acc-item" id="acc2">
+          <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="panel2">
+            <div class="acc-left">
+              <span class="acc-number">02</span>
+              <div class="acc-title-group">
+                <span class="acc-title" data-i18n="sec2Title">Contacto Logístico & Despacho</span>
+                <span class="acc-desc" data-i18n="sec2Desc">Responsable de logística, tráfico y línea de atención 24/7</span>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-status-tag" id="status2">Pendiente</span>
+              <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="acc-panel" id="panel2">
+            <div class="row2">
+              <div class="field">
+                <label class="lbl" for="contact_name"><span data-i18n="lblContactName">Nombre del Contacto Principal</span> <span class="req">*</span></label>
+                <input type="text" id="contact_name" name="contact_name" placeholder="Nombre y Apellidos" required>
+                <div class="error-msg" data-i18n="errContactName">Indique el nombre del responsable de logística.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="contact_title"><span data-i18n="lblContactTitle">Cargo / Título</span> <span class="req">*</span></label>
+                <input type="text" id="contact_title" name="contact_title" placeholder="Ej: Gerente de Tráfico / Logistics Coordinator" required>
+                <div class="error-msg" data-i18n="errContactTitle">Indique el cargo del contacto.</div>
+              </div>
+            </div>
+
+            <div class="row3">
+              <div class="field">
+                <label class="lbl" for="contact_email"><span data-i18n="lblContactEmail">Email Corporativo</span> <span class="req">*</span></label>
+                <input type="email" id="contact_email" name="contact_email" placeholder="logistica@empresa.com" required>
+                <div class="error-msg" data-i18n="errContactEmail">Email inválido o incompleto.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="contact_phone"><span data-i18n="lblContactPhone">Teléfono Directo</span> <span class="req">*</span></label>
+                <input type="tel" id="contact_phone" name="contact_phone" placeholder="(XXX) XXX-XXXX Ext 12" required>
+                <div class="error-msg" data-i18n="errContactPhone">Teléfono requerido.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="dispatch_afterhours"><span data-i18n="lblAfterHours">Línea Emergencia / 24-7</span> <span class="req">*</span></label>
+                <input type="tel" id="dispatch_afterhours" name="dispatch_afterhours" placeholder="(XXX) XXX-XXXX" required>
+                <div class="help" data-i18n="helpAfterHours">Para incidencias nocturnas o de fin de semana</div>
+                <div class="error-msg" data-i18n="errAfterHours">Indique un teléfono de contacto de guardia.</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="lbl" for="tender_email"><span data-i18n="lblTenderEmail">Email para Envío de Rate Confirmations & Tenders</span> <span class="opt">(Opcional)</span></label>
+              <input type="email" id="tender_email" name="tender_email" placeholder="tenders@empresa.com o dispatch@empresa.com">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. INSTALACIONES DE CARGA & CENTROS DE DISTRIBUCIÓN -->
+        <div class="acc-item" id="acc3">
+          <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="panel3">
+            <div class="acc-left">
+              <span class="acc-number">03</span>
+              <div class="acc-title-group">
+                <span class="acc-title" data-i18n="sec3Title">Instalaciones & Muelles de Carga</span>
+                <span class="acc-desc" data-i18n="sec3Desc">Dirección de despacho, horarios, política de citas y facilidades</span>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-status-tag" id="status3">Pendiente</span>
+              <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="acc-panel" id="panel3">
+            <div class="field">
+              <label class="lbl" for="fac_address"><span data-i18n="lblFacAddress">Dirección de la Instalación Principal / Almacén</span> <span class="req">*</span></label>
+              <input type="text" id="fac_address" name="fac_address" placeholder="Ej: 8400 NW 25th St, Doral, FL 33122" required>
+              <div class="error-msg" data-i18n="errFacAddress">Ingrese la dirección física de la instalación.</div>
+            </div>
+
+            <div class="row3">
+              <div class="field">
+                <label class="lbl" for="fac_city"><span data-i18n="lblFacCity">Ciudad</span> <span class="req">*</span></label>
+                <input type="text" id="fac_city" name="fac_city" placeholder="Ej: Miami / Atlanta / Dallas" required>
+              </div>
+              <div class="field">
+                <label class="lbl" for="fac_state"><span data-i18n="lblFacState">Estado</span> <span class="req">*</span></label>
+                <select id="fac_state" name="fac_state" required>
+                  <option value="">Seleccione...</option>
+                  <option value="FL">Florida (FL)</option>
+                  <option value="GA">Georgia (GA)</option>
+                  <option value="TX">Texas (TX)</option>
+                  <option value="NC">North Carolina (NC)</option>
+                  <option value="SC">South Carolina (SC)</option>
+                  <option value="TN">Tennessee (TN)</option>
+                  <option value="AL">Alabama (AL)</option>
+                  <option value="IL">Illinois (IL)</option>
+                  <option value="OH">Ohio (OH)</option>
+                  <option value="PA">Pennsylvania (PA)</option>
+                  <option value="CA">California (CA)</option>
+                  <option value="OTRO">Otro estado de EE. UU.</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="lbl" for="fac_zip"><span data-i18n="lblFacZip">Código Postal (ZIP)</span> <span class="req">*</span></label>
+                <input type="text" id="fac_zip" name="fac_zip" placeholder="33122" maxlength="10" required>
+              </div>
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label class="lbl" for="fac_hours"><span data-i18n="lblFacHours">Horario de Carga / Despacho</span> <span class="req">*</span></label>
+                <input type="text" id="fac_hours" name="fac_hours" placeholder="Ej: 07:00 AM - 04:30 PM (Lunes a Viernes)" required>
+                <div class="error-msg" data-i18n="errFacHours">Especifique el horario de recepción o carga.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="fac_appt"><span data-i18n="lblFacAppt">Requisito de Cita</span> <span class="req">*</span></label>
+                <select id="fac_appt" name="fac_appt" required>
+                  <option value="Requiere Cita Previa Estricta (Appointment Only)">Requiere Cita Previa Estricta (Appt Only)</option>
+                  <option value="Primer Llegado, Primer Atendido (FCFS)">Primer Llegado, Primer Atendido (FCFS)</option>
+                  <option value="Cita Preferente con Ventana FCFS">Cita Preferente con Ventana FCFS</option>
+                  <option value="24 Horas con Cita Programada">Operación 24 Horas con Cita Programada</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="lbl"><span data-i18n="lblFacFeatures">Facilidades del Muelle & Requisitos de Acceso</span></label>
+              <div class="check-grid">
+                <label class="check-label"><input type="checkbox" id="fac_dock_high" name="fac_dock_high" checked><span data-i18n="featDock">Puertas de Muelle Estándar (Dock High)</span></label>
+                <label class="check-label"><input type="checkbox" id="fac_ramp" name="fac_ramp"><span data-i18n="featRamp">Rampa a Nivel de Suelo</span></label>
+                <label class="check-label"><input type="checkbox" id="fac_liftgate" name="fac_liftgate"><span data-i18n="featLiftgate">Requiere Plataforma Elevadora (Liftgate)</span></label>
+                <label class="check-label"><input type="checkbox" id="fac_overnight" name="fac_overnight"><span data-i18n="featOvernight">Parqueo Nocturno Permitido (Overnight Staging)</span></label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="lbl" for="fac_notes"><span data-i18n="lblFacNotes">Instrucciones de Entrada para Choferes</span> <span class="opt">(Opcional)</span></label>
+              <textarea id="fac_notes" name="fac_notes" rows="2" placeholder="Ej: Registro obligatorio en caseta norte con ID y número de PO. Chaleco reflectivo y botas de seguridad obligatorias."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. PERFIL DE CARGA Y REQUISITOS DE EQUIPO -->
+        <div class="acc-item" id="acc4">
+          <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="panel4">
+            <div class="acc-left">
+              <span class="acc-number">04</span>
+              <div class="acc-title-group">
+                <span class="acc-title" data-i18n="sec4Title">Perfil de Carga & Equipamiento</span>
+                <span class="acc-desc" data-i18n="sec4Desc">Tipo de remolque, control de temperatura, mercancía y volumen</span>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-status-tag" id="status4">Pendiente</span>
+              <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="acc-panel" id="panel4">
+            <div class="row2">
+              <div class="field">
+                <label class="lbl" for="eq_type"><span data-i18n="lblEqType">Tipo de Remolque / Equipo Requerido</span> <span class="req">*</span></label>
+                <select id="eq_type" name="eq_type" required>
+                  <option value="">Seleccione equipo habitual...</option>
+                  <option value="53' Dry Van (Caja Seca)">53' Dry Van (Caja Seca Estándar)</option>
+                  <option value="53' Reefer (Refrigerado)">53' Reefer (Remolque Refrigerado)</option>
+                  <option value="Flatbed / Plataforma 48'-53'">Flatbed / Plataforma Abierta 48'-53'</option>
+                  <option value="Step Deck / Drop Deck">Step Deck / Plataforma Escalonada</option>
+                  <option value="Hotshot / Camión Liviano 40'">Hotshot / Remolque Liviano 40'</option>
+                  <option value="Box Truck 26'">Box Truck 26' con Liftgate</option>
+                </select>
+                <div class="error-msg" data-i18n="errEqType">Seleccione el equipo principal.</div>
+              </div>
+              <div class="field" id="reeferTempField">
+                <label class="lbl" for="eq_temp"><span data-i18n="lblEqTemp">Temperatura si aplica (Reefer)</span> <span class="opt">(Opcional)</span></label>
+                <input type="text" id="eq_temp" name="eq_temp" placeholder="Ej: Continuo 34°F / Congelado -10°F">
+              </div>
+            </div>
+
+            <div class="row3">
+              <div class="field">
+                <label class="lbl" for="cargo_commodity"><span data-i18n="lblCommodity">Mercancía Típica (Commodity)</span> <span class="req">*</span></label>
+                <input type="text" id="cargo_commodity" name="cargo_commodity" placeholder="Ej: Alimentos procesados / Bebidas / Acero" required>
+                <div class="error-msg" data-i18n="errCommodity">Indique la mercancía transportada.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="cargo_weight"><span data-i18n="lblWeight">Peso Promedio por Carga (Lbs)</span> <span class="req">*</span></label>
+                <input type="number" id="cargo_weight" name="cargo_weight" placeholder="Ej: 42000" min="500" max="80000" required>
+                <div class="error-msg" data-i18n="errWeight">Indique el peso aproximado en libras.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="cargo_volume"><span data-i18n="lblVolume">Volumen Estimado</span> <span class="req">*</span></label>
+                <select id="cargo_volume" name="cargo_volume" required>
+                  <option value="">Seleccione frecuencia...</option>
+                  <option value="1 a 3 cargas por semana">1 a 3 cargas semanales</option>
+                  <option value="4 a 10 cargas por semana">4 a 10 cargas semanales</option>
+                  <option value="11 a 25 cargas por semana">11 a 25 cargas semanales</option>
+                  <option value="Más de 25 cargas por semana">Más de 25 cargas semanales</option>
+                  <option value="Cargas Spot / Por Temporada">Cargas Spot / Estacionales</option>
+                </select>
+                <div class="error-msg" data-i18n="errVolume">Seleccione el volumen aproximado.</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="lbl"><span data-i18n="lblSpecs">Requisitos Especiales de Carga</span></label>
+              <div class="check-grid">
+                <label class="check-label"><input type="checkbox" id="spec_food" name="spec_food" checked><span data-i18n="specFood">Grado Alimenticio FSMA / Inspección Sanitaria</span></label>
+                <label class="check-label"><input type="checkbox" id="spec_pallet" name="spec_pallet" checked><span data-i18n="specPallet">Mercancía 100% Palletizada</span></label>
+                <label class="check-label"><input type="checkbox" id="spec_hazmat" name="spec_hazmat"><span data-i18n="specHazmat">Material Peligroso (HazMat)</span></label>
+                <label class="check-label"><input type="checkbox" id="spec_highval" name="spec_highval"><span data-i18n="specHighval">Carga de Alto Valor (> $100,000 USD)</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. INTEGRACIÓN TECNOLÓGICA Y EDI / TMS -->
+        <div class="acc-item" id="acc5">
+          <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="panel5">
+            <div class="acc-left">
+              <span class="acc-number">05</span>
+              <div class="acc-title-group">
+                <span class="acc-title" data-i18n="sec5Title">Integración Tecnológica & EDI</span>
+                <span class="acc-desc" data-i18n="sec5Desc">Licitación EDI 204, seguimiento en vivo y formato de POD</span>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-status-tag" id="status5">Pendiente</span>
+              <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="acc-panel" id="panel5">
+            <div class="info-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <div>
+                <strong data-i18n="ediInfoTitle">Gateway EDI 204 / 214 / 210 de HCGA Trading LLC:</strong>
+                <span data-i18n="ediInfoDesc"> Nuestra plataforma admite intercambio de datos electrónicos directo con sistemas ERP y TMS corporativos para licitación automática de cargas y tracking en tiempo real.</span>
+              </div>
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label class="lbl" for="tender_method"><span data-i18n="lblTenderMethod">Modalidad Preferida de Licitación</span> <span class="req">*</span></label>
+                <select id="tender_method" name="tender_method" required>
+                  <option value="Portal Web Directo HCGA">Portal Web Directo HCGA (Dashboard Digital)</option>
+                  <option value="EDI 204 (Tender Automático)">EDI 204 (Carga Electrónica Automática)</option>
+                  <option value="Email & Rate Confirmation PDF">Email & Confirmación de Tarifa (PDF)</option>
+                  <option value="API REST / Webhooks">API REST Corporativa / Webhook</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="lbl" for="tms_name"><span data-i18n="lblTmsName">Sistema TMS Utilizado</span> <span class="opt">(Opcional)</span></label>
+                <select id="tms_name" name="tms_name">
+                  <option value="No utiliza TMS / Sistema Interno">No utiliza TMS / Sistema Interno Propio</option>
+                  <option value="McLeod Software">McLeod Software</option>
+                  <option value="MercuryGate">MercuryGate TMS</option>
+                  <option value="SAP Logistics / Transportation">SAP Logistics / Transportation</option>
+                  <option value="Oracle Transportation (OTM)">Oracle Transportation Management (OTM)</option>
+                  <option value="Blue Yonder (JDA)">Blue Yonder (JDA)</option>
+                  <option value="Trimble / TMW">Trimble / TMW Systems</option>
+                  <option value="Otro">Otro sistema comercial</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label class="lbl" for="tracking_req"><span data-i18n="lblTrackingReq">Plataforma de Visibilidad en Tiempo Real</span> <span class="req">*</span></label>
+                <select id="tracking_req" name="tracking_req" required>
+                  <option value="HCGA Live GPS Tracker (Nativo)">HCGA Live GPS Tracker (Nativo de Flota)</option>
+                  <option value="Project44">Project44 Integration</option>
+                  <option value="FourKites">FourKites Supply Chain Visibility</option>
+                  <option value="MacroPoint">MacroPoint Automated Tracking</option>
+                  <option value="Actualizaciones por Correo / SMS">Actualizaciones periódicas por Email / SMS</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="lbl" for="pod_delivery"><span data-i18n="lblPodDelivery">Recepción de Prueba de Entrega (POD/BOL)</span> <span class="req">*</span></label>
+                <select id="pod_delivery" name="pod_delivery" required>
+                  <option value="Portal Digital HCGA (Descarga Inmediata)">Portal Digital HCGA (Descarga Inmediata)</option>
+                  <option value="Email Automatizado al Completar">Email Automatizado al Completar Entrega</option>
+                  <option value="EDI 214 (Status) + EDI 210 (Factura)">EDI 214 (Status) + EDI 210 (Factura Electrónica)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. FACTURACIÓN, CRÉDITO Y CUENTAS POR PAGAR -->
+        <div class="acc-item" id="acc6">
+          <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="panel6">
+            <div class="acc-left">
+              <span class="acc-number">06</span>
+              <div class="acc-title-group">
+                <span class="acc-title" data-i18n="sec6Title">Facturación & Términos de Crédito</span>
+                <span class="acc-desc" data-i18n="sec6Desc">Cuentas por pagar, términos solicitados y referencias</span>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-status-tag" id="status6">Pendiente</span>
+              <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="acc-panel" id="panel6">
+            <div class="row2">
+              <div class="field">
+                <label class="lbl" for="ap_email"><span data-i18n="lblApEmail">Email de Cuentas por Pagar (AP)</span> <span class="req">*</span></label>
+                <input type="email" id="ap_email" name="ap_email" placeholder="ap@empresa.com o facturacion@empresa.com" required>
+                <div class="error-msg" data-i18n="errApEmail">Email de cuentas por pagar requerido.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="credit_terms"><span data-i18n="lblCreditTerms">Términos de Pago Solicitados</span> <span class="req">*</span></label>
+                <select id="credit_terms" name="credit_terms" required>
+                  <option value="QuickPay HCGA (1 a 3 días con 2% descuento)">QuickPay HCGA (1 a 3 días con 2% pronto pago)</option>
+                  <option value="Net 15 Días">Net 15 Días (Aprobación rápida)</option>
+                  <option value="Net 30 Días (Sujeto a verificación crediticia)">Net 30 Días (Sujeto a verificación crediticia)</option>
+                  <option value="Prepago / Tarjeta Corporativa ACH">Prepago / ACH Directo</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label class="lbl" for="ap_phone"><span data-i18n="lblApPhone">Teléfono de Cuentas por Pagar</span> <span class="opt">(Opcional)</span></label>
+                <input type="tel" id="ap_phone" name="ap_phone" placeholder="(XXX) XXX-XXXX Extensión">
+              </div>
+              <div class="field">
+                <label class="lbl" for="duns_number"><span data-i18n="lblDuns">Número Dun & Bradstreet (D-U-N-S)</span> <span class="opt">(Opcional)</span></label>
+                <input type="text" id="duns_number" name="duns_number" placeholder="9 dígitos para verificación de crédito">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="lbl" for="trade_references"><span data-i18n="lblTradeRefs">Referencias Comerciales de Transporte</span> <span class="opt">(Recomendado para Net 30)</span></label>
+              <textarea id="trade_references" name="trade_references" rows="2" placeholder="Nombre de empresa de transporte / broker con quien trabaje habitualmente, contacto y teléfono."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. POLÍTICAS OPERATIVAS, DETENCIÓN Y SEGURO -->
+        <div class="acc-item" id="acc7">
+          <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="panel7">
+            <div class="acc-left">
+              <span class="acc-number">07</span>
+              <div class="acc-title-group">
+                <span class="acc-title" data-i18n="sec7Title">Políticas Operativas & Seguros</span>
+                <span class="acc-desc" data-i18n="sec7Desc">Tarifa de detención, compensación TONU y coberturas de seguro</span>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-status-tag" id="status7">Pendiente</span>
+              <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="acc-panel" id="panel7">
+            <div class="corp-box">
+              <div>
+                <strong>HCGA Trading LLC — Coberturas Garantizadas de Flota:</strong><br>
+                <span style="color:var(--dim)">Auto Liability: $1,000,000 USD · Carga Comercial: $100,000 USD (Ampliables hasta $250,000 USD bajo solicitud de Rate Con).</span>
+              </div>
+              <span class="badge badge--dot">USDOT #4150721</span>
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label class="lbl" for="detention_policy"><span data-i18n="lblDetention">Tarifa de Detención Acordada</span> <span class="req">*</span></label>
+                <select id="detention_policy" name="detention_policy" required>
+                  <option value="$60.00 / hora tras 2 horas libres">$60.00 / hora tras 2 horas de gracia estándar</option>
+                  <option value="$75.00 / hora tras 2 horas libres">$75.00 / hora tras 2 horas de gracia estándar</option>
+                  <option value="$50.00 / hora tras 2 horas libres">$50.00 / hora tras 2 horas de gracia estándar</option>
+                </select>
+                <div class="help" data-i18n="helpDetention">Aplicable tanto en origen como en destino con registro de llegada verificado por GPS.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="tonu_policy"><span data-i18n="lblTonu">Compensación TONU (Truck Order Not Used)</span> <span class="req">*</span></label>
+                <select id="tonu_policy" name="tonu_policy" required>
+                  <option value="$200.00 estándar por camión cancelado">$200.00 estándar por camión cancelado</option>
+                  <option value="$250.00 estándar por camión cancelado">$250.00 estándar por camión cancelado</option>
+                  <option value="$150.00 estándar por camión cancelado">$150.00 estándar por camión cancelado</option>
+                </select>
+                <div class="help" data-i18n="helpTonu">Si una carga es cancelada dentro de las 4 horas previas a la hora de cita.</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="lbl" for="claims_window"><span data-i18n="lblClaims">Plazo de Reporte de Discrepancias / Reclamos</span> <span class="req">*</span></label>
+              <select id="claims_window" name="claims_window" required>
+                <option value="48 horas hábiles posteriores a la entrega con anotación en BOL">48 horas hábiles posteriores a la entrega con anotación en BOL</option>
+                <option value="24 horas para mercancías perecederas refrigeradas">24 horas para mercancías perecederas refrigeradas</option>
+                <option value="72 horas hábiles estándar">72 horas hábiles estándar</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. ACUERDO DE SERVICIO, CONSENTIMIENTOS Y FIRMA -->
+        <div class="acc-item" id="acc8">
+          <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="panel8">
+            <div class="acc-left">
+              <span class="acc-number">08</span>
+              <div class="acc-title-group">
+                <span class="acc-title" data-i18n="sec8Title">Acuerdo de Servicio & Firma Digital</span>
+                <span class="acc-desc" data-i18n="sec8Desc">Consentimientos obligatorios, representante y firma electrónica</span>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-status-tag" id="status8">Pendiente</span>
+              <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="acc-panel" id="panel8">
+            <div class="consent-block">
+              <label class="consent-item">
+                <input type="checkbox" id="c_agreement" name="c_agreement" required>
+                <span>
+                  <strong data-i18n="cAgreementTitle">Acuerdo Comercial de Transporte y Corretaje:</strong>
+                  <span data-i18n="cAgreementDesc"> Acepto los términos de intermediación comercial y corretaje de carga de HCGA Trading LLC (USDOT #4150721, MC-1689201). Reconozco que cada despacho se formaliza mediante Rate Confirmation individual vinculante.</span>
+                  <span class="req">*</span>
+                </span>
+              </label>
+
+              <label class="consent-item">
+                <input type="checkbox" id="c_credit" name="c_credit" required>
+                <span>
+                  <strong data-i18n="cCreditTitle">Autorización de Crédito y Facturación:</strong>
+                  <span data-i18n="cCreditDesc"> Autorizo a HCGA Trading LLC a validar las referencias comerciales de crédito suministradas y procesar la facturación electrónica correspondiente a los servicios acordados.</span>
+                  <span class="req">*</span>
+                </span>
+              </label>
+
+              <label class="consent-item">
+                <input type="checkbox" id="c_comms" name="c_comms" required>
+                <span>
+                  <strong data-i18n="cCommsTitle">Comunicaciones Operativas Electrónicas:</strong>
+                  <span data-i18n="cCommsDesc"> Autorizo el envío de Rate Confirmations, manifiestos de carga, tracking en vivo y comprobantes de entrega (POD) por medios electrónicos y vía portal web.</span>
+                  <span class="req">*</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="row3" style="margin-top:16px;">
+              <div class="field">
+                <label class="lbl" for="signer_name"><span data-i18n="lblSignerName">Nombre del Representante Autorizado</span> <span class="req">*</span></label>
+                <input type="text" id="signer_name" name="signer_name" placeholder="Nombre y Apellidos del firmante" required>
+                <div class="error-msg" data-i18n="errSignerName">Indique el nombre del firmante.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="signer_title"><span data-i18n="lblSignerTitle">Cargo Corporativo</span> <span class="req">*</span></label>
+                <input type="text" id="signer_title" name="signer_title" placeholder="Ej: Director de Logística / CFO / VP" required>
+                <div class="error-msg" data-i18n="errSignerTitle">Indique el cargo corporativo.</div>
+              </div>
+              <div class="field">
+                <label class="lbl" for="signer_date"><span data-i18n="lblSignerDate">Fecha de Firma</span> <span class="req">*</span></label>
+                <input type="date" id="signer_date" name="signer_date" required readonly>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="lbl"><span data-i18n="lblSignCanvas">Firma Electrónica del Representante (Dibuje en el recuadro)</span> <span class="req">*</span></label>
+              <div class="sig-container">
+                <canvas id="sigCanvas" class="sig-canvas"></canvas>
+                <div class="sig-watermark">HCGA ELECTRONIC SIGNATURE VERIFIED · 49 CFR §390</div>
+              </div>
+              <div class="sig-actions">
+                <button type="button" class="btn-text" id="btnClearSig" data-i18n="clearSig">Borrar / Limpiar Firma</button>
+                <span id="sigStatus" style="color:var(--dimmer);font-size:12px;" data-i18n="sigPrompt">Firma requerida para validar el expediente comercial</span>
+              </div>
+              <div class="error-msg" id="sigError" data-i18n="errSig">Debe firmar en el recuadro para completar el alta del shipper.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BOTÓN DE ENVÍO -->
+      <div class="submit-bar">
+        <button type="submit" class="btn-submit" id="btnSubmitForm">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span data-i18n="btnSubmit">Finalizar Expediente Shipper y Emitir CUI-S</span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- ===================== VISTA DE CONFIRMACIÓN ===================== -->
+  <div id="doneView" class="done-card" hidden>
+    <div class="done-icon">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2 data-i18n="doneHeading">¡Expediente Shipper Registrado con Éxito!</h2>
+    <p data-i18n="doneLead">La empresa ha sido dada de alta formalmente en la red de transporte de HCGA Trading LLC. Se ha emitido su Certificado Único de Identificación Shipper (CUI-S).</p>
+
+    <!-- PAPEL DE CERTIFICADO CUI-S -->
+    <div class="cert-paper">
+      <div class="cert-paper-head">
+        <div class="cert-paper-brand">
+          <h3>HCGA TRADING LLC</h3>
+          <span>COMMERCIAL FREIGHT & LOGISTICS NETWORK · USDOT #4150721 · MC-1689201</span>
+        </div>
+        <div class="cert-cui-badge" id="certBadge">CUI-S: HCGA-SHP-2026-00000</div>
+      </div>
+
+      <dl class="cert-grid">
+        <dt data-i18n="cCertCompany">Empresa / Razón Social:</dt>
+        <dd id="certCompanyName">-</dd>
+
+        <dt data-i18n="cCertEin">Tax ID / EIN:</dt>
+        <dd id="certEin">-</dd>
+
+        <dt data-i18n="cCertContact">Contacto Logístico:</dt>
+        <dd id="certContact">-</dd>
+
+        <dt data-i18n="cCertEquipment">Equipo Requerido:</dt>
+        <dd id="certEquipment">-</dd>
+
+        <dt data-i18n="cCertTerms">Términos de Pago:</dt>
+        <dd id="certTerms">-</dd>
+
+        <dt data-i18n="cCertStatus">Estado Operativo:</dt>
+        <dd><span style="color:#0284c7;font-weight:700;">HABILITADO PARA DESPACHO DIRECTO EDI / WEB</span></dd>
+      </dl>
+
+      <div class="cert-footer-note" data-i18n="certFooterText">
+        Este documento certifica que el embarcador cumple con los requisitos corporativos de crédito, seguridad de carga y políticas operativas de HCGA Trading LLC. Válido para licitación de cargas y asignación de flota.
+      </div>
+    </div>
+
+    <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button type="button" class="btn-submit" id="btnPrintCert" style="font-size:16px;padding:12px 24px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span data-i18n="btnPrint">Imprimir Certificado CUI-S</span>
+      </button>
+      <button type="button" class="btn-text" id="btnRegisterAnother" style="font-size:14px;color:var(--dim);text-decoration:underline;">
+        <span data-i18n="btnNewRecord">Registrar otra empresa</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // Helpers
+  function $(id){ return document.getElementById(id); }
+
+  // Idioma
+  var urlParams = new URLSearchParams(window.location.search);
+  var lang = urlParams.get("lang") === "en" ? "en" : "es";
+
+  var I18N = {
+    es: {
+      heroTitle: "Expediente Oficial de Alta del Shipper / Embarcador",
+      heroLead: "Registre su empresa comercial como generador de carga verificado en la red de transporte de HCGA Trading LLC. Complete los 8 acápites del acordeón para habilitar despacho directo, términos de facturación y licitación tecnológica de cargas.",
+      progTitle: "Progreso del Expediente Comercial",
+      expandAll: "Expandir todos",
+      collapseAll: "Colapsar todos",
+      btnSubmit: "Finalizar Expediente Shipper y Emitir CUI-S",
+      doneHeading: "¡Expediente Shipper Registrado con Éxito!",
+      doneLead: "La empresa ha sido dada de alta formalmente en la red de transporte de HCGA Trading LLC. Se ha emitido su Certificado Único de Identificación Shipper (CUI-S)."
+    },
+    en: {
+      heroTitle: "Official Shipper Onboarding & Freight Agreement",
+      heroLead: "Register your commercial shipping enterprise as an authorized freight generator within the HCGA Trading LLC network. Complete all 8 accordion sections to enable direct dispatch, credit terms, and EDI load tendering.",
+      progTitle: "Commercial Onboarding Progress",
+      expandAll: "Expand all",
+      collapseAll: "Collapse all",
+      btnSubmit: "Submit Shipper Record & Generate CUI-S",
+      doneHeading: "Shipper Onboarding Completed Successfully!",
+      doneLead: "Your company has been verified and registered within the HCGA Trading LLC network. Your Shipper Unique Identifier Certificate (CUI-S) has been issued."
+    }
+  };
+
+  // Fecha de hoy por defecto
+  var today = new Date().toISOString().split("T")[0];
+  var signerDateInput = $("signer_date");
+  if (signerDateInput) signerDateInput.value = today;
+
+  // Lógica del Acordeón
+  var accItems = document.querySelectorAll(".acc-item");
+  accItems.forEach(function(item){
+    var trigger = item.querySelector(".acc-trigger");
+    if (!trigger) return;
+    trigger.addEventListener("click", function(){
+      var isOpen = item.classList.contains("open");
+      item.classList.toggle("open", !isOpen);
+      trigger.setAttribute("aria-expanded", !isOpen);
+      updateProgress();
+    });
+  });
+
+  // Botón Expandir/Colapsar todos
+  var btnToggleAll = $("btnToggleAll");
+  var allExpanded = false;
+  if (btnToggleAll) {
+    btnToggleAll.addEventListener("click", function(){
+      allExpanded = !allExpanded;
+      accItems.forEach(function(item){
+        item.classList.toggle("open", allExpanded);
+        var trigger = item.querySelector(".acc-trigger");
+        if (trigger) trigger.setAttribute("aria-expanded", allExpanded);
+      });
+      btnToggleAll.textContent = allExpanded ? (lang === "es" ? "Colapsar todos" : "Collapse all") : (lang === "es" ? "Expandir todos" : "Expand all");
+    });
+  }
+
+  // Máscara y formato EIN (XX-XXXXXXX)
+  var einInput = $("company_ein");
+  if (einInput) {
+    einInput.addEventListener("input", function(e){
+      var v = e.target.value.replace(/\D/g, "").slice(0, 9);
+      if (v.length > 2) {
+        e.target.value = v.slice(0, 2) + "-" + v.slice(2);
+      } else {
+        e.target.value = v;
+      }
+      validateSection(1);
+    });
+  }
+
+  // Manejo de firma en Canvas
+  var canvas = $("sigCanvas");
+  var ctx = canvas ? canvas.getContext("2d") : null;
+  var drawing = false;
+  var hasSignature = false;
+
+  function resizeCanvas(){
+    if (!canvas) return;
+    var rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * 2;
+    canvas.height = rect.height * 2;
+    if (ctx) {
+      ctx.scale(2, 2);
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.strokeStyle = "#0f172a";
+    }
+  }
+
+  if (canvas) {
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    function getCoords(e){
+      var rect = canvas.getBoundingClientRect();
+      var cx = e.touches ? e.touches[0].clientX : e.clientX;
+      var cy = e.touches ? e.touches[0].clientY : e.clientY;
+      return { x: cx - rect.left, y: cy - rect.top };
+    }
+
+    function startDraw(e){
+      e.preventDefault();
+      drawing = true;
+      var p = getCoords(e);
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+    }
+
+    function draw(e){
+      if (!drawing) return;
+      e.preventDefault();
+      var p = getCoords(e);
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();
+      hasSignature = true;
+      var sigPrompt = $("sigStatus");
+      if (sigPrompt) {
+        sigPrompt.textContent = lang === "es" ? "Firma registrada ✓" : "Signature captured ✓";
+        sigPrompt.style.color = "var(--green)";
+      }
+      var sigErr = $("sigError");
+      if (sigErr) sigErr.style.display = "none";
+      validateSection(8);
+    }
+
+    function endDraw(e){
+      if (drawing) {
+        e.preventDefault();
+        drawing = false;
+        validateSection(8);
+      }
+    }
+
+    canvas.addEventListener("mousedown", startDraw);
+    canvas.addEventListener("mousemove", draw);
+    window.addEventListener("mouseup", endDraw);
+
+    canvas.addEventListener("touchstart", startDraw, { passive: false });
+    canvas.addEventListener("touchmove", draw, { passive: false });
+    window.addEventListener("touchend", endDraw, { passive: false });
+  }
+
+  var btnClearSig = $("btnClearSig");
+  if (btnClearSig) {
+    btnClearSig.addEventListener("click", function(){
+      if (ctx && canvas) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        hasSignature = false;
+        var sigPrompt = $("sigStatus");
+        if (sigPrompt) {
+          sigPrompt.textContent = lang === "es" ? "Firma requerida" : "Signature required";
+          sigPrompt.style.color = "var(--dimmer)";
+        }
+        validateSection(8);
+      }
+    });
+  }
+
+  // Validación por acápite
+  function validateSection(num){
+    var item = $("acc" + num);
+    var statusTag = $("status" + num);
+    if (!item) return false;
+
+    var valid = false;
+    switch(num) {
+      case 1:
+        var nameOk = $("company_name").value.trim().length >= 2;
+        var einOk = /^\d{2}-\d{7}$/.test($("company_ein").value.trim());
+        var yearsOk = $("company_years").value !== "";
+        var indOk = $("company_industry").value !== "";
+        valid = nameOk && einOk && yearsOk && indOk;
+        break;
+      case 2:
+        var cName = $("contact_name").value.trim().length >= 2;
+        var cTitle = $("contact_title").value.trim().length >= 2;
+        var cEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("contact_email").value.trim());
+        var cPhone = $("contact_phone").value.trim().length >= 7;
+        var cAfter = $("dispatch_afterhours").value.trim().length >= 7;
+        valid = cName && cTitle && cEmail && cPhone && cAfter;
+        break;
+      case 3:
+        var addrOk = $("fac_address").value.trim().length >= 4;
+        var cityOk = $("fac_city").value.trim().length >= 2;
+        var stateOk = $("fac_state").value !== "";
+        var zipOk = $("fac_zip").value.trim().length >= 4;
+        var hoursOk = $("fac_hours").value.trim().length >= 3;
+        valid = addrOk && cityOk && stateOk && zipOk && hoursOk;
+        break;
+      case 4:
+        var eqOk = $("eq_type").value !== "";
+        var commOk = $("cargo_commodity").value.trim().length >= 2;
+        var weightOk = Number($("cargo_weight").value) > 0;
+        var volOk = $("cargo_volume").value !== "";
+        valid = eqOk && commOk && weightOk && volOk;
+        break;
+      case 5:
+        valid = $("tender_method").value !== "" && $("tracking_req").value !== "" && $("pod_delivery").value !== "";
+        break;
+      case 6:
+        var apOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("ap_email").value.trim());
+        var termOk = $("credit_terms").value !== "";
+        valid = apOk && termOk;
+        break;
+      case 7:
+        valid = $("detention_policy").value !== "" && $("tonu_policy").value !== "" && $("claims_window").value !== "";
+        break;
+      case 8:
+        var c1 = $("c_agreement").checked;
+        var c2 = $("c_credit").checked;
+        var c3 = $("c_comms").checked;
+        var signOk = $("signer_name").value.trim().length >= 2 && $("signer_title").value.trim().length >= 2;
+        valid = c1 && c2 && c3 && signOk && hasSignature;
+        break;
+    }
+
+    if (valid) {
+      item.classList.add("completed");
+      if (statusTag) {
+        statusTag.textContent = lang === "es" ? "Completado ✓" : "Completed ✓";
+        statusTag.style.color = "var(--green)";
+      }
+    } else {
+      item.classList.remove("completed");
+      if (statusTag) {
+        statusTag.textContent = item.classList.contains("open") ? (lang === "es" ? "En curso" : "In progress") : (lang === "es" ? "Pendiente" : "Pending");
+        statusTag.style.color = "";
+      }
+    }
+
+    updateProgress();
+    return valid;
+  }
+
+  // Actualizar barra de progreso global
+  function updateProgress(){
+    var completedCount = 0;
+    for (var i = 1; i <= 8; i++) {
+      var item = $("acc" + i);
+      if (item && item.classList.contains("completed")) {
+        completedCount++;
+      }
+    }
+    var pct = Math.round((completedCount / 8) * 100);
+    var fill = $("progressBarFill");
+    if (fill) fill.style.width = pct + "%";
+    var txt = $("progressText");
+    if (txt) {
+      txt.textContent = pct + "% (" + completedCount + (lang === "es" ? " de 8 completados)" : " of 8 completed)");
+    }
+  }
+
+  // Escuchar inputs para validar en tiempo real
+  var form = $("shipperForm");
+  if (form) {
+    form.addEventListener("input", function(e){
+      for (var i = 1; i <= 8; i++) {
+        validateSection(i);
+      }
+    });
+    form.addEventListener("change", function(e){
+      for (var i = 1; i <= 8; i++) {
+        validateSection(i);
+      }
+    });
+  }
+
+  // Envío del Formulario
+  if (form) {
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      // 1) Todos los campos con * son obligatorios (cartel emergente si faltan)
+      var sigOkNow = hasSignature;
+      var sigErrBox = $("sigError");
+      if (sigErrBox) sigErrBox.style.display = sigOkNow ? "none" : "block";
+      if (!HCGARequired.guard(form, lang, [
+        { ok: sigOkNow, focus: $("sigCanvas"),
+          label: lang === "es" ? "Firma Electrónica del Representante" : "Representative Electronic Signature" }
+      ])) return;
+
+      var allValid = true;
+      var firstInvalid = null;
+
+      for (var i = 1; i <= 8; i++) {
+        var isSecValid = validateSection(i);
+        if (!isSecValid) {
+          allValid = false;
+          if (!firstInvalid) firstInvalid = i;
+          var item = $("acc" + i);
+          if (item) item.classList.add("open");
+        }
+      }
+
+      if (!hasSignature) {
+        var sigErr = $("sigError");
+        if (sigErr) sigErr.style.display = "block";
+      }
+
+      if (!allValid) {
+        if (firstInvalid) {
+          var targetItem = $("acc" + firstInvalid);
+          if (targetItem) {
+            targetItem.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+        var badItem = $("acc" + firstInvalid);
+        var badTitle = badItem && badItem.querySelector(".acc-title");
+        HCGARequired.showDialog(lang, [{
+          label: lang === "es" ? "Revise los datos del acápite " + firstInvalid : "Check the data in section " + firstInvalid,
+          section: badTitle ? badTitle.textContent : ""
+        }]);
+        return;
+      }
+
+      // Generar CUI-S
+      var randomNum = Math.floor(10000 + Math.random() * 90000);
+      var cuiShipper = "HCGA-SHP-2026-" + randomNum;
+
+      var compName = $("company_name").value.trim();
+      var einVal = $("company_ein").value.trim();
+      var contactVal = $("contact_name").value.trim() + " (" + $("contact_title").value.trim() + ")";
+      var eqVal = $("eq_type").value;
+      var termsVal = $("credit_terms").value;
+
+      $("certBadge").textContent = "CUI-S: " + cuiShipper;
+      $("certCompanyName").textContent = compName;
+      $("certEin").textContent = einVal;
+      $("certContact").textContent = contactVal;
+      $("certEquipment").textContent = eqVal;
+      $("certTerms").textContent = termsVal;
+
+      // Enviar postMessage al iframe padre (App.jsx)
+      try {
+        window.parent.postMessage({
+          type: "HCGA_REGISTRATION_COMPLETED",
+          role: "shipper",
+          cui: cuiShipper,
+          company: compName,
+          ein: einVal
+        }, "*");
+        window.parent.postMessage({
+          type: "HCGA_SHIPPER_REGISTERED",
+          cui: cuiShipper,
+          company: compName
+        }, "*");
+      } catch (err) {}
+
+      // Guardar en localStorage
+      try {
+        localStorage.setItem("hcga_shipper_registered", "true");
+        localStorage.setItem("hcga_shipper_cui", cuiShipper);
+        localStorage.setItem("hcga_shipper_company", compName);
+      } catch (err) {}
+
+      // Mostrar vista de completado
+      $("formView").hidden = true;
+      $("doneView").hidden = false;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // Botón imprimir
+  var btnPrint = $("btnPrintCert");
+  if (btnPrint) {
+    btnPrint.addEventListener("click", function(){
+      window.print();
+    });
+  }
+
+  // Registrar otro
+  var btnNew = $("btnRegisterAnother");
+  if (btnNew) {
+    btnNew.addEventListener("click", function(){
+      form.reset();
+      if (ctx && canvas) ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hasSignature = false;
+      for (var i = 1; i <= 8; i++) {
+        var it = $("acc" + i);
+        if (it) {
+          it.classList.remove("completed");
+          it.classList.remove("open");
+        }
+      }
+      $("acc1").classList.add("open");
+      $("doneView").hidden = true;
+      $("formView").hidden = false;
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // Inicializar progreso
+  updateProgress();
+
+})();
+</script>
+</body>
+</html>
