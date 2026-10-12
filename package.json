@@ -9,7 +9,10 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "package:godaddy": "vite build && node scripts/package-godaddy.mjs",
+    "certificado:plantilla": "node scripts/certificado/preparar-plantilla.cjs",
+    "package:certificados": "node scripts/package-certificados-app.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
@@ -21,6 +24,8 @@
     "@vitejs/plugin-react": "^6.0.4",
     "gh-pages": "^6.3.0",
     "oxlint": "^1.75.0",
+    "pdf-lib": "^1.17.1",
+    "qrcode-generator": "^1.4.4",
     "vite": "^8.2.0"
   }
 }

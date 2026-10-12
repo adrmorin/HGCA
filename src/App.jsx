@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './index.css';
-import mobileVideo from './assets/video/mobile-hero-video.mp4';
 import TruckBackground from './TruckBackground.jsx';
 import { getGovernanceData } from './data/governanceData.js';
 import RegistrationFloatMenu from './RegistrationFloatMenu.jsx';

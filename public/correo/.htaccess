@@ -1,0 +1,11 @@
+# Pasarela de correo: solo enviar.php es accesible.
+Options -Indexes
+
+<FilesMatch "^(config|config\.example)\.php$">
+  Require all denied
+</FilesMatch>
+
+# El fallback SPA del sitio no debe aplicarse aquí.
+<IfModule mod_rewrite.c>
+  RewriteEngine Off
+</IfModule>
