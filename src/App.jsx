@@ -4379,10 +4379,11 @@ function App() {
         </div>
       )}
 
-      {/* Floating Registration Menu & Interactive Dialog */}
+      {/* Floating Registration Menu & Interactive Dialog (versión original).
+          La versión Chofer + Shipper está guardada oculta en
+          RegistrationFloatMenuV2.jsx — para usarla, cambiar este import/componente. */}
       <RegistrationFloatMenu
         lang={lang}
-        showLauncher={true}
         isOpen={showRegistrationModal}
         setIsOpen={handleCloseRegistrationModal}
         requiredNotice={registrationRequiredNotice}
