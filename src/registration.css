@@ -5,17 +5,22 @@
 
 :root {
   --reg-accent: #890000;
-  --reg-accent-hover: #b31010;
+  --reg-accent-hover: #6B0000;
+  --reg-accent-text: #EF5350;
   --reg-accent-glow: rgba(137, 0, 0, 0.35);
-  --reg-bg-dark: #121518;
-  --reg-panel: #1a1e23;
-  --reg-panel-elevated: #22272e;
-  --reg-text: #f3f1ed;
-  --reg-text-muted: #9aa1a9;
-  --reg-border: rgba(255, 255, 255, 0.12);
+  --reg-bg-dark: #111111;
+  --reg-panel: #1a1a1a;
+  --reg-panel-elevated: #1f1f1f;
+  --reg-text: #F3F1F0;
+  --reg-text-muted: #a0a0a0;
+  --reg-border: #2a2a2a;
   --reg-border-focus: rgba(255, 255, 255, 0.3);
   --reg-success: #10b981;
-  --reg-radius: 14px;
+  --reg-radius: 8px;
+  /* Tipografía corporativa (brand book 04, autoalojada en src/fonts.css) */
+  --reg-font-head: var(--font-family-heading, 'Saira', 'Arial Narrow', Arial, sans-serif);
+  --reg-font-base: var(--font-family-base, 'Inter', system-ui, sans-serif);
+  --reg-font-mono: var(--font-family-mono, 'IBM Plex Mono', ui-monospace, Consolas, monospace);
   --reg-radius-pill: 9999px;
   --reg-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 20px rgba(137, 0, 0, 0.2);
 }
@@ -32,7 +37,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-family: var(--font-family-base, 'Inter', system-ui, sans-serif);
+  font-family: var(--reg-font-base);
 }
 
 @media (min-width: 640px) {
@@ -47,11 +52,12 @@
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  background: rgba(20, 24, 28, 0.95);
+  background: rgba(17, 17, 17, 0.95);
   color: var(--reg-text);
   border: 1.5px solid #ffffff !important;
   border-radius: var(--reg-radius-pill);
   padding: 0.55rem 1.15rem 0.55rem 0.85rem;
+  font-family: var(--reg-font-base);
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
@@ -68,7 +74,7 @@
 .reg-float__trigger:hover {
   transform: translateY(-2px);
   border-color: #ffffff !important;
-  background: rgba(28, 33, 40, 0.98);
+  background: rgba(26, 26, 26, 0.98);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(255, 255, 255, 0.4);
 }
 
@@ -126,15 +132,22 @@
 
 .reg-float__title {
   color: #ffffff;
-  font-weight: 700;
-  font-size: 0.82rem;
-  letter-spacing: 0.01em;
+  font-family: var(--reg-font-head);
+  font-style: italic;
+  font-weight: 800;
+  font-variation-settings: 'wdth' 115;
+  font-size: 0.98rem;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
 
 .reg-float__subtitle {
   color: var(--reg-text-muted);
-  font-size: 0.7rem;
+  font-family: var(--reg-font-mono);
+  font-size: 0.66rem;
   font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
 }
 
 .reg-float__badge {
@@ -144,9 +157,10 @@
   border: 1px solid rgba(16, 185, 129, 0.35);
   border-radius: var(--reg-radius-pill);
   padding: 0.15rem 0.5rem;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-family: var(--reg-font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-left: 0.25rem;
 }
@@ -157,7 +171,7 @@
   bottom: calc(100% + 10px);
   left: 0;
   width: 270px;
-  background: rgba(18, 22, 26, 0.96);
+  background: rgba(17, 17, 17, 0.96);
   border: 1px solid var(--reg-border);
   border-radius: var(--reg-radius);
   box-shadow: var(--reg-shadow);
@@ -184,11 +198,12 @@
 }
 
 .reg-float__menu-heading {
-  font-size: 0.72rem;
+  font-family: var(--reg-font-mono);
+  font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--reg-text-muted);
-  font-weight: 700;
+  color: var(--reg-accent-text);
+  font-weight: 600;
   margin: 0;
 }
 
@@ -197,11 +212,12 @@
   align-items: center;
   gap: 0.65rem;
   padding: 0.6rem 0.75rem;
-  border-radius: 8px;
+  border-radius: 6px;
   background: transparent;
   color: var(--reg-text);
   border: 1px solid transparent;
-  font-size: 0.8rem;
+  font-family: var(--reg-font-base);
+  font-size: 0.82rem;
   font-weight: 500;
   text-align: left;
   cursor: pointer;
@@ -210,8 +226,8 @@
 }
 
 .reg-float__menu-item:hover {
-  background: rgba(137, 0, 0, 0.15);
-  border-color: rgba(137, 0, 0, 0.4);
+  background: rgba(137, 0, 0, 0.18);
+  border-color: rgba(239, 83, 80, 0.4);
   color: #ffffff;
 }
 
@@ -309,8 +325,13 @@
 
 .reg-modal__title {
   margin: 0;
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-family: var(--reg-font-head);
+  font-style: italic;
+  font-weight: 800;
+  font-variation-settings: 'wdth' 115;
+  font-size: 1.12rem;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
   color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
@@ -318,8 +339,10 @@
 }
 
 .reg-modal__subtitle {
-  margin: 0;
-  font-size: 0.75rem;
+  margin: 2px 0 0;
+  font-family: var(--reg-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
   color: var(--reg-text-muted);
 }
 
@@ -403,7 +426,7 @@
   height: 100%;
   border: none;
   display: block;
-  background: #14171a;
+  background: #111111;
 }
 
 /* Responsive adjustments */
